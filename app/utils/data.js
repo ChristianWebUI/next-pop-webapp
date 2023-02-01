@@ -1,82 +1,82 @@
 const data = {
   products: [
     {
-      name: 'Computer',
-      slug: 'computer',
-      category: 'techonology',
-      image: 'https://picsum.photos/id/0/200/200',
-      imageOnHover: 'https://picsum.photos/id/1/200/200',
+      name: 'Awesome Utils',
+      slug: 'utils',
+      category: 'stationery',
+      image: '/images/pencils-1.jpg',
+      imageOnHover: '/images/pencils-1-1.jpg',
       price: 70,
-      brand: 'HP',
+      brand: 'Norma',
       rating: 2.5,
       numReview: 9,
       countInStock: 50,
-      description: 'A very basic computer'
+      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.'
     },
     {
-      name: 'Dog',
-      slug: 'dog',
-      category: 'animal',
-      image: 'https://picsum.photos/id/237/200/200',
-      imageOnHover: 'https://picsum.photos/id/236/200/200',
+      name: 'Pink Combo',
+      slug: 'pink-combo',
+      category: 'stationery',
+      image: '/images/pencils-2.jpg',
+      imageOnHover: '/images/pencils-2-1.jpg',
       price: 200,
-      brand: 'Puppy',
+      brand: 'Faber Castle',
       rating: 5,
       numReview: 60,
       countInStock: 5,
-      description: 'A very cute puppy'
+      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.'
     },
     {
-      name: 'Pencil',
-      slug: 'pencil',
+      name: 'Cute pencils and wire',
+      slug: 'pencils-wire',
       category: 'writting',
-      image: 'https://picsum.photos/id/158/200/200',
-      imageOnHover: 'https://picsum.photos/id/150/200/200',
+      image: '/images/pencils-3.jpg',
+      imageOnHover: '/images/pencils-3-1.jpg',
       price: 10,
       brand: 'Norma',
       rating: 4.5,
       numReview: 10,
       countInStock: 200,
-      description: 'A cute pencil'
+      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.'
     },
     {
-      name: 'Pen',
-      slug: 'pencil',
+      name: 'Colors',
+      slug: 'colors',
       category: 'writting',
-      image: 'https://picsum.photos/id/56/200/200',
-      imageOnHover: 'https://picsum.photos/id/57/200/200',
+      image: '/images/pencils-4.jpg',
+      imageOnHover: '/images/pencils-4-1.jpg',
       price: 15,
-      brand: 'Norma',
+      brand: 'Papier',
       rating: 3.0,
       numReview: 20,
       countInStock: 180,
-      description: 'A cute pen'
+      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.'
     },
     {
       name: 'Notebook',
       slug: 'notebook',
       category: 'writting',
-      image: 'https://picsum.photos/id/330/200/200',
-      imageOnHover: 'https://picsum.photos/id/331/200/200',
+      image: '/images/pencils-5.jpg',
+      imageOnHover: '/images/pencils-5-1.jpg',
       price: 40,
       brand: 'Hasbro',
       rating: 5.0,
       numReview: 9,
       countInStock: 50,
-      description: 'A very cute notebook'
+      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.'
     },
     {
       name: 'Markers',
       slug: 'markers',
       category: 'writting',
-      image: 'https://picsum.photos/id/20/200/200',
-      imageOnHover: 'https://picsum.photos/id/22/200/200',
+      image: '/images/pencils-6.jpg',
+      imageOnHover: '/images/pencils-6-1.jpg',
       price: 17,
       brand: 'Fabber Castle',
       rating: 3.8,
       numReview: 30,
       countInStock: 12,
-      description: 'A cute markers'
+      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.'
     }
   ]
 }
