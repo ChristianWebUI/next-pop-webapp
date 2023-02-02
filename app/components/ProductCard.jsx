@@ -1,6 +1,5 @@
-'use client'
-import Card from '@/components/Card'
-import { useState } from 'react'
+import Image from 'next/image'
+import Link from 'next/link'
 
 export default function ProductCard({
   name,
@@ -10,20 +9,34 @@ export default function ProductCard({
   price,
   brand
 }) {
-  const [currentImage, setCurrentImage] = useState(image)
-
-  const handleHover = () => setCurrentImage(imageOnHover)
-
-  const handleMouseLeave = () => setCurrentImage(image)
   return (
-    <Card
-      name={name}
-      image={currentImage}
-      slug={slug}
-      price={price}
-      brand={brand}
-      onMouseLeave={handleMouseLeave}
-      onMouseEnter={handleHover}
-    />
+    <Link href={`/product/${slug}`}>
+      <div className="card rounded shadow relative">
+        <Image
+          src={image}
+          alt={name}
+          width={200}
+          height={200}
+          sizes="100vw"
+          className="w-full rounded transition duration-500 ease-in-out transform hover:scale-105"
+        />
+        <Image
+          src={imageOnHover}
+          alt={name}
+          width={200}
+          height={200}
+          sizes="100vw"
+          className="w-full rounded absolute top-0 left-0 opacity-0 transition duration-500 ease-in-out transform hover:opacity-100"
+        />
+        <div className="p-5 text-center">
+          <h2 className="text-lg">{name}</h2>
+          <p className="mb-2">{brand}</p>
+          <p>${price}</p>
+          <button className="primary-button" type="button">
+            Add to cart
+          </button>
+        </div>
+      </div>
+    </Link>
   )
 }
