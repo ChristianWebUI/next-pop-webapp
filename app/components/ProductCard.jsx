@@ -11,14 +11,14 @@ export default function ProductCard({
 }) {
   return (
     <Link href={`/product/${slug}`}>
-      <div className="card rounded shadow relative">
+      <div className="card">
         <Image
           src={image}
           alt={name}
           width={200}
           height={200}
           sizes="100vw"
-          className="w-full rounded transition duration-500 ease-in-out transform hover:scale-105"
+          className="w-full rounded shadow transition duration-500 ease-in-out transform hover:scale-105"
         />
         <Image
           src={imageOnHover}
@@ -26,7 +26,7 @@ export default function ProductCard({
           width={200}
           height={200}
           sizes="100vw"
-          className="w-full rounded absolute top-0 left-0 opacity-0 transition duration-500 ease-in-out transform hover:opacity-100"
+          className="w-full rounded shadow absolute top-0 left-0 opacity-0 transition duration-500 ease-in-out transform hover:opacity-100"
         />
         <div className="p-5 text-center">
           <h2 className="text-lg">{name}</h2>
