@@ -14,18 +14,18 @@ export default function ProductCard({
       <div className="card">
         <Image
           src={image}
-          alt={name}
+          alt={`${name}-${brand}`}
           width={200}
           height={200}
-          sizes="100vw"
+          quality={100}
           className="w-full rounded shadow transition duration-500 ease-in-out transform hover:scale-105"
         />
         <Image
           src={imageOnHover}
-          alt={name}
+          alt={`${name}-${brand}-on hover`}
           width={200}
           height={200}
-          sizes="100vw"
+          quality={100}
           className="w-full rounded shadow absolute top-0 left-0 opacity-0 transition duration-500 ease-in-out transform hover:opacity-100"
         />
         <div className="p-5 text-center">
