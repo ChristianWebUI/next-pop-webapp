@@ -27,7 +27,7 @@ export default function ImagesCarousel({ images, name }) {
               width={100}
               height={100}
               quality={100}
-              className="imgCarousel rounded-sm cursor-pointer"
+              className="img-carousel rounded-sm cursor-pointer"
             />
           </button>
         ))}
