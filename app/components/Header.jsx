@@ -1,8 +1,8 @@
 import Link from 'next/link'
 
 const links = [
-  { label: '🐱', route: '/login' },
-  { label: '🛒', route: '/cart' }
+  { label: '🛒', route: '/cart' },
+  { label: '🐱', route: '/login' }
 ]
 
 export default function Header() {
