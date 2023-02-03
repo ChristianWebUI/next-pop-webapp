@@ -15,7 +15,7 @@ export default function ProductDetail({ params }) {
       <div className="py-2">
         <Link href="/">Back to products</Link>
       </div>
-      <div className="grid md:grid-cols-4 md:gap-3">
+      <div className="grid grid-cols-1 md:grid-cols-4 md:gap-3">
         <ImagesCarousel images={product.images} name={product.name} />
         <div>
           <ul>
