@@ -6,6 +6,13 @@ const data = {
       category: 'stationery',
       image: '/images/pencils-1.jpg',
       imageOnHover: '/images/pencils-1-1.jpg',
+      images: [
+        '/images/pencils-2.jpg',
+        '/images/pencils-3.jpg',
+        '/images/pencils-4.jpg',
+        '/images/pencils-5.jpg',
+        '/images/pencils-6.jpg'
+      ],
       price: 70,
       brand: 'Norma',
       rating: 2.5,
@@ -19,6 +26,13 @@ const data = {
       category: 'stationery',
       image: '/images/pencils-2.jpg',
       imageOnHover: '/images/pencils-2-1.jpg',
+      images: [
+        '/images/pencils-2.jpg',
+        '/images/pencils-3.jpg',
+        '/images/pencils-4.jpg',
+        '/images/pencils-5.jpg',
+        '/images/pencils-6.jpg'
+      ],
       price: 200,
       brand: 'Faber Castle',
       rating: 5,
@@ -32,6 +46,13 @@ const data = {
       category: 'writting',
       image: '/images/pencils-3.jpg',
       imageOnHover: '/images/pencils-3-1.jpg',
+      images: [
+        '/images/pencils-2.jpg',
+        '/images/pencils-3.jpg',
+        '/images/pencils-4.jpg',
+        '/images/pencils-5.jpg',
+        '/images/pencils-6.jpg'
+      ],
       price: 10,
       brand: 'Norma',
       rating: 4.5,
@@ -45,6 +66,13 @@ const data = {
       category: 'writting',
       image: '/images/pencils-4.jpg',
       imageOnHover: '/images/pencils-4-1.jpg',
+      images: [
+        '/images/pencils-2.jpg',
+        '/images/pencils-3.jpg',
+        '/images/pencils-4.jpg',
+        '/images/pencils-5.jpg',
+        '/images/pencils-6.jpg'
+      ],
       price: 15,
       brand: 'Papier',
       rating: 3.0,
@@ -58,6 +86,13 @@ const data = {
       category: 'writting',
       image: '/images/pencils-5.jpg',
       imageOnHover: '/images/pencils-5-1.jpg',
+      images: [
+        '/images/pencils-2.jpg',
+        '/images/pencils-3.jpg',
+        '/images/pencils-4.jpg',
+        '/images/pencils-5.jpg',
+        '/images/pencils-6.jpg'
+      ],
       price: 40,
       brand: 'Hasbro',
       rating: 5.0,
@@ -71,6 +106,13 @@ const data = {
       category: 'writting',
       image: '/images/pencils-6.jpg',
       imageOnHover: '/images/pencils-6-1.jpg',
+      images: [
+        '/images/pencils-2.jpg',
+        '/images/pencils-3.jpg',
+        '/images/pencils-4.jpg',
+        '/images/pencils-5.jpg',
+        '/images/pencils-6.jpg'
+      ],
       price: 17,
       brand: 'Fabber Castle',
       rating: 3.8,
