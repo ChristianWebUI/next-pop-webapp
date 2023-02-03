@@ -1,5 +1,5 @@
+import ImagesCarousel from '@/components/ImagesCarousel'
 import data from '@/utils/data'
-import Image from 'next/image'
 import Link from 'next/link'
 
 export default function ProductDetail({ params }) {
@@ -11,14 +11,12 @@ export default function ProductDetail({ params }) {
   }
 
   return (
-    <>
+    <section className="p-10">
       <div className="py-2">
         <Link href="/">Back to products</Link>
       </div>
       <div className="grid md:grid-cols-4 md:gap-3">
-        <div className="md:col-span-2 relative w-full h-[640px]">
-          <Image src={product.image} alt={product.name} fill quality={100} />
-        </div>
+        <ImagesCarousel images={product.images} name={product.name} />
         <div>
           <ul>
             <li>
@@ -46,6 +44,6 @@ export default function ProductDetail({ params }) {
           </div>
         </div>
       </div>
-    </>
+    </section>
   )
 }
