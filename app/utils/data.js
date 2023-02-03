@@ -7,7 +7,7 @@ const data = {
       image: '/images/pencils-1.jpg',
       imageOnHover: '/images/pencils-1-1.jpg',
       images: [
-        '/images/pencils-2.jpg',
+        '/images/pencils-1.jpg',
         '/images/pencils-3.jpg',
         '/images/pencils-4.jpg',
         '/images/pencils-5.jpg',
@@ -47,11 +47,11 @@ const data = {
       image: '/images/pencils-3.jpg',
       imageOnHover: '/images/pencils-3-1.jpg',
       images: [
-        '/images/pencils-2.jpg',
         '/images/pencils-3.jpg',
         '/images/pencils-4.jpg',
         '/images/pencils-5.jpg',
-        '/images/pencils-6.jpg'
+        '/images/pencils-6.jpg',
+        '/images/pencils-1.jpg'
       ],
       price: 10,
       brand: 'Norma',
@@ -67,11 +67,11 @@ const data = {
       image: '/images/pencils-4.jpg',
       imageOnHover: '/images/pencils-4-1.jpg',
       images: [
-        '/images/pencils-2.jpg',
-        '/images/pencils-3.jpg',
         '/images/pencils-4.jpg',
         '/images/pencils-5.jpg',
-        '/images/pencils-6.jpg'
+        '/images/pencils-6.jpg',
+        '/images/pencils-1.jpg',
+        '/images/pencils-2.jpg'
       ],
       price: 15,
       brand: 'Papier',
@@ -87,11 +87,11 @@ const data = {
       image: '/images/pencils-5.jpg',
       imageOnHover: '/images/pencils-5-1.jpg',
       images: [
-        '/images/pencils-2.jpg',
-        '/images/pencils-3.jpg',
-        '/images/pencils-4.jpg',
         '/images/pencils-5.jpg',
-        '/images/pencils-6.jpg'
+        '/images/pencils-6.jpg',
+        '/images/pencils-1.jpg',
+        '/images/pencils-2.jpg',
+        '/images/pencils-3.jpg'
       ],
       price: 40,
       brand: 'Hasbro',
@@ -107,11 +107,11 @@ const data = {
       image: '/images/pencils-6.jpg',
       imageOnHover: '/images/pencils-6-1.jpg',
       images: [
+        '/images/pencils-6.jpg',
+        '/images/pencils-1.jpg',
         '/images/pencils-2.jpg',
         '/images/pencils-3.jpg',
-        '/images/pencils-4.jpg',
-        '/images/pencils-5.jpg',
-        '/images/pencils-6.jpg'
+        '/images/pencils-4.jpg'
       ],
       price: 17,
       brand: 'Fabber Castle',
