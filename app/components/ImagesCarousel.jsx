@@ -18,7 +18,7 @@ export default function ImagesCarousel({ images, name }) {
           className="rounded-sm cursor-pointer"
         />
       </div>
-      <div className="flex w-full h-[15vh] justify-between">
+      <div className="flex w-full h-[20vh] justify-between">
         {images.map((img, index) => (
           <button key={`img-${index}`} onClick={() => handleClick(img)}>
             <Image
