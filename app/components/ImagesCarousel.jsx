@@ -15,7 +15,7 @@ export default function ImagesCarousel({ images, name }) {
           alt={name}
           fill
           quality={100}
-          className="rounded-sm cursor-pointer"
+          className="rounded-sm cursor-pointer object-contain md:object-cover"
         />
       </div>
       <div className="flex w-full h-[20vh] justify-between">
