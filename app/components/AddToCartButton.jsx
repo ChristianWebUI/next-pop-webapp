@@ -9,7 +9,7 @@ export default function AddToCartButton({ product }) {
     )
     const quantity = existItem ? existItem.quantity + 1 : 1
     if (product.countInStock < quantity) {
-      alert('Sorry. Product is out of stock')
+      alert('Sorry. Product is out of stock') // TODO: Remove this and use a proper error message component
       return
     }
     dispatch({ type: 'CART_ADD_ITEM', payload: { ...product, quantity } })
