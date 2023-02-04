@@ -1,6 +1,7 @@
 {
   "extends": ["standard", "next/core-web-vitals"],
   "rules": {
-    "space-before-function-paren": 0
+    "space-before-function-paren": 0,
+    "multiline-ternary": ["error", "never"]
   }
 }
