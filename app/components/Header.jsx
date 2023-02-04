@@ -1,4 +1,3 @@
-/* eslint-disable multiline-ternary */
 import CartNavigationLink from '@/components/CartNavigationLink'
 import Link from 'next/link'
 
