@@ -1,8 +1,15 @@
+/* eslint-disable multiline-ternary */
+import CartNavigationLink from '@/components/CartNavigationLink'
 import Link from 'next/link'
 
+const LINKS_IDS = {
+  cart: 'cart',
+  login: 'login'
+}
+
 const links = [
-  { label: '🛒', route: '/cart' },
-  { label: '🐱', route: '/login' }
+  { id: LINKS_IDS.cart, label: '🛒', route: '/cart' },
+  { id: LINKS_IDS.login, label: '🐱', route: '/login' }
 ]
 
 export default function Header() {
@@ -13,11 +20,20 @@ export default function Header() {
           <span className="text-lg font-bold">P de Papel</span>
         </Link>
         <div>
-          {links.map(({ label, route }) => (
-            <Link key={route} href={route} className="p-2">
-              {label}
-            </Link>
-          ))}
+          {links.map(({ id, label, route }) =>
+            id === LINKS_IDS.cart ? (
+              <CartNavigationLink
+                key={id}
+                id={id}
+                route={route}
+                label={label}
+              />
+            ) : (
+              <Link key={id} href={route} className="p-2">
+                {label}
+              </Link>
+            )
+          )}
         </div>
       </nav>
     </header>
