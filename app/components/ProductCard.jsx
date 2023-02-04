@@ -18,6 +18,7 @@ export default function ProductCard({
           width={200}
           height={200}
           quality={100}
+          priority
           className="w-full rounded shadow transition duration-500 ease-in-out transform hover:scale-105"
         />
         <Image
@@ -26,6 +27,7 @@ export default function ProductCard({
           width={200}
           height={200}
           quality={100}
+          priority
           className="w-full rounded shadow absolute top-0 left-0 opacity-0 transition duration-500 ease-in-out transform hover:opacity-100"
         />
         <div className="p-5 text-center">
