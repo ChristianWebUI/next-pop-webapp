@@ -1,3 +1,4 @@
+import AddToCartButton from '@/components/AddToCartButton'
 import ImagesCarousel from '@/components/ImagesCarousel'
 import data from '@/utils/data'
 import Link from 'next/link'
@@ -40,7 +41,7 @@ export default function ProductDetail({ params }) {
               <div>Status</div>
               <div>{product.countInStock > 0 ? 'In Stock' : 'Unavailable'}</div>
             </div>
-            <button className="primary-button w-full">Add to cart</button>
+            <AddToCartButton product={product} />
           </div>
         </div>
       </div>
