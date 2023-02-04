@@ -4,7 +4,7 @@ import { useStoreContext } from '@/context/StoreContext'
 export default function AddToCartButton({ product }) {
   const { state, dispatch } = useStoreContext()
   const addToCartHandler = () => {
-    const existItem = state.cart.cartItems.find(
+    const existItem = state.cart.cartItems?.find(
       (cartItem) => cartItem.slug === product.slug
     )
     const quantity = existItem ? existItem.quantity + 1 : 1
