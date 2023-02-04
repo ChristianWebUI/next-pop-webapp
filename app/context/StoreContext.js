@@ -1,3 +1,4 @@
+/* eslint-disable multiline-ternary */
 /* eslint-disable indent */
 import {
   getDataFromLocalStorage,
@@ -29,11 +30,18 @@ export function reducer(state, action) {
             item.name === existItem.name ? newItem : item
           )
         : [...state.cart.cartItems, newItem]
-      storeData(STORAGE_KEYS.cart, {
-        ...state,
-        cart: { ...state.cart, cartItems }
-      })
-      return { ...state, cart: { ...state.cart, cartItems } }
+      const newState = { ...state, cart: { ...state.cart, cartItems } }
+      storeData(STORAGE_KEYS.cart, newState)
+      return newState
+    }
+
+    case 'CART_REMOVE_ITEM': {
+      const cartItems = state.cart.cartItems.filter(
+        (item) => item.slug !== action.payload.slug
+      )
+      const newState = { ...state, cart: { ...state.cart, cartItems } }
+      storeData(STORAGE_KEYS.cart, newState)
+      return newState
     }
 
     default: {
