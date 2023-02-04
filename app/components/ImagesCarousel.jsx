@@ -16,6 +16,8 @@ export default function ImagesCarousel({ images, name }) {
           src={currentImage}
           alt={name}
           fill
+          sizes="100vh"
+          priority
           quality={100}
           className="rounded-sm cursor-pointer object-contain md:object-cover"
         />
