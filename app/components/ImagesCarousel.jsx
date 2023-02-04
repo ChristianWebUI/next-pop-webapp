@@ -5,7 +5,9 @@ import { useState } from 'react'
 export default function ImagesCarousel({ images, name }) {
   const [currentImage, setCurrentImage] = useState(images[0])
 
-  const handleClick = (selectedImage) => setCurrentImage(selectedImage)
+  const handleClick = (selectedImage) => {
+    if (selectedImage !== currentImage) setCurrentImage(selectedImage)
+  }
 
   return (
     <div className="md:col-span-2 w-full h-auto">
@@ -27,7 +29,9 @@ export default function ImagesCarousel({ images, name }) {
               width={100}
               height={100}
               quality={100}
-              className="img-carousel rounded-sm cursor-pointer"
+              className={`img-carousel rounded-sm cursor-pointer ${
+                currentImage === img ? 'opacity-50' : ''
+              }`}
             />
           </button>
         ))}
