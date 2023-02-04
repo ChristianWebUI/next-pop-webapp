@@ -22,12 +22,7 @@ export default function Header() {
         <div>
           {links.map(({ id, label, route }) =>
             id === LINKS_IDS.cart ? (
-              <CartNavigationLink
-                key={id}
-                id={id}
-                route={route}
-                label={label}
-              />
+              <CartNavigationLink key={id} route={route} label={label} />
             ) : (
               <Link key={id} href={route} className="p-2">
                 {label}
