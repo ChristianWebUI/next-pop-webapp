@@ -11,6 +11,10 @@ export default function CartDetail() {
   const removeItemHandler = (item) => {
     dispatch({ type: 'CART_REMOVE_ITEM', payload: item })
   }
+  const updateCartHandler = (item, selectedNumber) => {
+    const quantity = Number(selectedNumber)
+    dispatch({ type: 'CART_ADD_ITEM', payload: { ...item, quantity } })
+  }
 
   return (
     <>
@@ -23,6 +27,7 @@ export default function CartDetail() {
         <CartItemsList
           cartItems={cartItems}
           onClickHanlder={removeItemHandler}
+          onChangeHandler={updateCartHandler}
         />
       )}
     </>
