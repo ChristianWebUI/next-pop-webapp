@@ -6,6 +6,7 @@ export default function QuantitySelector({
 }) {
   return (
     <select
+      className="w-[35%] text-center text-sm font-semibold"
       value={quantity}
       onChange={(e) => onChangeSelectorValue(product, e.target.value)}
     >
