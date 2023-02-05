@@ -1,8 +1,13 @@
+import QuantitySelector from '@/components/QuantitySelector'
 import { XCircleIcon } from '@heroicons/react/24/outline'
 import Image from 'next/image'
 import Link from 'next/link'
 
-export default function CartItemsList({ cartItems, onClickHanlder }) {
+export default function CartItemsList({
+  cartItems,
+  onClickHanlder,
+  onChangeHandler
+}) {
   const numberOfItemsToCheckout = () =>
     cartItems.reduce((numOfItems, item) => numOfItems + item.quantity, 0)
 
@@ -43,7 +48,14 @@ export default function CartItemsList({ cartItems, onClickHanlder }) {
                     {item.name}
                   </Link>
                 </td>
-                <td className="p-5 text-right">{item.quantity}</td>
+                <td className="p-5 text-right">
+                  <QuantitySelector
+                    product={item}
+                    quantity={item.quantity}
+                    itemsInStock={item.countInStock}
+                    onChangeSelectorValue={onChangeHandler}
+                  />
+                </td>
                 <td className="p-5 text-right">${item.price}</td>
                 <td className="p-5 text-center">
                   <button onClick={() => onClickHanlder(item)}>
