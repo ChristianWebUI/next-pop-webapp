@@ -7,14 +7,19 @@ const LINK_NAMES = {
   login: 'login'
 }
 
-const components = {
-  cart: CartNavigationLink,
-  login: LoginNavigationLink
-}
-
 const links = [
-  { name: LINK_NAMES.cart, label: '🛒', route: '/cart' },
-  { name: LINK_NAMES.login, label: '🐱', route: '/login' }
+  {
+    name: LINK_NAMES.cart,
+    label: '🛒',
+    route: '/cart',
+    Component: CartNavigationLink
+  },
+  {
+    name: LINK_NAMES.login,
+    label: '🐱',
+    route: '/login',
+    Component: LoginNavigationLink
+  }
 ]
 
 export default function Header() {
@@ -25,12 +30,9 @@ export default function Header() {
           <span className="text-lg font-bold">P de Papel</span>
         </Link>
         <div>
-          {links.map(({ name, label, route }) => {
-            const Component = components[name]
-            return Component ? (
-              <Component key={name} route={route} label={label} />
-            ) : null
-          })}
+          {links.map(({ name, label, route, Component }) => (
+            <Component key={name} label={label} route={route} />
+          ))}
         </div>
       </nav>
     </header>
