@@ -1,14 +1,20 @@
 import CartNavigationLink from '@/components/CartNavigationLink'
+import LoginNavigationLink from '@/components/LoginNavigationLink'
 import Link from 'next/link'
 
-const LINKS_IDS = {
+const LINK_NAMES = {
   cart: 'cart',
   login: 'login'
 }
 
+const components = {
+  cart: CartNavigationLink,
+  login: LoginNavigationLink
+}
+
 const links = [
-  { id: LINKS_IDS.cart, label: '🛒', route: '/cart' },
-  { id: LINKS_IDS.login, label: '🐱', route: '/login' }
+  { name: LINK_NAMES.cart, label: '🛒', route: '/cart' },
+  { name: LINK_NAMES.login, label: '🐱', route: '/login' }
 ]
 
 export default function Header() {
@@ -19,15 +25,12 @@ export default function Header() {
           <span className="text-lg font-bold">P de Papel</span>
         </Link>
         <div>
-          {links.map(({ id, label, route }) =>
-            id === LINKS_IDS.cart ? (
-              <CartNavigationLink key={id} route={route} label={label} />
-            ) : (
-              <Link key={id} href={route} className="p-2">
-                {label}
-              </Link>
-            )
-          )}
+          {links.map(({ name, label, route }) => {
+            const Component = components[name]
+            return Component ? (
+              <Component key={name} route={route} label={label} />
+            ) : null
+          })}
         </div>
       </nav>
     </header>
