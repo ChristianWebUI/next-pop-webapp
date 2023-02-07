@@ -1,21 +1,15 @@
 /* eslint-disable multiline-ternary */
 /* eslint-disable indent */
-import {
-  getDataFromLocalStorage,
-  STORAGE_KEYS,
-  storeData
-} from '@/utils/storage'
+import { base64ToObject, objectToBase64, STORAGE_KEYS } from '@/utils/storage'
+import Cookies from 'js-cookie'
 import { createContext, useContext } from 'react'
 
 export const StoreContext = createContext()
 
-export const initialState = getInitialState()
-
-function getInitialState() {
-  if (getDataFromLocalStorage(STORAGE_KEYS.cart)) {
-    return getDataFromLocalStorage(STORAGE_KEYS.cart)
-  }
-  return { cart: { cartItems: [] } }
+export const initialState = {
+  cart: Cookies.get(STORAGE_KEYS.cart)
+    ? base64ToObject(Cookies.get(STORAGE_KEYS.cart))
+    : { cartItems: [] }
 }
 
 export function reducer(state, action) {
@@ -30,22 +24,25 @@ export function reducer(state, action) {
             item.name === existItem.name ? newItem : item
           )
         : [...state.cart.cartItems, newItem]
-      const newState = { ...state, cart: { ...state.cart, cartItems } }
-      storeData(STORAGE_KEYS.cart, newState)
-      return newState
+      Cookies.set(
+        STORAGE_KEYS.cart,
+        objectToBase64({ ...state.cart, cartItems })
+      )
+      return { ...state, cart: { ...state.cart, cartItems } }
     }
 
     case 'CART_REMOVE_ITEM': {
       const cartItems = state.cart.cartItems.filter(
         (item) => item.slug !== action.payload.slug
       )
-      const newState = { ...state, cart: { ...state.cart, cartItems } }
-      storeData(STORAGE_KEYS.cart, newState)
-      return newState
+      Cookies.set(
+        STORAGE_KEYS.cart,
+        objectToBase64({ ...state.cart, cartItems })
+      )
+      return { ...state, cart: { ...state.cart, cartItems } }
     }
 
     default: {
-      storeData(STORAGE_KEYS.cart, state)
       return state
     }
   }
