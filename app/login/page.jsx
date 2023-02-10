@@ -13,6 +13,7 @@ export default function LoginPage() {
               fill
               priority
               quality={100}
+              sizes="100vh"
               className="w-full"
             ></Image>
           </div>
