@@ -6,7 +6,9 @@
       "@/utils/*": ["app/utils/*"],
       "@/context/*": ["app/context/*"],
       "@/models/*": ["models/*"],
-      "@/graphql/*": ["graphql/*"]
+      "@/graphql/*": ["graphql/*"],
+      "@/graphql-queries/*": ["graphql/queries/*"],
+      "@/graphql-mutations/*": ["graphql/mutations/*"]
     }
   }
 }
