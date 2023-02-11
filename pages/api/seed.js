@@ -1,6 +1,6 @@
-import User from '@/models/User'
+import db from '@/mongodb/db'
+import User from '@/mongodb/models/User'
 import data from '@/utils/data'
-import db from '@/utils/db'
 
 export const handler = async (req, res) => {
   await db.connect()
