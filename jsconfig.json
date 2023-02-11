@@ -5,10 +5,10 @@
       "@/components/*": ["app/components/*"],
       "@/utils/*": ["app/utils/*"],
       "@/context/*": ["app/context/*"],
-      "@/models/*": ["models/*"],
       "@/graphql/*": ["graphql/*"],
       "@/graphql-queries/*": ["graphql/queries/*"],
-      "@/graphql-mutations/*": ["graphql/mutations/*"]
+      "@/graphql-mutations/*": ["graphql/mutations/*"],
+      "@/mongodb/*": ["lib/mongodb/*"]
     }
   }
 }
