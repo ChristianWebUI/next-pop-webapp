@@ -18,7 +18,12 @@ const links = [
     name: LINK_NAMES.login,
     label: '🐱',
     route: '/login',
-    Component: LoginNavigationLink
+    Component: LoginNavigationLink,
+    subMenu: [
+      { route: '/profile', label: 'Profile' },
+      { route: '/order-history', label: 'Order History' },
+      { route: '#', label: 'Logout' }
+    ]
   }
 ]
 
@@ -30,8 +35,13 @@ export default function Header() {
           <span className="text-lg font-bold">P de Papel</span>
         </Link>
         <div>
-          {links.map(({ name, label, route, Component }) => (
-            <Component key={name} label={label} route={route} />
+          {links.map(({ name, label, route, Component, subMenu }) => (
+            <Component
+              key={name}
+              label={label}
+              route={route}
+              subMenu={subMenu ?? undefined}
+            />
           ))}
         </div>
       </nav>
