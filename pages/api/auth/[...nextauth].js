@@ -1,6 +1,4 @@
-import User from '@/models/User'
-import db from '@/utils/db'
-import bcryptjs from 'bcryptjs'
+import authorizeUser from '@/mongodb/auth'
 import NextAuth from 'next-auth'
 import CredentialsProvider from 'next-auth/providers/credentials'
 
@@ -26,21 +24,13 @@ export default NextAuth({
   providers: [
     CredentialsProvider({
       async authorize(credentials) {
-        await db.connect()
-        const user = await User.findOne({
-          email: credentials.email
-        })
-        await db.disconnect()
-        if (user && bcryptjs.compareSync(credentials.password, user.password)) {
-          return {
-            _id: user._id,
-            name: user.name,
-            email: user.email,
-            image: 'f',
-            isAdmin: user.isAdmin
-          }
+        try {
+          const { user, error } = await authorizeUser(credentials)
+          if (error) throw new Error(error)
+          return user
+        } catch (error) {
+          throw new Error(error)
         }
-        throw new Error('Invalid email or password')
       }
     })
   ]
