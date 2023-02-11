@@ -32,3 +32,7 @@ a {
 .img-carousel:hover {
   @apply scale-125 border-solid border-2 border-white m-1;
 }
+
+.dropdown-link {
+  @apply flex p-2 hover:bg-gray-200;
+}
