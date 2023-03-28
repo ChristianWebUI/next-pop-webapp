@@ -22,7 +22,7 @@ export default function LoginNavigationLink({ key, route, label, subMenu }) {
   return status === loading ? (
     'Loading'
   ) : session?.user ? (
-    <Menu key={key} as="div" className="relative inline-block">
+    <Menu key={key} as="div" className="relative inline-block z-10">
       <Menu.Button className="text-blue-600">{session.user.name}</Menu.Button>
       <Menu.Items className="absolute right-0 w-56 origin-top-right bg-white shadow-lg">
         {subMenu.map((subItem) => (
