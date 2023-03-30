@@ -70,6 +70,23 @@ export function reducer(state, action) {
       }
     }
 
+    case 'SAVE_PAYMENT_METHOD': {
+      Cookies.set(
+        STORAGE_KEYS.cart,
+        objectToBase64({
+          ...state.cart,
+          paymentMethod: action.payload
+        })
+      )
+      return {
+        ...state,
+        cart: {
+          ...state.cart,
+          paymentMethod: action.payload
+        }
+      }
+    }
+
     default: {
       return state
     }
