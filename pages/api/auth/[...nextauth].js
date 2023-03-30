@@ -33,5 +33,8 @@ export default NextAuth({
         }
       }
     })
-  ]
+  ],
+  pages: {
+    signIn: '/login'
+  }
 })
