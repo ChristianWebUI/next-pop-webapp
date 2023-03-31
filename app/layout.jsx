@@ -6,6 +6,17 @@ import SessionProvider from '@/context/SessionContextProvider'
 import StoreProvider from '@/context/StoreContextProvider'
 import 'styles/globals.css'
 
+export const metadata = {
+  title: {
+    default: 'Papeleria P de Papel',
+    template: '%s'
+  },
+  description: 'Sitio web para p de papel',
+  icons: {
+    icon: '/favicon.ico'
+  }
+}
+
 export default function RootLayout({ children, session }) {
   return (
     <html lang="en">
