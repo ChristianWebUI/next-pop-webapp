@@ -25,7 +25,7 @@ export default NextAuth({
     CredentialsProvider({
       async authorize(credentials) {
         try {
-          const { user, error } = await authorizeUser(credentials)
+          const { user, error } = await authorizeUser(credentials) // TODO: hanlde authorization with apollo server
           if (error) throw new Error(error)
           return user
         } catch (error) {
