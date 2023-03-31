@@ -12,10 +12,3 @@ export const GET_USER_BY_EMAIL = gql`
     }
   }
 `
-
-export default function getUserByEmailQuery(email) {
-  return {
-    query: GET_USER_BY_EMAIL,
-    variables: { email }
-  }
-}
