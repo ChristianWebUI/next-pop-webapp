@@ -1,13 +1,33 @@
 import AddToCartButton from '@/components/AddToCartButton'
 import ImagesCarousel from '@/components/ImagesCarousel'
-import data from '@/utils/data'
+import getClient from '@/graphql/apollo-client'
+import { GET_PRODUCT_BY_SLUG } from '@/graphql/queries/getProductBySlug'
 import Link from 'next/link'
 
-export default function ProductDetail({ params }) {
-  const { slug } = params
-  const product = data.products.find((prod) => prod.slug === slug)
+async function getProduct(slug) {
+  const client = getClient()
+  const { data, loading, error } = await client.query({
+    query: GET_PRODUCT_BY_SLUG,
+    variables: { slug }
+  })
+  return { data, loading, error }
+}
 
-  if (!product) {
+export async function generateMetadata({ params }) {
+  const { slug } = params
+  const { data } = await getProduct(slug)
+  return { title: data?.getProductBySlug?.name || 'Not Found' }
+}
+
+export default async function ProductDetail({ params }) {
+  const { slug } = params
+  const { data, loading, error } = await getProduct(slug)
+  const product = data?.getProductBySlug
+  if (loading) {
+    return <>Loading product...</>
+  }
+
+  if (!product || error) {
     return <div>Product Not Found</div>
   }
 
