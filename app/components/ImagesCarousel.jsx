@@ -1,4 +1,5 @@
 'use client'
+import ImageCarouselItem from '@/components/ImageCarouselItem'
 import Image from 'next/image'
 import { useState } from 'react'
 
@@ -24,18 +25,13 @@ export default function ImagesCarousel({ images, name }) {
       </div>
       <div className="flex w-full h-[20vh] justify-between">
         {images.map((img, index) => (
-          <button key={`img-${index}`} onClick={() => handleClick(img)}>
-            <Image
-              src={img}
-              alt={`img-${index}`}
-              width={100}
-              height={100}
-              quality={100}
-              className={`img-carousel rounded-sm cursor-pointer ${
-                currentImage === img ? 'opacity-50' : ''
-              }`}
-            />
-          </button>
+          <ImageCarouselItem
+            key={`img-${index}`}
+            alt={`img-${index}`}
+            src={img}
+            isActive={img === currentImage}
+            onClick={() => handleClick(img)}
+          />
         ))}
       </div>
     </div>

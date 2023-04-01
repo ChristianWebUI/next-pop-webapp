@@ -1,41 +1,12 @@
 'use client'
-import { getErrorMessage } from '@/utils/error'
-import { signIn, useSession } from 'next-auth/react'
+import useLoginForm from '@/hooks/useLoginForm'
 import Link from 'next/link'
-import { useRouter, useSearchParams } from 'next/navigation'
-import { useEffect } from 'react'
-import { useForm } from 'react-hook-form'
 
-export default function LoginForm() {
-  const { data: session } = useSession()
-  const router = useRouter()
-  const searchParams = useSearchParams()
-  const redirect = searchParams.get('redirect')
-  const {
-    handleSubmit,
-    register,
-    formState: { errors }
-  } = useForm()
-
-  useEffect(() => {
-    if (session?.user) router.push(redirect || '/')
-  }, [session, router, redirect])
-
-  const submitHandler = async ({ email, password }) => {
-    try {
-      const result = await signIn('credentials', {
-        redirect: false,
-        email,
-        password
-      })
-      if (result.error) alert(result.error)
-    } catch (error) {
-      alert(getErrorMessage(error))
-    }
-  }
-
+export default function LoginForm({ searchParams }) {
+  const { handleSubmit, register, errors, onSubmit } =
+    useLoginForm(searchParams)
   return (
-    <form onSubmit={handleSubmit(submitHandler)}>
+    <form onSubmit={handleSubmit(onSubmit)}>
       {/* Email Input */}
       <div className="mb-6">
         <input

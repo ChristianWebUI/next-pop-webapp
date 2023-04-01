@@ -1,7 +1,7 @@
 import LoginForm from '@/components/LoginForm'
 import Image from 'next/image'
 
-export default function LoginPage() {
+export default function LoginPage({ searchParams }) {
   return (
     <section className="h-screen">
       <div className="container px-6 py-12 h-full">
@@ -18,7 +18,7 @@ export default function LoginPage() {
             ></Image>
           </div>
           <div className="md:w-8/12 lg:w-5/12 lg:ml-20">
-            <LoginForm />
+            <LoginForm searchParams={searchParams} />
           </div>
         </div>
       </div>
