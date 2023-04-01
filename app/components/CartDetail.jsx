@@ -1,21 +1,15 @@
 'use client'
 import CartItemsList from '@/components/CartItemsList'
-import { useStoreContext } from '@/context/StoreContext'
+import useCartRemoveItem from '@/hooks/useCartRemoveItem'
 import Link from 'next/link'
 import { useEffect, useState } from 'react'
 
 export default function CartDetail() {
-  const { state, dispatch } = useStoreContext()
+  const [removeItemHandler, cartItems] = useCartRemoveItem()
   const [mounted, setMounted] = useState(false)
   useEffect(() => {
     setMounted(true)
   }, [])
-  const {
-    cart: { cartItems }
-  } = state
-  const removeItemHandler = (item) => {
-    dispatch({ type: 'CART_REMOVE_ITEM', payload: item })
-  }
 
   return (
     mounted && (
