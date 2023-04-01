@@ -2,7 +2,7 @@
 import useLoginForm from '@/hooks/useLoginForm'
 import Link from 'next/link'
 
-export default function LoginForm({ searchParams }) {
+export default function LoginForm({ params, searchParams }) {
   const { handleSubmit, register, errors, onSubmit } =
     useLoginForm(searchParams)
   return (

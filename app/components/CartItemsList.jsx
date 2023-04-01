@@ -71,7 +71,7 @@ export default function CartItemsList({
             <div className="pb-3 text-xl">{`Subtotal (${numberOfItemsToCheckout()}) : $${calculateSubTotal()}`}</div>
           </li>
           <li>
-            <Link href="login?redirect=/shipping">
+            <Link href="login?callbackUrl=/shipping">
               <button className="primary-button w-full">Check Out</button>
             </Link>
           </li>

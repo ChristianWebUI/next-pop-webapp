@@ -1,4 +1,5 @@
 import { getErrorMessage } from '@/utils/error'
+import { normalizeCallbackUrl } from '@/utils/login'
 import { signIn, useSession } from 'next-auth/react'
 import { useRouter } from 'next/navigation'
 import { useEffect } from 'react'
@@ -7,7 +8,7 @@ import { useForm } from 'react-hook-form'
 export default function useLoginForm(searchParams) {
   const { data: session } = useSession()
   const router = useRouter()
-  const { redirect } = searchParams
+  const { callbackUrl } = searchParams
   const {
     handleSubmit,
     register,
@@ -28,8 +29,8 @@ export default function useLoginForm(searchParams) {
   }
 
   useEffect(() => {
-    if (session?.user) router.push(redirect || '/')
-  }, [router, redirect, session])
+    if (session?.user) router.push(normalizeCallbackUrl(callbackUrl) || '/')
+  }, [router, session, callbackUrl])
 
   return { handleSubmit, register, errors, onSubmit }
 }
