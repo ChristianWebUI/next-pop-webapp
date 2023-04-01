@@ -1,17 +1,30 @@
+import AddToCartButton from '@/components/AddToCartButton'
 import Image from 'next/image'
 import Link from 'next/link'
 
 export default function ProductCard({
   name,
+  _id,
   image,
   imageOnHover,
   slug,
   price,
-  brand
+  brand,
+  countInStock
 }) {
+  const product = {
+    name,
+    _id,
+    image,
+    imageOnHover,
+    slug,
+    price,
+    brand,
+    countInStock
+  }
   return (
-    <Link href={`/product/${slug}`}>
-      <div className="card">
+    <div className="card">
+      <Link href={`/product/${slug}`}>
         <Image
           src={image}
           alt={`${name}-${brand}`}
@@ -30,15 +43,15 @@ export default function ProductCard({
           priority
           className="w-full rounded shadow absolute top-0 left-0 opacity-0 transition duration-500 ease-in-out transform hover:opacity-100"
         />
-        <div className="p-5 text-center">
+      </Link>
+      <div className="p-5 text-center">
+        <Link href={`/product/${slug}`}>
           <h2 className="text-lg">{name}</h2>
-          <p className="mb-2">{brand}</p>
-          <p>${price}</p>
-          <button className="primary-button" type="button">
-            Add to cart
-          </button>
-        </div>
+        </Link>
+        <p className="mb-2">{brand}</p>
+        <p>${price}</p>
+        <AddToCartButton product={product} fromProductCard />
       </div>
-    </Link>
+    </div>
   )
 }
