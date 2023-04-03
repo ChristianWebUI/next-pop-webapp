@@ -29,7 +29,7 @@ export default function LoginNavigationLink({ key, route, label, subMenu }) {
       </Menu.Items>
     </Menu>
   ) : (
-    <Link key={key} href={route} className="p-2">
+    <Link key={key} href={route} className="p-2 text-blue-700">
       {label}
     </Link>
   )

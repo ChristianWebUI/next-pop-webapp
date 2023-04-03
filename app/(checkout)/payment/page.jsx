@@ -8,7 +8,7 @@ export const metadata = {
 export default function PaymentPage() {
   return (
     <>
-      <CheckoutWizard activeStep={2} />
+      <CheckoutWizard />
       <PaymentForm />
     </>
   )

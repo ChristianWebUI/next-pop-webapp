@@ -1,4 +1,5 @@
 'use client'
+import { SHIPPING_ADDRESS_PAGE } from '@/constants/checkout'
 import { AVAILABLE_PAYMENT_METHODS } from '@/constants/payment'
 import usePaymentForm from '@/hooks/usePaymentForm'
 import Link from 'next/link'
@@ -25,7 +26,7 @@ export default function PaymentForm() {
         </div>
       ))}
       <div className="mb-4 flex justify-between">
-        <Link href="/shipping" className="default-button">
+        <Link href={SHIPPING_ADDRESS_PAGE} className="default-button">
           Back
         </Link>
         <button className="primary-button">Next</button>

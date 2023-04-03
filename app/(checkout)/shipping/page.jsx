@@ -8,7 +8,7 @@ export const metadata = {
 export default function ShippingPage() {
   return (
     <>
-      <CheckoutWizard activeStep={1} />
+      <CheckoutWizard />
       <ShippingForm />
     </>
   )

@@ -34,7 +34,9 @@ export default async function ProductDetail({ params }) {
   return (
     <section className="p-10">
       <div className="py-2">
-        <Link href="/">Back to products</Link>
+        <Link className="text-blue-700" href="/">
+          Back to products
+        </Link>
       </div>
       <div className="grid grid-cols-1 md:grid-cols-4 md:gap-3">
         <ImagesCarousel images={product.images} name={product.name} />

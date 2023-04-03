@@ -24,7 +24,7 @@ export default function ProductCard({
   }
   return (
     <div className="card">
-      <Link href={`/product/${slug}`}>
+      <Link className="text-blue-700" href={`/product/${slug}`}>
         <Image
           src={image}
           alt={`${name}-${brand}`}
@@ -45,7 +45,7 @@ export default function ProductCard({
         />
       </Link>
       <div className="p-5 text-center">
-        <Link href={`/product/${slug}`}>
+        <Link className="text-blue-700" href={`/product/${slug}`}>
           <h2 className="text-lg">{name}</h2>
         </Link>
         <p className="mb-2">{brand}</p>

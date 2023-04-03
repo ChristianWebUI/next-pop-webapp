@@ -1,11 +1,11 @@
+import { useCheckoutContext } from '@/context/CheckoutContextProvider'
 import { useStoreContext } from '@/context/StoreContext'
-import { useRouter } from 'next/navigation'
 import { useEffect, useState } from 'react'
 
 export default function usePaymentForm() {
   const [selectedPaymentMethod, setSelectedPaymentMethod] = useState('')
   const { state, dispatch } = useStoreContext()
-  const router = useRouter()
+  const { goToNextStep, goToPreviousStep } = useCheckoutContext()
   const {
     cart: { shippingAddress, paymentMethod }
   } = state
@@ -17,20 +17,20 @@ export default function usePaymentForm() {
       return
     }
     dispatch({ type: 'SAVE_PAYMENT_METHOD', payload: selectedPaymentMethod })
-    router.push('/placeorder')
+    goToNextStep()
   }
 
   useEffect(() => {
     if (!shippingAddress.address) {
-      return router.push('/shipping')
+      return goToPreviousStep()
     }
     setSelectedPaymentMethod(paymentMethod || '')
-  }, [router, paymentMethod, shippingAddress.address])
+  }, [goToPreviousStep, paymentMethod, shippingAddress.address])
 
   return {
     selectedPaymentMethod,
     setSelectedPaymentMethod,
     handleSubmit,
-    shippingAddress
+    goToPreviousStep
   }
 }

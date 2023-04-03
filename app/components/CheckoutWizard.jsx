@@ -1,20 +1,11 @@
-/* eslint-disable multiline-ternary */
-import { CHECKOUT_STEPS } from '@/constants/checkout'
+import CheckoutStep from '@/components/CheckoutStep'
+import { CHECKOUT_STEPS_NAMES } from '@/constants/checkout'
 
-export default function CheckoutWizard({ activeStep = 0 }) {
+export default function CheckoutWizard() {
   return (
     <div className="mb-5 flex flex-wrap">
-      {CHECKOUT_STEPS.map((step, index) => (
-        <div
-          key={step}
-          className={`flex-1 border-b-2 text-center ${
-            index <= activeStep
-              ? 'border-indigo-500 text-indigo-500'
-              : 'border-gray-400 text-gray-400'
-          }`}
-        >
-          {step}
-        </div>
+      {CHECKOUT_STEPS_NAMES.map((step, index) => (
+        <CheckoutStep key={step} stepName={step} index={index} />
       ))}
     </div>
   )
