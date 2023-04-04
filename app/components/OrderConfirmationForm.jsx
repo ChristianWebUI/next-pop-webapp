@@ -29,7 +29,9 @@ export default function OrderConfirmationForm() {
     itemsPrice,
     shippingPrice,
     taxPrice,
-    totalPrice
+    totalPrice,
+    loading,
+    placeOrderHandler
   } = useOrderForm()
   useEffect(() => {
     setMounted(true)
@@ -100,11 +102,11 @@ export default function OrderConfirmationForm() {
                   </li>
                   <li>
                     <button
-                      disabled={true}
-                      onClick={() => {}}
+                      disabled={Boolean(loading)}
+                      onClick={placeOrderHandler}
                       className="primary-button w-full"
                     >
-                      {PLACE_ORDER_TITLE}
+                      {loading ? 'Sending data...' : PLACE_ORDER_TITLE}
                     </button>
                   </li>
                 </ul>
