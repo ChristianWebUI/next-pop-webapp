@@ -29,7 +29,9 @@ export default function useLoginForm(searchParams) {
   }
 
   useEffect(() => {
-    if (session?.user) router.push(normalizeCallbackUrl(callbackUrl) || '/')
+    if (session?.user) {
+      router.push(callbackUrl ? normalizeCallbackUrl(callbackUrl) : '/')
+    }
   }, [router, session, callbackUrl])
 
   return { handleSubmit, register, errors, onSubmit }
