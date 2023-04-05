@@ -1,4 +1,3 @@
-'use client'
 import {
   FREE_SHIPPING_THRESHOLD,
   SHIPPING_PRICE,
