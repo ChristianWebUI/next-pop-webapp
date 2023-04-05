@@ -16,5 +16,11 @@ export default withAuth({
 })
 
 export const config = {
-  matcher: ['/shipping', '/payment', '/placeorder', '/admin/:path*']
+  matcher: [
+    '/shipping',
+    '/payment',
+    '/placeorder',
+    '/order/:path*',
+    '/admin/:path*'
+  ]
 }
