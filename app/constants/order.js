@@ -1,5 +1,9 @@
 export const CART = 'Cart'
 export const ORDER = 'Order'
+export const DELIVERED_AT = 'Delivered at'
+export const NOT_DELIVERED = 'Not delivered'
+export const PAID_AT = 'Paid at'
+export const NOT_PAID = 'Not Paid'
 
 // Constants for text
 const item = 'Item'
