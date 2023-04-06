@@ -2,8 +2,8 @@
 import useLoginForm from '@/hooks/useLoginForm'
 import Link from 'next/link'
 
-export default function LoginForm({ params, searchParams }) {
-  const { handleSubmit, register, errors, onSubmit } =
+export default function LoginForm({ searchParams }) {
+  const { handleSubmit, register, errors, onSubmit, redirect } =
     useLoginForm(searchParams)
   return (
     <form onSubmit={handleSubmit(onSubmit)}>
@@ -34,8 +34,8 @@ export default function LoginForm({ params, searchParams }) {
           {...register('password', {
             required: 'Please enter password',
             minLength: {
-              value: 5,
-              message: 'password must be at least 5 characters'
+              value: 6,
+              message: 'password must have more than 5 characters'
             }
           })}
           className="form-control block w-full px-4 py-2 text-xl font-normal text-gray-700 bg-white bg-clip-padding border border-solid border-gray-300 rounded transition ease-in-out m-0 focus:text-gray-700 focus:bg-white focus:border-blue-600 focus:outline-none"
@@ -80,7 +80,7 @@ export default function LoginForm({ params, searchParams }) {
         Sign in
       </button>
       {/* Register Button */}
-      <Link href="/register">
+      <Link href={`/register?callbackUrl=${redirect}`}>
         <button
           type="submit"
           className="inline-block px-7 py-3 bg-amber-300 text-white font-medium text-sm leading-snug uppercase rounded shadow-md hover:bg-amber-400 hover:shadow-lg focus:bg-amber-400 focus:shadow-lg focus:outline-none focus:ring-0 active:bg-amber-500 active:shadow-lg transition duration-150 ease-in-out w-full mt-4"

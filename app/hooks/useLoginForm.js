@@ -34,5 +34,11 @@ export default function useLoginForm(searchParams) {
     }
   }, [router, session, callbackUrl])
 
-  return { handleSubmit, register, errors, onSubmit }
+  return {
+    handleSubmit,
+    register,
+    errors,
+    onSubmit,
+    redirect: callbackUrl || '/'
+  }
 }
