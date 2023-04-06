@@ -5,7 +5,6 @@ export const REGISTER_USER = gql`
     registerUser(input: $input) {
       _id
       email
-      password
     }
   }
 `
