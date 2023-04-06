@@ -1,6 +1,10 @@
 import LoginForm from '@/components/LoginForm'
 import Image from 'next/image'
 
+export const metadata = {
+  title: 'Login'
+}
+
 export default function LoginPage({ searchParams }) {
   return (
     <section className="h-screen">
