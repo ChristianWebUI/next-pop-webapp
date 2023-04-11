@@ -18,9 +18,12 @@ import {
   PAID_AT
 } from '@/constants/order'
 import useOrderView from '@/hooks/useOrderView'
+import { formatDateTime } from '@/utils/date'
 
 export default function OrderDetail({ orderId }) {
-  const { loading, error, order } = useOrderView({ orderId })
+  const { loading, error, order, renderPaymentButton } = useOrderView({
+    orderId
+  })
   const {
     deliveredAt,
     isDelivered,
@@ -49,7 +52,9 @@ export default function OrderDetail({ orderId }) {
               <h2 className="mb-2 text-lg">{SHIPPING_ADDRESS_TITLE}</h2>
               <div>{Object.values(shippingAddress).join(', ')}</div>
               {isDelivered ? (
-                <div className="alert-success">{`${DELIVERED_AT} ${deliveredAt}`}</div>
+                <div className="alert-success">{`${DELIVERED_AT} ${formatDateTime(
+                  deliveredAt
+                )}`}</div>
               ) : (
                 <div className="alert-error">{NOT_DELIVERED}</div>
               )}
@@ -58,7 +63,9 @@ export default function OrderDetail({ orderId }) {
               <h2 className="mb-2 text-lg">{PAYMENT_METHOD_TITLE}</h2>
               <div>{paymentMethod}</div>
               {isPaid ? (
-                <div className="alert-success">{`${PAID_AT} ${paidAt}`}</div>
+                <div className="alert-success">{`${PAID_AT} ${formatDateTime(
+                  paidAt
+                )}`}</div>
               ) : (
                 <div className="alert-error">{NOT_PAID}</div>
               )}
@@ -96,6 +103,11 @@ export default function OrderDetail({ orderId }) {
                     <div>${totalPrice}</div>
                   </div>
                 </li>
+                {!isPaid && (
+                  <li>
+                    <div className="w-full">{renderPaymentButton()}</div>
+                  </li>
+                )}
               </ul>
             </div>
           </div>
