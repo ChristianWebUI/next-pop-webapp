@@ -1,6 +1,6 @@
 'use client'
 import { SHIPPING_ADDRESS_PAGE } from '@/constants/checkout'
-import { AVAILABLE_PAYMENT_METHODS } from '@/constants/payment'
+import { PAYMENT_METHODS } from '@/constants/payment'
 import usePaymentForm from '@/hooks/usePaymentForm'
 import Link from 'next/link'
 
@@ -10,18 +10,18 @@ export default function PaymentForm() {
   return (
     <form onSubmit={handleSubmit} className="mx-auto max-w-screen-md">
       <h1 className="mb-4 text-xl">Payment Mehtod</h1>
-      {AVAILABLE_PAYMENT_METHODS.map((payment) => (
-        <div key={payment} className="mb-4">
+      {PAYMENT_METHODS.map(({ id, value }) => (
+        <div key={id} className="mb-4">
           <input
             type="radio"
             name="paymentMethod"
-            id={payment}
+            id={id}
             className="p-2 outline-none focus:ring-0"
-            checked={selectedPaymentMethod === payment}
-            onChange={() => setSelectedPaymentMethod(payment)}
+            checked={selectedPaymentMethod === value}
+            onChange={() => setSelectedPaymentMethod(value)}
           />
-          <label className="p-2" htmlFor={payment}>
-            {payment}
+          <label className="p-2" htmlFor={id}>
+            {value}
           </label>
         </div>
       ))}
