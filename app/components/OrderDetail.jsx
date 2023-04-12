@@ -103,11 +103,7 @@ export default function OrderDetail({ orderId }) {
                     <div>${totalPrice}</div>
                   </div>
                 </li>
-                {!isPaid && (
-                  <li>
-                    <div className="w-full">{renderPaymentButton()}</div>
-                  </li>
-                )}
+                {!isPaid && <li>{renderPaymentButton()}</li>}
               </ul>
             </div>
           </div>
