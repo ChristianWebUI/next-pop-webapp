@@ -33,7 +33,7 @@ export default function OrderDetail({ orderId }) {
     orderNumber,
     paidAt,
     paymentMethod,
-    shippingAddress,
+    shippingInfo,
     shippingPrice,
     taxPrice,
     totalPrice
@@ -50,7 +50,7 @@ export default function OrderDetail({ orderId }) {
           <div className="overflow-x-auto md:col-span-3">
             <div className="card p-5">
               <h2 className="mb-2 text-lg">{SHIPPING_ADDRESS_TITLE}</h2>
-              <div>{Object.values(shippingAddress).join(', ')}</div>
+              <div>{Object.values(shippingInfo).join(', ')}</div>
               {isDelivered ? (
                 <div className="alert-success">{`${DELIVERED_AT} ${formatDateTime(
                   deliveredAt
