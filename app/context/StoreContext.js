@@ -9,7 +9,7 @@ export const StoreContext = createContext()
 export const initialState = {
   cart: Cookies.get(STORAGE_KEYS.cart)
     ? base64ToObject(Cookies.get(STORAGE_KEYS.cart))
-    : { cartItems: [], shippingAddress: {}, paymentMethod: '' }
+    : { cartItems: [], shippingInfo: {}, paymentMethod: '' }
 }
 
 export function reducer(state, action) {
@@ -48,7 +48,7 @@ export function reducer(state, action) {
         ...state,
         cart: {
           cartItems: [],
-          shippingAddress: { location: {} },
+          shippingInfo: {},
           paymentMethod: ''
         }
       }
@@ -70,14 +70,14 @@ export function reducer(state, action) {
         STORAGE_KEYS.cart,
         objectToBase64({
           ...state.cart,
-          shippingAddress: { ...action.payload }
+          shippingInfo: { ...action.payload }
         })
       )
       return {
         ...state,
         cart: {
           ...state.cart,
-          shippingAddress: { ...state.cart.shippingAddress, ...action.payload }
+          shippingInfo: { ...state.cart.shippingInfo, ...action.payload }
         }
       }
     }
