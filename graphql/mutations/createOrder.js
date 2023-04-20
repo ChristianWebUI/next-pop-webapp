@@ -3,7 +3,7 @@ import { gql } from '@apollo/client'
 export const CREATE_ORDER_MUTATION = gql`
   mutation CreateOrder(
     $orderItems: [OrderItemInput!]!
-    $shippingAddress: ShippingAddressInput!
+    $shippingInfo: ShippingInfoInput!
     $paymentMethod: String!
     $itemsPrice: Float!
     $shippingPrice: Float!
@@ -12,7 +12,7 @@ export const CREATE_ORDER_MUTATION = gql`
   ) {
     createOrder(
       orderItems: $orderItems
-      shippingAddress: $shippingAddress
+      shippingInfo: $shippingInfo
       paymentMethod: $paymentMethod
       itemsPrice: $itemsPrice
       shippingPrice: $shippingPrice
