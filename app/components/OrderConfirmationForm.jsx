@@ -23,7 +23,7 @@ import { useEffect, useState } from 'react'
 export default function OrderConfirmationForm() {
   const [mounted, setMounted] = useState(false)
   const {
-    shippingAddress,
+    shippingInfo,
     paymentMethod,
     cartItems,
     itemsPrice,
@@ -52,7 +52,7 @@ export default function OrderConfirmationForm() {
             <div className="overflow-x-auto md:col-span-3">
               <div className="card p-5">
                 <h2 className="mb-2 text-lg">{SHIPPING_ADDRESS_TITLE}</h2>
-                <div>{Object.values(shippingAddress).join(', ')}</div>
+                <div>{Object.values(shippingInfo).join(', ')}</div>
                 <Link className="text-blue-700" href={SHIPPING_ADDRESS_PAGE}>
                   Edit
                 </Link>
