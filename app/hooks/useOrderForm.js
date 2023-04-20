@@ -19,7 +19,7 @@ export default function useOrderForm() {
   const router = useRouter()
   const { state, dispatch } = useStoreContext()
   const {
-    cart: { shippingAddress, paymentMethod }
+    cart: { shippingInfo, paymentMethod }
   } = state
 
   const itemsPrice = roundTwoDecimals(
@@ -43,7 +43,7 @@ export default function useOrderForm() {
         price: item.price,
         slug: item.slug
       })),
-      shippingAddress,
+      shippingInfo,
       paymentMethod,
       itemsPrice,
       shippingPrice,
@@ -63,7 +63,7 @@ export default function useOrderForm() {
   }, [goToPreviousStep, paymentMethod])
 
   return {
-    shippingAddress,
+    shippingInfo,
     paymentMethod,
     itemsPrice,
     cartItems,

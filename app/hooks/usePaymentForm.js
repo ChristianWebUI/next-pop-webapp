@@ -7,7 +7,7 @@ export default function usePaymentForm() {
   const { state, dispatch } = useStoreContext()
   const { goToNextStep, goToPreviousStep } = useCheckoutContext()
   const {
-    cart: { shippingAddress, paymentMethod }
+    cart: { shippingInfo, paymentMethod }
   } = state
 
   const handleSubmit = (e) => {
@@ -21,11 +21,11 @@ export default function usePaymentForm() {
   }
 
   useEffect(() => {
-    if (!shippingAddress.address) {
+    if (!shippingInfo.address) {
       return goToPreviousStep()
     }
     setSelectedPaymentMethod(paymentMethod || '')
-  }, [goToPreviousStep, paymentMethod, shippingAddress.address])
+  }, [goToPreviousStep, paymentMethod, shippingInfo.address])
 
   return {
     selectedPaymentMethod,
