@@ -1,22 +1,32 @@
 import { useCheckoutContext } from '@/context/CheckoutContextProvider'
 import { useStoreContext } from '@/context/StoreContext'
-import { useEffect, useState } from 'react'
+import { yupResolver } from '@hookform/resolvers/yup'
+import { useEffect } from 'react'
+import { useForm } from 'react-hook-form'
+
+import * as yup from 'yup'
+
+const schema = yup.object({
+  paymentMethod: yup
+    .string()
+    .required('Please select an available payment method')
+})
 
 export default function usePaymentForm() {
-  const [selectedPaymentMethod, setSelectedPaymentMethod] = useState('')
   const { state, dispatch } = useStoreContext()
   const { goToNextStep, goToPreviousStep } = useCheckoutContext()
+  const {
+    register,
+    formState: { errors },
+    handleSubmit,
+    setValue
+  } = useForm({ resolver: yupResolver(schema) })
   const {
     cart: { shippingInfo, paymentMethod }
   } = state
 
-  const handleSubmit = (e) => {
-    e.preventDefault()
-    if (!selectedPaymentMethod) {
-      alert('Payment Method is required') // TODO: Handle notifications with proper toast message or library
-      return
-    }
-    dispatch({ type: 'SAVE_PAYMENT_METHOD', payload: selectedPaymentMethod })
+  const onSubmit = ({ paymentMethod }) => {
+    dispatch({ type: 'SAVE_PAYMENT_METHOD', payload: paymentMethod })
     goToNextStep()
   }
 
@@ -24,13 +34,12 @@ export default function usePaymentForm() {
     if (!shippingInfo.address) {
       return goToPreviousStep()
     }
-    setSelectedPaymentMethod(paymentMethod || '')
-  }, [goToPreviousStep, paymentMethod, shippingInfo.address])
+    setValue('paymentMethod', paymentMethod)
+  }, [goToPreviousStep, paymentMethod, setValue, shippingInfo.address])
 
   return {
-    selectedPaymentMethod,
-    setSelectedPaymentMethod,
-    handleSubmit,
-    goToPreviousStep
+    onSubmit: handleSubmit(onSubmit),
+    register,
+    errors
   }
 }
