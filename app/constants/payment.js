@@ -1,6 +1,9 @@
 export const PAYPAL = 'Paypal'
 export const MERCADOPAGO = 'MercadoPago'
-export const CREDIT_CARD = 'Credit Card'
+export const BANK_TRANSFER = 'Bank Transfer'
+export const EFECTY = 'Efecty'
+export const BOTON_BANCOLOMBIA = 'Botón Bancolombia'
+export const INCOMING_MESSAGE = 'Coming Soon!'
 
 export const MERCADOPAGO_PUBLIC_KEY = process.env.MERCADOPAGO_PUBLIC_KEY
 
@@ -19,17 +22,32 @@ export const mercadoPagoCustomization = {
 export const PAYMENT_METHODS = [
   {
     id: 'paypal',
-    icon: '',
-    value: PAYPAL
+    icon: '/images/paypal.svg',
+    value: PAYPAL,
+    disabled: false
   },
   {
     id: 'mercadopago',
-    icon: '',
-    value: MERCADOPAGO
+    icon: '/images/mercado-pago.svg',
+    value: MERCADOPAGO,
+    disabled: false
   },
   {
-    id: 'creditcard',
-    icon: '',
-    value: CREDIT_CARD
+    id: 'bank-transfer',
+    icon: '/images/bancolombia-transfer.png',
+    value: BANK_TRANSFER,
+    disabled: false
+  },
+  {
+    id: 'efecty',
+    icon: '/images/efecty.svg',
+    value: EFECTY,
+    disabled: true
+  },
+  {
+    id: 'boton-bancolombia',
+    icon: '/images/boton-bancolombia.png',
+    value: BOTON_BANCOLOMBIA,
+    disabled: true
   }
 ]
