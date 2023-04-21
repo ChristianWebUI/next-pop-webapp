@@ -17,6 +17,10 @@ a {
   box-sizing: border-box;
 }
 
+.radio-group input[type='radio']:checked + span {
+  @apply block;
+}
+
 .card {
   @apply mb-5  block   rounded-lg  border  border-gray-200   shadow-md  relative;
 }
