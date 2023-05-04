@@ -14,8 +14,8 @@ const subTotal = 'Subtotal'
 
 // Values for shipping and taxes
 export const FREE_SHIPPING_THRESHOLD = 200
-export const SHIPPING_PRICE = 15
-export const TAX_VALUE = 0.15
+export const SHIPPING_PRICE = 0
+export const TAX_VALUE = 0
 
 export const CART_KEYS = {
   item,

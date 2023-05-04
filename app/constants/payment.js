@@ -51,3 +51,6 @@ export const PAYMENT_METHODS = [
     disabled: true
   }
 ]
+
+export const getPaymentIcon = (value) =>
+  PAYMENT_METHODS.find((method) => method.value === value).icon

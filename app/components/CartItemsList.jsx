@@ -1,4 +1,5 @@
 import CartOverviewTable from '@/components/CartOverviewTable'
+import Price from '@/components/Price'
 import Link from 'next/link'
 
 export default function CartItemsList({
@@ -24,7 +25,10 @@ export default function CartItemsList({
       <div className="card p-5 h-fit">
         <ul>
           <li>
-            <div className="pb-3 text-xl">{`Subtotal (${numberOfItemsToCheckout()}) : $${calculateSubTotal()}`}</div>
+            <div className="pb-3 text-xl text-center">
+              {`Subtotal (${numberOfItemsToCheckout()}) : `}
+              <Price price={calculateSubTotal()} />
+            </div>
           </li>
           <li>
             <Link href="login?callbackUrl=/shipping">

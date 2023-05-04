@@ -1,4 +1,5 @@
 import {
+  COP_CURRENCY_CODE,
   MERCADOPAGO,
   MERCADOPAGO_PUBLIC_KEY,
   PAYPAL,
@@ -11,9 +12,11 @@ import { NEW_PREFERENCE } from '@/graphql-mutations/newPreference'
 import { GET_ORDER_BY_ID } from '@/graphql-queries/getOrderById'
 import { GET_PAYPAL_CLIENT_ID } from '@/graphql-queries/getPaypalClientId'
 import { getErrorMessage } from '@/utils/error'
+import { formatCurrencyInCop } from '@/utils/price'
 import { useLazyQuery, useMutation, useQuery } from '@apollo/client'
 import { Wallet, initMercadoPago } from '@mercadopago/sdk-react'
 import { PayPalButtons, usePayPalScriptReducer } from '@paypal/react-paypal-js'
+import { useFormatter } from 'next-intl'
 import { useEffect, useState } from 'react'
 
 export default function useOrderView({ orderId }) {
@@ -21,6 +24,7 @@ export default function useOrderView({ orderId }) {
   const [order, setOrder] = useState(null)
   const [loadingPay, setLoadingPay] = useState(false)
   const [preferenceId, setPreferenceId] = useState(null)
+  const format = useFormatter()
   const [createPayPalOrder] = useMutation(CREATE_PAYPAL_ORDER)
   const [capturePayPalPayment] = useMutation(CAPTURE_PAYPAL_PAYMENT, {
     onCompleted: async () => {
@@ -106,7 +110,6 @@ export default function useOrderView({ orderId }) {
   }, [data])
 
   const createOrder = async () => {
-    const { totalPrice } = order
     const {
       data: {
         createPayPalOrder: { id: paypalOrderId }
@@ -114,8 +117,9 @@ export default function useOrderView({ orderId }) {
     } = await createPayPalOrder({
       variables: {
         orderData: {
+          fromCurrencyCode: COP_CURRENCY_CODE,
           currencyCode: USD_CURRENCY_CODE,
-          totalAmount: totalPrice
+          orderId
         }
       }
     })
@@ -144,10 +148,13 @@ export default function useOrderView({ orderId }) {
     alert(getErrorMessage(err))
   }
 
+  const formatCurrency = (amount) => formatCurrencyInCop(format, amount)
+
   return {
     loading,
     error: error ? getErrorMessage(error) : null,
     order,
-    renderPaymentButton
+    renderPaymentButton,
+    formatCurrency
   }
 }

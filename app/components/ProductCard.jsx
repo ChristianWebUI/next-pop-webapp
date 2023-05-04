@@ -10,7 +10,8 @@ export default function ProductCard({
   slug,
   price,
   brand,
-  countInStock
+  countInStock,
+  formatCurrency
 }) {
   const product = {
     name,
@@ -49,7 +50,7 @@ export default function ProductCard({
           <h2 className="text-lg">{name}</h2>
         </Link>
         <p className="mb-2">{brand}</p>
-        <p>${price}</p>
+        <p>{formatCurrency(price)}</p>
         <AddToCartButton product={product} fromProductCard />
       </div>
     </div>

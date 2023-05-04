@@ -1,3 +1,4 @@
+import Price from '@/components/Price'
 import UpdateCartSelector from '@/components/UpdateCartSelector'
 import { CART, CART_KEYS, ORDER, ORDER_KEYS } from '@/constants/order'
 import { XCircleIcon } from '@heroicons/react/24/outline'
@@ -31,7 +32,7 @@ export default function CartOverviewTable({
         <XCircleIcon className="h-5 w-5" />
       </button>
     ),
-    [ORDER]: (item) => `$${item.quantity * item.price}`
+    [ORDER]: (item) => <Price price={item.quantity * item.price} />
   }[context]
 
   return (
@@ -65,7 +66,9 @@ export default function CartOverviewTable({
               </Link>
             </td>
             <td className="p-5 text-right">{quantityContent(item)}</td>
-            <td className="p-5 text-right">${item.price}</td>
+            <td className="p-5 text-right">
+              <Price price={item.price} />
+            </td>
             <td className="p-5 text-center">{lastContent(item)}</td>
           </tr>
         ))}

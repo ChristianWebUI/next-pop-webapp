@@ -21,9 +21,10 @@ import useOrderView from '@/hooks/useOrderView'
 import { formatDateTime } from '@/utils/date'
 
 export default function OrderDetail({ orderId }) {
-  const { loading, error, order, renderPaymentButton } = useOrderView({
-    orderId
-  })
+  const { loading, error, order, renderPaymentButton, formatCurrency } =
+    useOrderView({
+      orderId
+    })
   const {
     deliveredAt,
     isDelivered,
@@ -82,25 +83,25 @@ export default function OrderDetail({ orderId }) {
                 <li>
                   <div className=" mb-2 flex justify-between">
                     <div>{ITEMS_TITLE}</div>
-                    <div>${itemsPrice}</div>
+                    <div>{formatCurrency(itemsPrice)}</div>
                   </div>
                 </li>
                 <li>
                   <div className=" mb-2 flex justify-between">
                     <div>{TAX_TITLE}</div>
-                    <div>${taxPrice}</div>
+                    <div>{formatCurrency(taxPrice)}</div>
                   </div>
                 </li>
                 <li>
                   <div className=" mb-2 flex justify-between">
                     <div>{SHIPPING_TITLE}</div>
-                    <div>${shippingPrice}</div>
+                    <div>{formatCurrency(shippingPrice)}</div>
                   </div>
                 </li>
                 <li>
                   <div className=" mb-2 flex justify-between">
                     <div>{TOTAL_TITLE}</div>
-                    <div>${totalPrice}</div>
+                    <div>{formatCurrency(totalPrice)}</div>
                   </div>
                 </li>
                 {!isPaid && <li>{renderPaymentButton()}</li>}

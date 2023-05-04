@@ -17,13 +17,17 @@ export const GET_ORDER_BY_ID = gql`
       orderNumber
       paidAt
       paymentMethod
-      ShippingInfo {
+      shippingInfo {
         fullName
         cellPhone
         address
         city
         department
         country
+        nit
+        nitType
+        isCashOnDelivery
+        deliveryCompany
       }
       shippingPrice
       taxPrice

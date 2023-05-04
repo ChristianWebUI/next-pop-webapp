@@ -167,15 +167,25 @@ export default function useShippingForm() {
   }
 
   const onSubmit = (formData) => {
-    if (!isCashOnDelivery) {
-      formData.shippingCost = quoteData?.quoteShipping.find(
+    if (formData.deliveryCompany && quoteData) {
+      const deliveryData = quoteData?.quoteShipping.find(
         (companyObj) =>
           companyObj.deliveryCompanyId === formData.deliveryCompany
-      ).shippingCost
+      )
+      formData.deliveryData = {
+        shippingCost: deliveryData?.shippingCost,
+        companyName: deliveryData?.deliveryCompanyName,
+        image: deliveryData?.deliveryCompanyImgUrl
+      }
+    }
+    if (!isCashOnDelivery) {
       delete formData.nitType
       delete formData.nit
     }
     delete formData.country.flag
+    formData.cityName = citiesOptions.find(
+      ({ value }) => value === formData.city
+    ).label
     dispatch({ type: 'SAVE_SHIPPING_ADDRESS', payload: { ...formData } })
     goToNextStep()
   }

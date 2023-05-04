@@ -16,7 +16,9 @@ import {
   TOTAL_TITLE
 } from '@/constants/checkout'
 import { ORDER } from '@/constants/order'
+import { getPaymentIcon } from '@/constants/payment'
 import useOrderForm from '@/hooks/useOrderForm'
+import Image from 'next/image'
 import Link from 'next/link'
 import { useEffect, useState } from 'react'
 
@@ -31,6 +33,7 @@ export default function OrderConfirmationForm() {
     taxPrice,
     totalPrice,
     loading,
+    formatCurrency,
     placeOrderHandler
   } = useOrderForm()
   useEffect(() => {
@@ -39,7 +42,7 @@ export default function OrderConfirmationForm() {
   return (
     mounted && (
       <>
-        <h1 className="mb-4 text-xl">Place Order</h1>
+        <h1 className="mb-4 text-xl">{PLACE_ORDER_TITLE}</h1>
         {cartItems === 0 ? (
           <div>
             Cart is empty.{' '}
@@ -52,14 +55,40 @@ export default function OrderConfirmationForm() {
             <div className="overflow-x-auto md:col-span-3">
               <div className="card p-5">
                 <h2 className="mb-2 text-lg">{SHIPPING_ADDRESS_TITLE}</h2>
-                <div>{Object.values(shippingInfo).join(', ')}</div>
+                <div>
+                  {shippingInfo?.fullName}, {shippingInfo?.cellPhone},{' '}
+                  {shippingInfo?.address}, {shippingInfo?.department},{' '}
+                  {shippingInfo?.cityName}, {shippingInfo?.country.name}
+                  <div className="flex w-full gap-1 mb-2">
+                    <Image
+                      src={shippingInfo.deliveryData.image}
+                      alt={`${shippingInfo.deliveryData.companyName}`}
+                      width={25}
+                      height={25}
+                      quality={100}
+                      priority
+                      className="top-0 left-0 object-scale-down rounded-md"
+                    />{' '}
+                    {shippingInfo.deliveryData.companyName}
+                  </div>
+                </div>
                 <Link className="text-blue-700" href={SHIPPING_ADDRESS_PAGE}>
                   Edit
                 </Link>
               </div>
               <div className="card p-5">
                 <h2 className="mb-2 text-lg">{PAYMENT_METHOD_TITLE}</h2>
-                <div>{paymentMethod}</div>
+                <div className="flex gap-2">
+                  <Image
+                    src={getPaymentIcon(paymentMethod)}
+                    alt={`Payment ${paymentMethod}`}
+                    width={60}
+                    height={60}
+                    quality={100}
+                    priority
+                    className="w-24 h-24 top-0 left-0 object-scale-down"
+                  />
+                </div>
                 <Link className="text-blue-700" href={PAYMENT_METHOD_PAGE}>
                   Edit
                 </Link>
@@ -79,25 +108,25 @@ export default function OrderConfirmationForm() {
                   <li>
                     <div className=" mb-2 flex justify-between">
                       <div>{ITEMS_TITLE}</div>
-                      <div>${itemsPrice}</div>
+                      <div>{formatCurrency(itemsPrice)}</div>
                     </div>
                   </li>
                   <li>
                     <div className=" mb-2 flex justify-between">
                       <div>{TAX_TITLE}</div>
-                      <div>${taxPrice}</div>
+                      <div>{formatCurrency(taxPrice)}</div>
                     </div>
                   </li>
                   <li>
                     <div className=" mb-2 flex justify-between">
                       <div>{SHIPPING_TITLE}</div>
-                      <div>${shippingPrice}</div>
+                      <div>{formatCurrency(shippingPrice)}</div>
                     </div>
                   </li>
                   <li>
                     <div className=" mb-2 flex justify-between">
                       <div>{TOTAL_TITLE}</div>
-                      <div>${totalPrice}</div>
+                      <div>{formatCurrency(totalPrice)}</div>
                     </div>
                   </li>
                   <li>

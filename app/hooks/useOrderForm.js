@@ -1,14 +1,13 @@
-import {
-  FREE_SHIPPING_THRESHOLD,
-  SHIPPING_PRICE,
-  TAX_VALUE
-} from '@/constants/order'
+import { SHIPPING_PRICE, TAX_VALUE } from '@/constants/order'
+import { COP_CURRENCY_CODE } from '@/constants/payment'
 import { useCheckoutContext } from '@/context/CheckoutContextProvider'
 import { useStoreContext } from '@/context/StoreContext'
 import { CREATE_ORDER_MUTATION } from '@/graphql-mutations/createOrder'
 import useCartItems from '@/hooks/useCartItems'
 import { roundTwoDecimals } from '@/utils/price'
+import { getPlainPhoneNumber } from '@/utils/text'
 import { useMutation } from '@apollo/client'
+import { useFormatter } from 'next-intl'
 import { useRouter } from 'next/navigation'
 import { useEffect } from 'react'
 
@@ -16,6 +15,7 @@ export default function useOrderForm() {
   const [createOrder, { loading, error }] = useMutation(CREATE_ORDER_MUTATION)
   const { goToPreviousStep } = useCheckoutContext()
   const cartItems = useCartItems()
+  const format = useFormatter()
   const router = useRouter()
   const { state, dispatch } = useStoreContext()
   const {
@@ -28,8 +28,8 @@ export default function useOrderForm() {
       0
     )
   )
-  const shippingPrice =
-    itemsPrice > FREE_SHIPPING_THRESHOLD ? 0 : SHIPPING_PRICE
+  const { shippingCost: shippingPrice = SHIPPING_PRICE } =
+    shippingInfo.deliveryData || {}
   const taxPrice = roundTwoDecimals(itemsPrice * TAX_VALUE)
   const totalPrice = roundTwoDecimals(itemsPrice + shippingPrice + taxPrice)
 
@@ -43,7 +43,20 @@ export default function useOrderForm() {
         price: item.price,
         slug: item.slug
       })),
-      shippingInfo,
+      shippingInfo: {
+        fullName: shippingInfo.fullName,
+        cellPhone: getPlainPhoneNumber(shippingInfo.cellPhone),
+        address: shippingInfo.address,
+        department: shippingInfo.department,
+        city: shippingInfo.city,
+        country: shippingInfo.country?.name,
+        isCashOnDelivery: shippingInfo.isCashOnDelivery,
+        ...(shippingInfo?.nitType && { nitType: shippingInfo.nitType }),
+        ...(shippingInfo?.nit && { nit: shippingInfo.nit }),
+        ...(shippingInfo?.deliveryCompany && {
+          deliveryCompany: shippingInfo.deliveryCompany
+        })
+      },
       paymentMethod,
       itemsPrice,
       shippingPrice,
@@ -62,6 +75,17 @@ export default function useOrderForm() {
     }
   }, [goToPreviousStep, paymentMethod])
 
+  const formatCurrency = (cost) => {
+    return format.number(cost, {
+      style: 'currency',
+      currency: COP_CURRENCY_CODE,
+      currencyDisplay: 'narrowSymbol',
+      minimumFractionDigits: 0,
+      maximumFractionDigits: 0,
+      useGrouping: true
+    })
+  }
+
   return {
     shippingInfo,
     paymentMethod,
@@ -72,6 +96,7 @@ export default function useOrderForm() {
     totalPrice,
     loading,
     error,
+    formatCurrency,
     placeOrderHandler
   }
 }

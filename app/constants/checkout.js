@@ -48,6 +48,7 @@ export const NIT_LABEL = 'ID Number'
 export const NIT_TYPE_LABEL = 'Type of your ID'
 export const CASH_ON_DELIVERY_LABEL = 'Are you going to pay on delivery?'
 export const QUOTE_SHIPPING_LABEL = 'Quote shipping'
+export const CASH_ON_DELIVERY_TEXT = 'You are going to pay on delivery'
 
 const MEDELLIN_LOCATION_CODE = '05001000'
 

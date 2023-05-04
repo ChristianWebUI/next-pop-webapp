@@ -1,5 +1,6 @@
 import AddToCartButton from '@/components/AddToCartButton'
 import ImagesCarousel from '@/components/ImagesCarousel'
+import Price from '@/components/Price'
 import getClient from '@/graphql/apollo-client'
 import { GET_PRODUCT_BY_SLUG } from '@/graphql/queries/getProductBySlug'
 import Link from 'next/link'
@@ -57,7 +58,7 @@ export default async function ProductDetail({ params }) {
           <div className="card p-5">
             <div className="mb-2 flex justify-between">
               <div>Price</div>
-              <div>${product.price}</div>
+              <Price price={product.price} asComponent />
             </div>
             <div className="mb-2 flex justify-between">
               <div>Status</div>
