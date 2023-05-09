@@ -9,6 +9,8 @@ export const MERCADOPAGO_PUBLIC_KEY = process.env.MERCADOPAGO_PUBLIC_KEY
 
 export const PAYPAL_CLIENT_ID = process.env.PAYPAL_CLIENT_ID
 
+export const { HASH_BANCOLOMBIA_BUTTON } = process.env
+
 export const USD_CURRENCY_CODE = 'USD'
 export const COP_CURRENCY_CODE = 'COP'
 
@@ -33,6 +35,12 @@ export const PAYMENT_METHODS = [
     disabled: false
   },
   {
+    id: 'boton-bancolombia',
+    icon: '/images/boton-bancolombia.png',
+    value: BOTON_BANCOLOMBIA,
+    disabled: false
+  },
+  {
     id: 'bank-transfer',
     icon: '/images/bancolombia-transfer.png',
     value: BANK_TRANSFER,
@@ -42,12 +50,6 @@ export const PAYMENT_METHODS = [
     id: 'efecty',
     icon: '/images/efecty.svg',
     value: EFECTY,
-    disabled: true
-  },
-  {
-    id: 'boton-bancolombia',
-    icon: '/images/boton-bancolombia.png',
-    value: BOTON_BANCOLOMBIA,
     disabled: true
   }
 ]

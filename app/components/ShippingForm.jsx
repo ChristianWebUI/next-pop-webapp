@@ -51,7 +51,6 @@ export default function ShippingForm({ optionLabels = ['Yes', 'No'] }) {
     formatCurrency
   } = useShippingForm()
   if (loadingFormData) return <div>Loading form...</div>
-  if (errorOnFormData) return <div>{getErrorMessage(errorOnFormData)}</div>
   const COLOMBIA_CODE = '170'
   const internationalShipping = countryValue?.code !== COLOMBIA_CODE
   return (
@@ -106,50 +105,72 @@ export default function ShippingForm({ optionLabels = ['Yes', 'No'] }) {
           </div>
           <div className="mb-4">
             <label htmlFor="department">{DEPARTMENT_LABEL}</label>
-            <Select
-              id="department"
-              className="w-full"
-              placeholder="Select a department"
-              isClearable
-              isDisabled={Boolean(internationalShipping)}
-              options={departmentsOptions}
-              value={
-                departmentValue
-                  ? departmentsOptions.find((d) => d.value === departmentValue)
-                  : departmentValue
-              }
-              onChange={(option) => {
-                handleCityChange('')
-                handleDepartmentChange(option ? option.value : option)
-              }}
-              {...restDepartmentField}
-            />
+            {!errorOnFormData && (
+              <Select
+                id="department"
+                className="w-full"
+                placeholder="Select a department"
+                isClearable
+                isDisabled={Boolean(internationalShipping)}
+                options={departmentsOptions}
+                value={
+                  departmentValue
+                    ? departmentsOptions.find(
+                        (d) => d.value === departmentValue
+                      )
+                    : departmentValue
+                }
+                onChange={(option) => {
+                  handleCityChange('')
+                  handleDepartmentChange(option ? option.value : option)
+                }}
+                {...restDepartmentField}
+              />
+            )}
+            {errorOnFormData && (
+              <input
+                className="shipping-input-group w-full"
+                id="department"
+                autoFocus
+                {...register('department')}
+              ></input>
+            )}
             {errors.department && (
               <div className="text-red-500">{errors.department.message}</div>
             )}
           </div>
           <div className="mb-4">
             <label htmlFor="city">{CITY_LABEL}</label>
-            <Select
-              id="city"
-              className="w-full"
-              placeholder="Select a city"
-              isClearable
-              isDisabled={
-                Boolean(!departmentValue) || Boolean(internationalShipping)
-              }
-              options={citiesOptions}
-              value={
-                citiesOptions?.find((c) => c.value === cityValue) || {
-                  value: '',
-                  label: ''
+            {!errorOnFormData && (
+              <Select
+                id="city"
+                className="w-full"
+                placeholder="Select a city"
+                isClearable
+                isDisabled={
+                  Boolean(!departmentValue) || Boolean(internationalShipping)
                 }
-              }
-              onChange={(option) =>
-                handleCityChange(option ? option.value : option)
-              }
-              {...restCityField}
-            />
+                options={citiesOptions}
+                value={
+                  citiesOptions?.find((c) => c.value === cityValue) || {
+                    value: '',
+                    label: ''
+                  }
+                }
+                onChange={(option) =>
+                  handleCityChange(option ? option.value : option)
+                }
+                {...restCityField}
+              />
+            )}
+            {errorOnFormData && (
+              <input
+                className="shipping-input-group w-full"
+                id="city"
+                autoFocus
+                {...register('city')}
+              ></input>
+            )}
             {errors.city && (
               <div className="text-red-500">{errors.city.message}</div>
             )}
@@ -170,12 +191,12 @@ export default function ShippingForm({ optionLabels = ['Yes', 'No'] }) {
               value={
                 countryValue
                   ? countriesOptions.find(
-                      (c) => c.value.code === countryValue.code
+                      (c) => c.value.code === countryValue?.code
                     )
                   : countryValue
               }
               onChange={(option) => {
-                if (option.value.code !== COLOMBIA_CODE) {
+                if (option?.value?.code !== COLOMBIA_CODE) {
                   handleCityChange('international')
                   handleDepartmentChange('international')
                 }
@@ -257,79 +278,85 @@ export default function ShippingForm({ optionLabels = ['Yes', 'No'] }) {
               </div>
             </>
           )}
-          <div className="pt-6 flex justify-center">
-            <button
-              type="button"
-              className="primary-button"
-              onClick={handleQuoteShipping}
-            >
-              {QUOTE_SHIPPING_LABEL}
-            </button>
-          </div>
-          <div className="mb-4">
-            {loadingQuote && <div>Loading quotes options...</div>}
-            {errorOnQuote && <div>{getErrorMessage(errorOnQuote)}</div>}
-            {quoteData && (
-              <div className="flex flex-col gap-2 w-full my-4">
-                {quoteData?.quoteShipping.map(
-                  ({
-                    deliveryCompanyId,
-                    deliveryCompanyName,
-                    deliveryCompanyImgUrl,
-                    shippingCost,
-                    score
-                  }) => (
-                    <div key={deliveryCompanyId} className="relative">
-                      <input
-                        type="radio"
-                        name={deliveryCompanyName}
-                        id={deliveryCompanyName}
-                        className="hidden peer"
-                        {...register('deliveryCompany')}
-                        value={deliveryCompanyId}
-                      />
-                      <label
-                        htmlFor={deliveryCompanyName}
-                        className="flex items-center gap-4 p-4 rounded-xl bg-white bg-opacity-90 backdrop-blur-2xl shadow-md hover:bg-opacity-75 peer-checked:bg-indigo-700 peer-checked:text-white cursor-pointer transition"
-                      >
-                        <Image
-                          src={deliveryCompanyImgUrl}
-                          alt="company image"
-                          width={50}
-                          height={50}
-                          quality={100}
-                          priority
-                          className="object-cover rounded-full"
-                        />
-                        <div>
-                          <h6 className="text-base">{deliveryCompanyName}</h6>
-                          {score && (
-                            <span className="flex text-sm opacity-60 gap-1">
-                              <StarIcon className="h5 w-5 text-yellow-500" />
-                              {score}
-                            </span>
-                          )}
+          {!errorOnFormData && (
+            <>
+              <div className="pt-6 flex justify-center">
+                <button
+                  type="button"
+                  className="primary-button"
+                  onClick={handleQuoteShipping}
+                >
+                  {QUOTE_SHIPPING_LABEL}
+                </button>
+              </div>
+              <div className="mb-4">
+                {loadingQuote && <div>Loading quotes options...</div>}
+                {errorOnQuote && <div>{getErrorMessage(errorOnQuote)}</div>}
+                {quoteData && (
+                  <div className="flex flex-col gap-2 w-full my-4">
+                    {quoteData?.quoteShipping.map(
+                      ({
+                        deliveryCompanyId,
+                        deliveryCompanyName,
+                        deliveryCompanyImgUrl,
+                        shippingCost,
+                        score
+                      }) => (
+                        <div key={deliveryCompanyId} className="relative">
+                          <input
+                            type="radio"
+                            name={deliveryCompanyName}
+                            id={deliveryCompanyName}
+                            className="hidden peer"
+                            {...register('deliveryCompany')}
+                            value={deliveryCompanyId}
+                          />
+                          <label
+                            htmlFor={deliveryCompanyName}
+                            className="flex items-center gap-4 p-4 rounded-xl bg-white bg-opacity-90 backdrop-blur-2xl shadow-md hover:bg-opacity-75 peer-checked:bg-indigo-700 peer-checked:text-white cursor-pointer transition"
+                          >
+                            <Image
+                              src={deliveryCompanyImgUrl}
+                              alt="company image"
+                              width={50}
+                              height={50}
+                              quality={100}
+                              priority
+                              className="object-cover rounded-full"
+                            />
+                            <div>
+                              <h6 className="text-base">
+                                {deliveryCompanyName}
+                              </h6>
+                              {score && (
+                                <span className="flex text-sm opacity-60 gap-1">
+                                  <StarIcon className="h5 w-5 text-yellow-500" />
+                                  {score}
+                                </span>
+                              )}
+                            </div>
+                            <h6 className="ml-auto mr-10">
+                              {formatCurrency(shippingCost)}
+                            </h6>
+                          </label>
+                          <div className="flex absolute top-0 right-4 bottom-0 w-7 h-7 my-auto rounded-full bg-indigo-500 scale-0 peer-checked:scale-100 transition delay-100">
+                            <svg
+                              xmlns="http://www.w3.org/2000/svg"
+                              fill="currentColor"
+                              className="w-5 text-white my-auto mx-auto"
+                              viewBox="0 0 16 16"
+                            >
+                              <path d="M12.736 3.97a.733.733 0 0 1 1.047 0c.286.289.29.756.01 1.05L7.88 12.01a.733.733 0 0 1-1.065.02L3.217 8.384a.757.757 0 0 1 0-1.06.733.733 0 0 1 1.047 0l3.052 3.093 5.4-6.425a.247.247 0 0 1 .02-.022Z" />
+                            </svg>
+                          </div>
                         </div>
-                        <h6 className="ml-auto mr-10">
-                          {formatCurrency(shippingCost)}
-                        </h6>
-                      </label>
-                      <div className="flex absolute top-0 right-4 bottom-0 w-7 h-7 my-auto rounded-full bg-indigo-500 scale-0 peer-checked:scale-100 transition delay-100">
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          fill="currentColor"
-                          className="w-5 text-white my-auto mx-auto"
-                          viewBox="0 0 16 16"
-                        >
-                          <path d="M12.736 3.97a.733.733 0 0 1 1.047 0c.286.289.29.756.01 1.05L7.88 12.01a.733.733 0 0 1-1.065.02L3.217 8.384a.757.757 0 0 1 0-1.06.733.733 0 0 1 1.047 0l3.052 3.093 5.4-6.425a.247.247 0 0 1 .02-.022Z" />
-                        </svg>
-                      </div>
-                    </div>
-                  )
+                      )
+                    )}
+                  </div>
                 )}
               </div>
-            )}
-          </div>
+            </>
+          )}
         </div>
         <div className="mb-4 flex justify-between">
           <button type="submit" className="primary-button">

@@ -1,5 +1,8 @@
+import BotonBancolombia from '@/components/BotonBancolombia'
 import {
+  BOTON_BANCOLOMBIA,
   COP_CURRENCY_CODE,
+  HASH_BANCOLOMBIA_BUTTON,
   MERCADOPAGO,
   MERCADOPAGO_PUBLIC_KEY,
   PAYPAL,
@@ -11,6 +14,7 @@ import { CREATE_PAYPAL_ORDER } from '@/graphql-mutations/createPayPalOrder'
 import { NEW_PREFERENCE } from '@/graphql-mutations/newPreference'
 import { GET_ORDER_BY_ID } from '@/graphql-queries/getOrderById'
 import { GET_PAYPAL_CLIENT_ID } from '@/graphql-queries/getPaypalClientId'
+import { CREATE_BANCOLOMBIA_TRANSFER } from '@/graphql/mutations/createBancolombiaTransfer'
 import { getErrorMessage } from '@/utils/error'
 import { formatCurrencyInCop } from '@/utils/price'
 import { useLazyQuery, useMutation, useQuery } from '@apollo/client'
@@ -24,6 +28,7 @@ export default function useOrderView({ orderId }) {
   const [order, setOrder] = useState(null)
   const [loadingPay, setLoadingPay] = useState(false)
   const [preferenceId, setPreferenceId] = useState(null)
+  const [bancolombiaRedirectURL, setBancolombiaRedirectURL] = useState(null)
   const format = useFormatter()
   const [createPayPalOrder] = useMutation(CREATE_PAYPAL_ORDER)
   const [capturePayPalPayment] = useMutation(CAPTURE_PAYPAL_PAYMENT, {
@@ -35,34 +40,59 @@ export default function useOrderView({ orderId }) {
   const [newPreference] = useMutation(NEW_PREFERENCE, {
     variables: { storeOrderId: orderId }
   })
+  const [createBancolombiaTransfer, { loading: botonBancolombiaIsLoading }] =
+    useMutation(CREATE_BANCOLOMBIA_TRANSFER, {
+      variables: {
+        orderData: {
+          transferReference: orderId,
+          commerceTransferButtonId: HASH_BANCOLOMBIA_BUTTON
+        }
+      }
+    })
   const [paypalClientId] = useLazyQuery(GET_PAYPAL_CLIENT_ID)
   const { loading, error, data, refetch } = useQuery(GET_ORDER_BY_ID, {
     variables: { id: orderId },
     onCompleted: async (data) => {
       try {
-        if (
-          data?.getOrderById?.paymentMethod === MERCADOPAGO &&
-          !data?.getOrderById?.isPaid
-        ) {
-          initMercadoPago(MERCADOPAGO_PUBLIC_KEY)
-          const { data } = await newPreference()
-          setPreferenceId(data?.newPreference.preferenceId)
-        }
-        if (
-          data?.getOrderById?.paymentMethod === PAYPAL &&
-          !data?.getOrderById?.isPaid
-        ) {
-          const {
-            data: { paypalClientId: clientId }
-          } = await paypalClientId()
-          paypalDispatch({
-            type: 'resetOptions',
-            value: {
-              'client-id': clientId,
-              currency: USD_CURRENCY_CODE
+        switch (data?.getOrderById?.paymentMethod) {
+          case MERCADOPAGO: {
+            if (!data?.getOrderById?.isPaid) {
+              initMercadoPago(MERCADOPAGO_PUBLIC_KEY)
+              const { data } = await newPreference()
+              setPreferenceId(data?.newPreference.preferenceId)
             }
-          })
-          paypalDispatch({ type: 'setLoadingStatus', value: 'pending' })
+            break
+          }
+          case PAYPAL: {
+            if (!data?.getOrderById?.isPaid) {
+              const {
+                data: { paypalClientId: clientId }
+              } = await paypalClientId()
+              paypalDispatch({
+                type: 'resetOptions',
+                value: {
+                  'client-id': clientId,
+                  currency: USD_CURRENCY_CODE
+                }
+              })
+              paypalDispatch({ type: 'setLoadingStatus', value: 'pending' })
+            }
+            break
+          }
+          case BOTON_BANCOLOMBIA: {
+            if (!data?.getOrderById?.isPaid) {
+              const {
+                data: {
+                  createBancolombiaTransfer: { data: bancolombiaData }
+                }
+              } = await createBancolombiaTransfer()
+              setBancolombiaRedirectURL(bancolombiaData[0]?.redirectURL || '')
+            }
+            break
+          }
+
+          default:
+            break
         }
       } catch (error) {
         console.log(error)
@@ -99,6 +129,12 @@ export default function useOrderView({ orderId }) {
           </div>
           {loadingPay && <div>Loading Payment...</div>}
         </>
+      )
+    } else if (order && order.paymentMethod === BOTON_BANCOLOMBIA) {
+      return botonBancolombiaIsLoading ? (
+        <div>Cargando boton de compra...</div>
+      ) : (
+        <BotonBancolombia redirect={bancolombiaRedirectURL} />
       )
     }
   }

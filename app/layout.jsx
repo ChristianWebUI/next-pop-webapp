@@ -5,6 +5,7 @@ import ApolloProvider from '@/context/ApolloContextProvider'
 import NextIntlProvider from '@/context/NextIntlProvider'
 import SessionProvider from '@/context/SessionContextProvider'
 import StoreProvider from '@/context/StoreContextProvider'
+import { Roboto } from 'next/font/google'
 import 'styles/globals.css'
 
 export const metadata = {
@@ -18,9 +19,17 @@ export const metadata = {
   }
 }
 
+const roboto = Roboto({
+  style: 'normal',
+  weight: '400',
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-roboto'
+})
+
 export default function RootLayout({ children, session }) {
   return (
-    <html lang="en">
+    <html lang="en" className={`${roboto.variable} font-sans`}>
       <head />
       <body>
         <div className="flex min-h-screen flex-col justify-between">

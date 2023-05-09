@@ -58,7 +58,7 @@ export default function OrderConfirmationForm() {
                 <div>
                   {shippingInfo?.fullName}, {shippingInfo?.cellPhone},{' '}
                   {shippingInfo?.address}, {shippingInfo?.department},{' '}
-                  {shippingInfo?.cityName}, {shippingInfo?.country.name}
+                  {shippingInfo?.cityName}, {shippingInfo?.country?.name}
                   <div className="flex w-full gap-1 mb-2">
                     <Image
                       src={shippingInfo.deliveryData.image}
