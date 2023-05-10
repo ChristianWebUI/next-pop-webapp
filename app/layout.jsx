@@ -10,10 +10,16 @@ import 'styles/globals.css'
 
 export const metadata = {
   title: {
-    default: 'Papeleria P de Papel',
+    default: 'Papelería P de Papel',
     template: '%s'
   },
-  description: 'Sitio web para p de papel',
+  description: 'Sitio web para papelería p de papel',
+  applicationName: 'PdePapel',
+  keywords: ['Papelería', 'Papelería P de Papel', 'Stationery', 'Kawaii'],
+  authors: [
+    { name: 'Christian Torres', url: 'https://github.com/chrisdev-ui' }
+  ],
+  creator: 'Paula Morales',
   icons: {
     icon: '/favicon.ico'
   }
