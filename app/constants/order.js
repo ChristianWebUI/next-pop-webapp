@@ -17,6 +17,17 @@ export const FREE_SHIPPING_THRESHOLD = 200
 export const SHIPPING_PRICE = 0
 export const TAX_VALUE = 0
 
+// Constants for Order History
+export const ORDER_HISTORY_TITLE = 'Order History'
+export const ORDER_HISTORY_TABLE_HEADERS = {
+  ID: 'ID',
+  DATE: 'DATE',
+  TOTAL: 'TOTAL',
+  PAID: 'PAID',
+  DELIVERED: 'DELIVERED',
+  ACTION: 'ACTION'
+}
+
 export const CART_KEYS = {
   item,
   quantity,

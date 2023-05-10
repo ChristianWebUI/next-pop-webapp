@@ -20,6 +20,7 @@ export const config = {
     '/shipping',
     '/payment',
     '/placeorder',
+    '/order-history',
     '/order/:path*',
     '/admin/:path*'
   ]
