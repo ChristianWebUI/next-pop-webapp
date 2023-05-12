@@ -1,16 +1,18 @@
 'use client'
+import CircleSpinner from '@/components/CircleSpinner'
 import DropdownLink from '@/components/DropdownLink'
+import NavigationLink from '@/components/NavigationLink'
 import { SESSION_STATUS } from '@/constants/session'
 import { useHandleSignOut, useSessionStatus } from '@/hooks/useUserSession'
 import { Menu } from '@headlessui/react'
-import Link from 'next/link'
+import { UserIcon } from '@heroicons/react/24/outline'
 
-export default function LoginNavigationLink({ key, route, label, subMenu }) {
+export default function LoginNavigationLink({ key, route, subMenu }) {
   const handleSignOut = useHandleSignOut()
   const { status, session } = useSessionStatus()
   const { loading } = SESSION_STATUS
   return status === loading ? (
-    'Loading'
+    <CircleSpinner />
   ) : session?.user ? (
     <Menu key={key} as="div" className="relative inline-block z-10">
       <Menu.Button className="text-blue-600">{session.user.name}</Menu.Button>
@@ -29,8 +31,8 @@ export default function LoginNavigationLink({ key, route, label, subMenu }) {
       </Menu.Items>
     </Menu>
   ) : (
-    <Link key={key} href={route} className="p-2 text-blue-700">
-      {label}
-    </Link>
+    <NavigationLink route={route}>
+      <UserIcon className="h-5 w-5" />
+    </NavigationLink>
   )
 }

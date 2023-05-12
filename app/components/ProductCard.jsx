@@ -1,58 +1,36 @@
 import AddToCartButton from '@/components/AddToCartButton'
+import StarRating from '@/components/StarRating'
 import Image from 'next/image'
 import Link from 'next/link'
 
 export default function ProductCard({
-  name,
-  _id,
-  image,
-  imageOnHover,
-  slug,
-  price,
-  brand,
-  countInStock,
+  product: { name, _id, image, imageOnHover, slug, price, brand, countInStock },
   formatCurrency
 }) {
-  const product = {
-    name,
-    _id,
-    image,
-    imageOnHover,
-    slug,
-    price,
-    brand,
-    countInStock
-  }
   return (
-    <div className="card">
-      <Link className="text-blue-700" href={`/product/${slug}`}>
+    <div className="w-product-card min-w-250 py-2.5 px-3 border border-solid border-primary-border-color rounded-3xl shadow-product-card mx-0 my-[15px] hover:shadow-product-card-hover product-card-transition relative">
+      <Link href={`/product/${slug}`}>
         <Image
           src={image}
-          alt={`${name}-${brand}`}
-          width={200}
-          height={200}
+          alt={name}
+          width={500}
+          height={500}
           quality={100}
           priority
-          className="w-full rounded shadow transition duration-500 ease-in-out transform hover:scale-105"
-        />
-        <Image
-          src={imageOnHover}
-          alt={`${name}-${brand}-on hover`}
-          width={200}
-          height={200}
-          quality={100}
-          priority
-          className="w-full rounded shadow absolute top-0 left-0 opacity-0 transition duration-500 ease-in-out transform hover:opacity-100"
+          className="w-full rounded-[20px]"
         />
       </Link>
-      <div className="p-5 text-center">
-        <Link className="text-blue-700" href={`/product/${slug}`}>
-          <h2 className="text-lg">{name}</h2>
+      <div className="text-start px-0 py-2.5">
+        <span className="text-brand-text-color text-xs">{brand}</span>
+        <Link href={`/product/${slug}`}>
+          <h5 className="text-primary-link-color text-sm">{name}</h5>
         </Link>
-        <p className="mb-2">{brand}</p>
-        <p>{formatCurrency(price)}</p>
-        <AddToCartButton product={product} fromProductCard />
+        <StarRating />
+        <h4 className="font-inder text-lg font-bold text-primary-accent-color">
+          {formatCurrency(price)}
+        </h4>
       </div>
+      <AddToCartButton />
     </div>
   )
 }

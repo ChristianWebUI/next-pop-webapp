@@ -2,19 +2,77 @@
 @tailwind components;
 @tailwind utilities;
 
-html,
-body {
-  padding: 0;
-  margin: 0;
+@layer base {
+  * {
+    @apply m-0 p-0 box-border font-inder;
+  }
+
+  html {
+    @apply scroll-smooth;
+  }
+
+  h1 {
+    @apply text-[50px] leading-[64px] text-primary-text-color font-nova-round;
+  }
+
+  h2,
+  h3 {
+    @apply text-[56px] leading-[54px] text-primary-text-color font-sacramento;
+  }
+
+  h4 {
+    @apply text-xl text-primary-text-color font-sacramento;
+  }
+
+  h6 {
+    @apply text-xs font-bold;
+  }
+
+  p {
+    @apply text-base text-secondary-text-color mt-[15px] mb-5 mx-0;
+  }
+
+  .section-p1 {
+    @apply px-20 py-10;
+  }
+
+  .section-m1 {
+    @apply mx-0 my-10;
+  }
+
+  body {
+    @apply w-full;
+  }
 }
 
-a {
-  color: inherit;
-  text-decoration: none;
-}
+@layer utilities {
+  .navlink {
+    transition: 0.3s ease;
+  }
 
-* {
-  box-sizing: border-box;
+  .product-card-transition {
+    transition: 0.2s ease;
+  }
+
+  #add-to-cart-button.clicked .icon-gift {
+    animation: box 1.5s ease-in-out forwards;
+  }
+
+  @keyframes box {
+    0%,
+    40% {
+      opacity: 1;
+      transform: translate(0px, -9px);
+    }
+    60% {
+      opacity: 1;
+      transform: translate(0px, -5px);
+    }
+    100% {
+      opacity: 1;
+      transform: translate(0px, 3px);
+    }
+  }
 }
 
 .bancolombia-link {

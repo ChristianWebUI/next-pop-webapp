@@ -1,11 +1,12 @@
 import CartBadge from '@/components/CartBadge'
-import Link from 'next/link'
+import NavigationLink from '@/components/NavigationLink'
+import { ShoppingBagIcon } from '@heroicons/react/24/outline'
 
-export default function CartNavigationLink({ route, label }) {
+export default function CartNavigationLink({ route }) {
   return (
-    <Link href={route} className="p-2 text-blue-700">
-      {label}
+    <NavigationLink route={route}>
+      <ShoppingBagIcon className="h-5 w-5" />
       <CartBadge />
-    </Link>
+    </NavigationLink>
   )
 }

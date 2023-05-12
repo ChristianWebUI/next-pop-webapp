@@ -1,4 +1,4 @@
-import AddToCartButton from '@/components/AddToCartButton'
+import AddToCartButtonLegacy from '@/components/AddToCartButtonLegacy'
 import ImagesCarousel from '@/components/ImagesCarousel'
 import Price from '@/components/Price'
 import getClient from '@/graphql/apollo-client'
@@ -64,7 +64,7 @@ export default async function ProductDetail({ params }) {
               <div>Status</div>
               <div>{product.countInStock > 0 ? 'In Stock' : 'Unavailable'}</div>
             </div>
-            <AddToCartButton product={product} />
+            <AddToCartButtonLegacy product={product} />
           </div>
         </div>
       </div>

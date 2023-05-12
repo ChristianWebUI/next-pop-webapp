@@ -1,5 +1,5 @@
 'use client'
-import ProductCard from '@/components/ProductCard'
+import ProductCardLegacy from '@/components/ProductCardLegacy'
 import useProducts from '@/hooks/useProducts'
 
 export default function Products() {
@@ -10,7 +10,7 @@ export default function Products() {
         <>Loading products...</>
       ) : (
         products.map((product) => (
-          <ProductCard
+          <ProductCardLegacy
             {...product}
             key={product.slug}
             formatCurrency={formatCurrency}

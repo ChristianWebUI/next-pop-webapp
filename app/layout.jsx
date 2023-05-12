@@ -1,11 +1,15 @@
 import Footer from '@/components/Footer'
 import Header from '@/components/Header'
-import MainContent from '@/components/MainContent'
 import ApolloProvider from '@/context/ApolloContextProvider'
 import NextIntlProvider from '@/context/NextIntlProvider'
 import SessionProvider from '@/context/SessionContextProvider'
 import StoreProvider from '@/context/StoreContextProvider'
-import { Roboto } from 'next/font/google'
+import {
+  Inder,
+  Nova_Round as NovaRound,
+  Roboto,
+  Sacramento
+} from 'next/font/google'
 import 'styles/globals.css'
 
 export const metadata = {
@@ -25,8 +29,27 @@ export const metadata = {
   }
 }
 
+const novaRound = NovaRound({
+  subsets: ['latin'],
+  weight: '400',
+  display: 'swap',
+  variable: '--font-nova-round'
+})
+const sacramento = Sacramento({
+  subsets: ['latin'],
+  weight: '400',
+  display: 'swap',
+  variable: '--font-sacramento'
+})
+const inder = Inder({
+  subsets: ['latin'],
+  weight: '400',
+  display: 'swap',
+  variable: '--font-inder'
+})
+
 const roboto = Roboto({
-  style: 'normal',
+  style: ['normal'],
   weight: '400',
   subsets: ['latin'],
   display: 'swap',
@@ -35,22 +58,23 @@ const roboto = Roboto({
 
 export default function RootLayout({ children, session }) {
   return (
-    <html lang="en" className={`${roboto.variable} font-sans`}>
+    <html
+      lang="en"
+      className={`${roboto.variable} ${novaRound.variable} ${sacramento.variable} ${inder.variable} font-sans`}
+    >
       <head />
       <body>
-        <div className="flex min-h-screen flex-col justify-between">
-          <ApolloProvider>
-            <SessionProvider session={session}>
-              <StoreProvider>
-                <NextIntlProvider>
-                  <Header />
-                  <MainContent>{children}</MainContent>
-                  <Footer />
-                </NextIntlProvider>
-              </StoreProvider>
-            </SessionProvider>
-          </ApolloProvider>
-        </div>
+        <ApolloProvider>
+          <SessionProvider session={session}>
+            <StoreProvider>
+              <NextIntlProvider>
+                <Header />
+                {children}
+                <Footer />
+              </NextIntlProvider>
+            </StoreProvider>
+          </SessionProvider>
+        </ApolloProvider>
       </body>
     </html>
   )

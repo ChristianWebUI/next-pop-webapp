@@ -153,6 +153,126 @@ const data = {
       numReview: 30,
       countInStock: 12,
       description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.'
+    },
+    {
+      name: 'Markers',
+      slug: 'markers',
+      category: 'writting',
+      image: '/images/pencils-6.jpg',
+      imageOnHover: '/images/pencils-6-1.jpg',
+      images: [
+        '/images/pencils-6.jpg',
+        '/images/pencils-1.jpg',
+        '/images/pencils-2.jpg',
+        '/images/pencils-3.jpg',
+        '/images/pencils-4.jpg'
+      ],
+      price: 17,
+      brand: 'Fabber Castle',
+      rating: 3.8,
+      numReview: 30,
+      countInStock: 12,
+      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.'
+    },
+    {
+      name: 'Markers',
+      slug: 'markers',
+      category: 'writting',
+      image: '/images/pencils-6.jpg',
+      imageOnHover: '/images/pencils-6-1.jpg',
+      images: [
+        '/images/pencils-6.jpg',
+        '/images/pencils-1.jpg',
+        '/images/pencils-2.jpg',
+        '/images/pencils-3.jpg',
+        '/images/pencils-4.jpg'
+      ],
+      price: 17,
+      brand: 'Fabber Castle',
+      rating: 3.8,
+      numReview: 30,
+      countInStock: 12,
+      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.'
+    },
+    {
+      name: 'Markers',
+      slug: 'markers',
+      category: 'writting',
+      image: '/images/pencils-6.jpg',
+      imageOnHover: '/images/pencils-6-1.jpg',
+      images: [
+        '/images/pencils-6.jpg',
+        '/images/pencils-1.jpg',
+        '/images/pencils-2.jpg',
+        '/images/pencils-3.jpg',
+        '/images/pencils-4.jpg'
+      ],
+      price: 17,
+      brand: 'Fabber Castle',
+      rating: 3.8,
+      numReview: 30,
+      countInStock: 12,
+      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.'
+    },
+    {
+      name: 'Markers',
+      slug: 'markers',
+      category: 'writting',
+      image: '/images/pencils-6.jpg',
+      imageOnHover: '/images/pencils-6-1.jpg',
+      images: [
+        '/images/pencils-6.jpg',
+        '/images/pencils-1.jpg',
+        '/images/pencils-2.jpg',
+        '/images/pencils-3.jpg',
+        '/images/pencils-4.jpg'
+      ],
+      price: 17,
+      brand: 'Fabber Castle',
+      rating: 3.8,
+      numReview: 30,
+      countInStock: 12,
+      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.'
+    },
+    {
+      name: 'Markers',
+      slug: 'markers',
+      category: 'writting',
+      image: '/images/pencils-6.jpg',
+      imageOnHover: '/images/pencils-6-1.jpg',
+      images: [
+        '/images/pencils-6.jpg',
+        '/images/pencils-1.jpg',
+        '/images/pencils-2.jpg',
+        '/images/pencils-3.jpg',
+        '/images/pencils-4.jpg'
+      ],
+      price: 17,
+      brand: 'Fabber Castle',
+      rating: 3.8,
+      numReview: 30,
+      countInStock: 12,
+      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.'
+    },
+    {
+      name: 'Markers',
+      slug: 'markers',
+      category: 'writting',
+      image: '/images/pencils-6.jpg',
+      imageOnHover: '/images/pencils-6-1.jpg',
+      images: [
+        '/images/pencils-6.jpg',
+        '/images/pencils-1.jpg',
+        '/images/pencils-2.jpg',
+        '/images/pencils-3.jpg',
+        '/images/pencils-4.jpg'
+      ],
+      price: 17,
+      brand: 'Fabber Castle',
+      rating: 3.8,
+      numReview: 30,
+      countInStock: 12,
+      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.'
     }
   ]
 }
