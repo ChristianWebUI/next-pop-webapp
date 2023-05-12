@@ -13,7 +13,10 @@ export default function FeaturedProducts() {
     <section id="featured-products" className="section-p1 text-center">
       <h2>{FEATURED_PRODUCTS_TITLE}</h2>
       <p>{FEATURED_PRODUCTS_PARAGRAPH}</p>
-      <div className="flex justify-start gap-x-9 flex-wrap pt-5">
+      <div
+        id="products-container"
+        className="flex justify-start gap-x-9 flex-wrap pt-5"
+      >
         {loading && <>Loading Featured Products ...</>}
         {error && <>Error on featured products</>}
         {featuredProducts &&

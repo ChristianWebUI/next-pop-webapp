@@ -1,9 +1,12 @@
+'use client'
 import CartNavigationLink from '@/components/CartNavigationLink'
 import LoginNavigationLink from '@/components/LoginNavigationLink'
 import NavigationLink from '@/components/NavigationLink'
 import { HOME_PAGE } from '@/constants/checkout'
+import { Bars4Icon, XMarkIcon } from '@heroicons/react/24/solid'
 import Image from 'next/image'
 import Link from 'next/link'
+import { useState } from 'react'
 
 const LINK_NAMES = {
   home: 'home',
@@ -64,13 +67,19 @@ const links = [
 ]
 
 export default function Header() {
+  const [isOpen, setIsOpen] = useState(false)
+
+  const toggleMenu = () => {
+    setIsOpen(!isOpen)
+  }
+
   return (
     <header id="header" className="sticky top-0 left-0 z-[999]">
       <nav
         id="navigation"
         className="flex items-center justify-between px-20 py-5 bg-primary-nav-color shadow-nav"
       >
-        <Link href={HOME_PAGE} className="w-16 h-16">
+        <Link href={HOME_PAGE} id="header-logo" className="w-16 h-16">
           <Image
             src="/logo_p_de_papel.png"
             alt="Logo Papeleria P de Papel"
@@ -82,9 +91,18 @@ export default function Header() {
           />
         </Link>
         <div>
-          <ul id="navbar" className="flex items-center justify-center">
+          <ul
+            id="navbar"
+            className={`flex items-center justify-center ${
+              isOpen ? 'opened' : ''
+            }`}
+          >
             {links.map(({ name, label, route, Component, subMenu }) => (
-              <li key={name} className="px-5 relative">
+              <li
+                key={name}
+                id={`lg-${route.replace(/\//g, '')}`}
+                className="px-5 relative"
+              >
                 <Component
                   label={label ?? undefined}
                   route={route}
@@ -92,7 +110,14 @@ export default function Header() {
                 />
               </li>
             ))}
+            <Link href="#" id="close" className="hidden" onClick={toggleMenu}>
+              <XMarkIcon />
+            </Link>
           </ul>
+        </div>
+        <div id="mobile" className="hidden items-center">
+          <CartNavigationLink route="/cart" />
+          <Bars4Icon id="bars" className="w-8 h-8" onClick={toggleMenu} />
         </div>
       </nav>
     </header>

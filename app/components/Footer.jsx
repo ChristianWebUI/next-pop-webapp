@@ -56,7 +56,7 @@ export default function Footer() {
             <strong>{FOOTER_HOURS_TITLE}</strong>
             {FOOTER_HOURS}
           </p>
-          <div>
+          <div id="footer-follow-us">
             <h5 className="text-sm pb-5">{FOLLOW_US_TITLE}</h5>
             <div className="flex mt-5">
               <Link
