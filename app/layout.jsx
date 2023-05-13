@@ -1,5 +1,4 @@
-import Footer from '@/components/Footer'
-import Header from '@/components/Header'
+import MainContent from '@/components/MainContent'
 import ApolloProvider from '@/context/ApolloContextProvider'
 import NextIntlProvider from '@/context/NextIntlProvider'
 import SessionProvider from '@/context/SessionContextProvider'
@@ -68,9 +67,7 @@ export default function RootLayout({ children, session }) {
           <SessionProvider session={session}>
             <StoreProvider>
               <NextIntlProvider>
-                <Header />
-                {children}
-                <Footer />
+                <MainContent>{children}</MainContent>
               </NextIntlProvider>
             </StoreProvider>
           </SessionProvider>

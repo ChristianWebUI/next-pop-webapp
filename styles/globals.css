@@ -535,6 +535,26 @@
   }
 }
 
+.pagination-item {
+  @apply bg-primary-accent-color rounded text-white font-semibold px-5 py-[15px] mx-1 my-auto cursor-pointer hover:bg-primary-accent-hover-color;
+}
+
+.pagination-item.selected {
+  @apply bg-primary-accent-active-color;
+}
+
+.pagination-item.dots {
+  @apply bg-transparent text-primary-accent-color;
+}
+
+.pagination-item.disabled {
+  @apply pointer-events-none cursor-default bg-gray-400;
+}
+
+.pagination-item.dots:hover {
+  @apply cursor-default;
+}
+
 .bancolombia-link {
   @apply flex justify-center items-center max-w-max mx-auto touch-manipulation text-black no-underline bg-transparent;
 }
