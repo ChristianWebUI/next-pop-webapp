@@ -36,6 +36,7 @@ export default function Pagination({
 
   return (
     <ul
+      id="pagination"
       className={classnames('pagination-container', { [className]: className })}
     >
       <li

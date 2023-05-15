@@ -259,6 +259,25 @@
     #newsletter-form {
       width: 70%;
     }
+
+    /* Shop */
+    #all-products-container {
+      justify-content: center;
+    }
+
+    /* Product/:id */
+    #product-detail {
+      flex-direction: column;
+    }
+
+    #product-detail #image-carousel {
+      width: 100%;
+      margin-right: 0;
+    }
+
+    #product-detail #product-detail-section {
+      width: 100%;
+    }
   }
 
   @media (max-width: 477px) {
@@ -355,6 +374,16 @@
 
     #footer-follow-us > div {
       justify-content: space-between;
+    }
+
+    /* Shop */
+
+    #all-products-container div {
+      min-width: 100%;
+    }
+
+    #all-products #pagination .pagination-item {
+      padding: 0.5rem;
     }
   }
 }

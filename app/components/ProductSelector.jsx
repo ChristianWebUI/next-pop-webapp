@@ -11,7 +11,9 @@ export default function ProductSelector({ options }) {
         isClearable
         isLoading={!options}
         onChange={handleOptionSelected}
-        className={`block w-6/12 mt-4 ${optionSelected ? 'mb-4' : ''}`}
+        className={`block w-full md:w-6/12 mt-4 ${
+          optionSelected ? 'mb-4' : ''
+        }`}
         options={options}
         formatOptionLabel={({ color, label, imageUrl }) =>
           color ? (

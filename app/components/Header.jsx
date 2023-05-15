@@ -110,9 +110,9 @@ export default function Header() {
                 />
               </li>
             ))}
-            <Link href="#" id="close" className="hidden" onClick={toggleMenu}>
+            <button id="close" className="hidden" onClick={toggleMenu}>
               <XMarkIcon />
-            </Link>
+            </button>
           </ul>
         </div>
         <div id="mobile" className="hidden items-center">

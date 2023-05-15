@@ -22,7 +22,7 @@ export default function ProductDetail({ product }) {
         <StarRating classNames="w-8 h-8" />
         <Price price={price} tagName="span" classNames="text-3xl" />
         <ProductSelector options={dummyOptions} />
-        <div className="flex gap-4">
+        <div className="flex gap-8 md:gap-4">
           <QuantitySelector itemsInStock={countInStock} product={product} />
           <AddToCartButton component={'product-detail'} />
         </div>
