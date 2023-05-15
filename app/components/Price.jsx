@@ -1,11 +1,19 @@
 'use client'
 import { formatCurrencyInCop } from '@/utils/price'
+import classnames from 'classnames'
 import { useFormatter } from 'next-intl'
 
-const Price = ({ price, asComponent = false }) => {
+const Price = ({ price, tagName = '', classNames = '' }) => {
   const format = useFormatter()
+  const Tag = tagName || undefined
   const formattedPrice = formatCurrencyInCop(format, price)
-  return asComponent ? <div>{formattedPrice}</div> : formattedPrice
+  return Tag ? (
+    <Tag className={classnames('', { [classNames]: classNames })}>
+      {formattedPrice}
+    </Tag>
+  ) : (
+    formattedPrice
+  )
 }
 
 export default Price

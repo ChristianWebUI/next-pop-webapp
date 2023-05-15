@@ -6,9 +6,9 @@ import {
 import useFeaturedProducts from '@/hooks/useFeaturedProducts'
 import ProductCard from './ProductCard'
 
-export default function FeaturedProducts() {
+export default function FeaturedProducts({ numberOfProducts = 8 }) {
   const { featuredProducts, loading, error, formatCurrency } =
-    useFeaturedProducts()
+    useFeaturedProducts(numberOfProducts)
   return (
     <section id="featured-products" className="section-p1 text-center">
       <h2>{FEATURED_PRODUCTS_TITLE}</h2>

@@ -25,7 +25,7 @@ export default function ProductCard({
         <Link href={`/product/${slug}`}>
           <h5 className="text-primary-link-color text-sm">{name}</h5>
         </Link>
-        <StarRating />
+        <StarRating isDisabled />
         <h4 className="font-inder text-lg font-bold text-primary-accent-color">
           {formatCurrency(price)}
         </h4>

@@ -1,18 +1,25 @@
 import Image from 'next/image'
 
-export default function ImageCarouselItem({ src, alt, isActive, onClick }) {
+export default function ImageCarouselItem({
+  smallImage,
+  handleClick,
+  imgIndex
+}) {
   return (
-    <button onClick={onClick} className="relative">
+    <div
+      className="basis-[24%] min-w-[24%] cursor-pointer"
+      onClick={handleClick}
+    >
       <Image
-        src={src}
-        alt={alt}
-        width={100}
-        height={100}
+        src={smallImage}
+        alt={`small-img-${imgIndex}`}
+        width={200}
+        height={200}
+        priority
         quality={100}
-        className={`img-carousel rounded-sm cursor-pointer ${
-          isActive ? 'opacity-50' : ''
-        }`}
+        sizes="100vh"
+        className="w-full"
       />
-    </button>
+    </div>
   )
 }

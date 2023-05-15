@@ -3,36 +3,33 @@ import ImageCarouselItem from '@/components/ImageCarouselItem'
 import Image from 'next/image'
 import { useState } from 'react'
 
-export default function ImagesCarousel({ images, name }) {
-  const [currentImage, setCurrentImage] = useState(images[0])
-
-  const handleClick = (selectedImage) => {
-    if (selectedImage !== currentImage) setCurrentImage(selectedImage)
-  }
-
+export default function ImagesCarousel({ images = [] }) {
+  const [selectedImage, setNewImage] = useState(images[0])
+  const handleSelectNewImage = (newImg) => setNewImage(newImg)
+  const smallGroupImages = images.filter((image) => image !== selectedImage)
   return (
-    <div className="md:col-span-2 w-full h-auto">
-      <div className="relative w-full h-[80vh] mb-3">
-        <Image
-          src={currentImage}
-          alt={name}
-          fill
-          sizes="100vh"
-          priority
-          quality={100}
-          className="rounded-sm cursor-pointer object-contain md:object-cover"
-        />
-      </div>
-      <div className="flex w-full h-[20vh] justify-between">
-        {images.map((img, index) => (
-          <ImageCarouselItem
-            key={`img-${index}`}
-            alt={`img-${index}`}
-            src={img}
-            isActive={img === currentImage}
-            onClick={() => handleClick(img)}
-          />
-        ))}
+    <div id="image-carousel" className="w-[40%] mr-[50px]">
+      <Image
+        src={selectedImage}
+        alt="selected-image-carousel"
+        width={200}
+        height={200}
+        sizes="100vh"
+        priority
+        quality={100}
+        className="w-full"
+      />
+      <div className="w-full overflow-x-auto mt-1">
+        <div className="flex justify-between gap-1 w-full">
+          {smallGroupImages?.map((smallImage, index) => (
+            <ImageCarouselItem
+              key={`small-i-${index + 1}`}
+              smallImage={smallImage}
+              imgIndex={index}
+              handleClick={() => handleSelectNewImage(smallImage)}
+            />
+          ))}
+        </div>
       </div>
     </div>
   )

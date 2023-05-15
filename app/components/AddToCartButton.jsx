@@ -1,9 +1,22 @@
 'use client'
+import { ADD_TO_CART_BUTTON } from '@/constants/productDetail'
 import { GiftTopIcon, ShoppingCartIcon } from '@heroicons/react/24/outline'
+import { ShoppingCartIcon as ShoppingCartSolid } from '@heroicons/react/24/solid'
 import { useState } from 'react'
 
-export default function AddToCartButton() {
+export default function AddToCartButton({ component }) {
   const [clicked, setClicked] = useState(false)
+  if (component === 'product-detail') {
+    return (
+      <button
+        type="button"
+        className=" flex text-sm font-semibold px-[30px] py-[15px] text-white bg-primary-accent-color rounded border-none outline-none transition-[0.2s]"
+      >
+        {ADD_TO_CART_BUTTON}
+        <ShoppingCartSolid className="w-5 h-5 ml-2" />
+      </button>
+    )
+  }
   return (
     <button
       id="add-to-cart-button"

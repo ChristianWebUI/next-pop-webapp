@@ -52,7 +52,8 @@ const data = {
       rating: 2.5,
       numReview: 9,
       countInStock: 50,
-      description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit.'
+      description:
+        'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Phasellus in hendrerit libero, vitae accumsan nibh. Quisque id lectus eu lacus faucibus suscipit vel sed nisi. Nam faucibus, tortor id blandit auctor, velit ligula pulvinar quam, a placerat enim felis et nunc. Sed molestie velit libero, tempus malesuada mauris efficitur at. Suspendisse sem quam, elementum sit amet tempor non, interdum quis elit. Praesent interdum, sapien sit amet porta consectetur, tortor ligula molestie massa, nec tincidunt enim dui sit amet diam. Donec ornare venenatis libero, in eleifend risus commodo id. Nam pellentesque tortor vitae turpis egestas lacinia.'
     },
     {
       name: 'Pink Combo',

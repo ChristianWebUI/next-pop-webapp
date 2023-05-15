@@ -3,8 +3,9 @@ import ProductCard from '@/components/ProductCard'
 import { NEW_ARRIVALS_PARAGRAPH, NEW_ARRIVALS_TITLE } from '@/constants/home'
 import useNewArrivals from '@/hooks/useNewArrivals'
 
-export default function NewArrivals() {
-  const { loading, error, newArrivals, formatCurrency } = useNewArrivals()
+export default function NewArrivals({ numberOfProducts = 8 }) {
+  const { loading, error, newArrivals, formatCurrency } =
+    useNewArrivals(numberOfProducts)
   return (
     <section id="new-arrivals" className="section-p1 text-center">
       <h2>{NEW_ARRIVALS_TITLE}</h2>

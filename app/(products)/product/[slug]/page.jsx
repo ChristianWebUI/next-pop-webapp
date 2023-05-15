@@ -1,73 +1,26 @@
-import AddToCartButtonLegacy from '@/components/AddToCartButtonLegacy'
-import ImagesCarousel from '@/components/ImagesCarousel'
-import Price from '@/components/Price'
-import getClient from '@/graphql/apollo-client'
-import { GET_PRODUCT_BY_SLUG } from '@/graphql/queries/getProductBySlug'
-import Link from 'next/link'
+import FeaturedProducts from '@/components/FeaturedProducts'
+import Newsletter from '@/components/Newsletter'
+import ProductDetail from '@/components/ProductDetail'
+import data from '@/utils/data'
 
-async function getProduct(slug) {
-  const client = getClient()
-  const { data, loading, error } = await client.query({
-    query: GET_PRODUCT_BY_SLUG,
-    variables: { slug }
-  })
-  return { data, loading, error }
+const getSingleProduct = (slug) => {
+  return data.products.find((product) => product.slug === slug)
 }
 
-export async function generateMetadata({ params }) {
-  const { slug } = params
-  const { data } = await getProduct(slug)
-  return { title: data?.getProductBySlug?.name || 'Not Found' }
+export function generateMetadata({ params }) {
+  const product = getSingleProduct(params.slug)
+  return {
+    title: product.name
+  }
 }
 
-export default async function ProductDetail({ params }) {
-  const { slug } = params
-  const { data, loading, error } = await getProduct(slug)
-  const product = data?.getProductBySlug
-  if (loading) {
-    return <>Loading product...</>
-  }
-
-  if (!product || error) {
-    return <div>Product Not Found</div>
-  }
-
+export default function ProductDetailPage({ params }) {
+  const product = getSingleProduct(params.slug)
   return (
-    <section className="p-10">
-      <div className="py-2">
-        <Link className="text-blue-700" href="/">
-          Back to products
-        </Link>
-      </div>
-      <div className="grid grid-cols-1 md:grid-cols-4 md:gap-3">
-        <ImagesCarousel images={product.images} name={product.name} />
-        <div>
-          <ul>
-            <li>
-              <h1 className="text-lg">{product.name}</h1>
-            </li>
-            <li>Category: {product.category}</li>
-            <li>Brand: {product.brand}</li>
-            <li>
-              {product.rating} of {product.numReview} reviews
-            </li>
-            <li>Description: {product.description}</li>
-          </ul>
-        </div>
-        <div>
-          <div className="card p-5">
-            <div className="mb-2 flex justify-between">
-              <div>Price</div>
-              <Price price={product.price} asComponent />
-            </div>
-            <div className="mb-2 flex justify-between">
-              <div>Status</div>
-              <div>{product.countInStock > 0 ? 'In Stock' : 'Unavailable'}</div>
-            </div>
-            <AddToCartButtonLegacy product={product} />
-          </div>
-        </div>
-      </div>
-    </section>
+    <>
+      <ProductDetail product={product} />
+      <FeaturedProducts numberOfProducts={4} />
+      <Newsletter />
+    </>
   )
 }
