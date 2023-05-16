@@ -34,7 +34,8 @@ module.exports = {
         'signup-bg-color': '#041e42',
         'other-text-color': '#818ea0',
         'other-highlight-text-color': '#ffbd27',
-        'blog-date-color': '#c9cbce'
+        'blog-date-color': '#c9cbce',
+        'input-border-color': '#e1e1e1'
       },
       boxShadow: {
         nav: '0 5px 15px rgba(0,0,0,0.06)',
