@@ -4,8 +4,8 @@ import Footer from '@/components/Footer'
 import Header from '@/components/Header'
 import { usePathname } from 'next/navigation'
 
-const WITHOUT_HEADER = []
-const WITHOUT_FOOTER = []
+const WITHOUT_HEADER = ['login', 'register']
+const WITHOUT_FOOTER = ['login', 'register']
 
 export default function MainContent({ children }) {
   const pathname = usePathname()

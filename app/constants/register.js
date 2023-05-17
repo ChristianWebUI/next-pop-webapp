@@ -1,3 +1,15 @@
+// SIGN IN
+
+export const SIGNIN_TEXT = 'Sign In'
+export const SIGNIN_FORGET_PASSWORD = 'Forget Password'
+export const SIGNIN_SIGNUP_LINK = 'Sign Up'
+export const SIGNIN_BUTTON = 'Login'
+
+// SIGN UP
+export const SIGNUP_TEXT = 'Sign Up'
+export const SIGNUP_BUTTON = 'Register'
+export const SIGNUP_SIGNIN_LINK = 'Sign In'
+
 export const REGISTER_FORM_FIELDS = (getValues, { setImageUrl, imageUrl }) => [
   {
     id: 'name',
