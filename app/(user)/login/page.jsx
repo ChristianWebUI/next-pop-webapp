@@ -1,5 +1,4 @@
 import LoginForm from '@/components/LoginForm'
-import RegisterForm from '@/components/RegisterForm'
 import Image from 'next/image'
 import './login.css'
 
@@ -109,7 +108,7 @@ export default function LoginPage({ children }) {
         priority
         quality={100}
       />
-      {!children ? <LoginForm /> : <RegisterForm />}
+      {children || <LoginForm />}
       <Image
         src="/login/trees.png"
         alt="trees"
