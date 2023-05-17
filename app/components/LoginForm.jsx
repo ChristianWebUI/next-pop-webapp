@@ -4,11 +4,15 @@ import {
   SIGNIN_SIGNUP_LINK,
   SIGNIN_TEXT
 } from '@/constants/register'
+import { HomeIcon } from '@heroicons/react/24/outline'
 import Image from 'next/image'
 import Link from 'next/link'
 export default function LoginForm() {
   return (
     <form className="login">
+      <Link href="/">
+        <HomeIcon className="w-6 h-6 text-[#8f2c24]" />
+      </Link>
       <Image
         src="/logo_p_de_papel.png"
         alt="Logo Papeleria P de Papel"
