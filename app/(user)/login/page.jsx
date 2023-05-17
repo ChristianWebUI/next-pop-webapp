@@ -101,7 +101,7 @@ export default function LoginPage({ children }) {
         sizes="100vw"
       />
       <Image
-        className="girl"
+        className="girl hidden md:block"
         src="/login/girl.png"
         alt="girl-riding"
         width={476}

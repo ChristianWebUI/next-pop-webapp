@@ -4,10 +4,19 @@ import {
   SIGNIN_SIGNUP_LINK,
   SIGNIN_TEXT
 } from '@/constants/register'
+import Image from 'next/image'
 import Link from 'next/link'
 export default function LoginForm() {
   return (
     <form className="login">
+      <Image
+        src="/logo_p_de_papel.png"
+        alt="Logo Papeleria P de Papel"
+        width={200}
+        height={200}
+        quality={100}
+        className="w-20 h-auto object-contain m-auto"
+      />
       <h2>{SIGNIN_TEXT}</h2>
       <div className="inputbox">
         <input
