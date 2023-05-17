@@ -91,13 +91,14 @@ export default function LoginPage({ children }) {
         </div>
       </div>
       <Image
-        className="bg"
+        className="bg w-full h-full"
         src="/login/bg.jpeg"
         alt="wood-trees"
-        width={1920}
-        height={1080}
+        width={0}
+        height={0}
         priority
         quality={100}
+        sizes="100vw"
       />
       <Image
         className="girl"
@@ -112,11 +113,12 @@ export default function LoginPage({ children }) {
       <Image
         src="/login/trees.png"
         alt="trees"
-        width={1920}
-        height={1080}
+        width={0}
+        height={0}
         priority
         quality={100}
-        className="trees"
+        sizes="100vw"
+        className="trees w-full h-full"
       />
     </section>
   )
