@@ -1,3 +1,4 @@
+import NumberInput from '@/components/NumberInput'
 import Price from '@/components/Price'
 import { CART_TABLE_HEADINGS } from '@/constants/cart'
 import data from '@/utils/data'
@@ -83,13 +84,7 @@ export default function CartDetail() {
                     'text-center w-[150px] pt-[15px] text-sm'
                   )}
                 >
-                  <input
-                    type="number"
-                    name="quantitySelector"
-                    id="quantitySelector"
-                    min={1}
-                    className="w-[70px] pl-[15px] pr-[5px] py-2.5 border border-solid border-input-border-color rounded"
-                  />
+                  <NumberInput />
                 </td>
                 <td
                   className={classnames(

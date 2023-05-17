@@ -141,6 +141,17 @@
     @apply text-base text-secondary-text-color mt-[15px] mb-5 mx-0;
   }
 
+  input[type='number'] {
+    -webkit-appearance: textfield;
+    -moz-appearance: textfield;
+    appearance: textfield;
+  }
+
+  input[type='number']::-webkit-inner-spin-button,
+  input[type='number']::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+  }
+
   .section-p1 {
     @apply px-20 py-10;
   }
