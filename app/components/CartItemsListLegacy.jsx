@@ -2,7 +2,7 @@ import CartOverviewTable from '@/components/CartOverviewTable'
 import Price from '@/components/Price'
 import Link from 'next/link'
 
-export default function CartItemsList({
+export default function CartItemsListLegacy({
   cartItems,
   onClickHandler = () => {}
 }) {

@@ -1,9 +1,13 @@
+import CartAddDetail from '@/components/CartAddDetail'
 import CartDetail from '@/components/CartDetail'
-
-export const metadata = {
-  title: 'Shopping Cart'
-}
+import CartHero from '@/components/CartHero'
 
 export default function CartPage() {
-  return <CartDetail />
+  return (
+    <>
+      <CartHero />
+      <CartDetail />
+      <CartAddDetail />
+    </>
+  )
 }
