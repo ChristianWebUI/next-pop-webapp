@@ -5,6 +5,13 @@ import {
   calculateWeight,
   calculateWidth
 } from '@/utils/shipping'
+import {
+  CheckCircleIcon,
+  CreditCardIcon,
+  ShoppingCartIcon,
+  TruckIcon
+} from '@heroicons/react/24/solid'
+import classnames from 'classnames'
 
 export const USER_LOGIN_TITLE = 'User Login'
 export const SHIPPING_ADDRESS_TITLE = 'Shipping Address'
@@ -26,10 +33,36 @@ export const HOME_PAGE = '/'
 export const CART_PAGE = 'cart'
 
 export const CHECKOUT_STEPS_NAMES = [
-  USER_LOGIN_TITLE,
-  SHIPPING_ADDRESS_TITLE,
-  PAYMENT_METHOD_TITLE,
-  PLACE_ORDER_TITLE
+  {
+    stepName: USER_LOGIN_TITLE,
+    icon: (classes = '') => (
+      <ShoppingCartIcon
+        className={classnames('w-5 h-5', { [classes]: classes })}
+      />
+    )
+  },
+  {
+    stepName: SHIPPING_ADDRESS_TITLE,
+    icon: (classes = '') => (
+      <TruckIcon className={classnames('w-5 h-5', { [classes]: classes })} />
+    )
+  },
+  {
+    stepName: PAYMENT_METHOD_TITLE,
+    icon: (classes = '') => (
+      <CreditCardIcon
+        className={classnames('w-5 h-5', { [classes]: classes })}
+      />
+    )
+  },
+  {
+    stepName: PLACE_ORDER_TITLE,
+    icon: (classes = '') => (
+      <CheckCircleIcon
+        className={classnames('w-5 h-5', { [classes]: classes })}
+      />
+    )
+  }
 ]
 
 export const CHECKOUT_STEPS = [

@@ -5,7 +5,13 @@ import Header from '@/components/Header'
 import { usePathname } from 'next/navigation'
 
 const WITHOUT_HEADER = ['login', 'register']
-const WITHOUT_FOOTER = ['login', 'register']
+const WITHOUT_FOOTER = [
+  'login',
+  'register',
+  'shipping',
+  'payment',
+  'placeorder'
+]
 
 export default function MainContent({ children }) {
   const pathname = usePathname()

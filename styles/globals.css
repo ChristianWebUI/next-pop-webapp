@@ -400,6 +400,13 @@
 }
 
 @layer utilities {
+  .status-bar {
+    transition: all 0.3s;
+  }
+  .step {
+    transition: all 0.3s cubic-bezier(0.44, 0.79, 1, 0.59);
+  }
+
   .navlink {
     transition: 0.3s ease;
   }
