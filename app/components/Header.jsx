@@ -3,6 +3,11 @@ import CartNavigationLink from '@/components/CartNavigationLink'
 import LoginNavigationLink from '@/components/LoginNavigationLink'
 import NavigationLink from '@/components/NavigationLink'
 import { HOME_PAGE } from '@/constants/checkout'
+import {
+  ArrowRightOnRectangleIcon,
+  CalendarDaysIcon,
+  UserCircleIcon
+} from '@heroicons/react/24/outline'
 import { Bars4Icon, XMarkIcon } from '@heroicons/react/24/solid'
 import Image from 'next/image'
 import Link from 'next/link'
@@ -59,9 +64,23 @@ const links = [
     route: '/login',
     Component: LoginNavigationLink,
     subMenu: [
-      { route: '/profile', label: 'Profile' },
-      { route: '/order-history', label: 'Order History' },
-      { route: '#', label: 'Logout' }
+      {
+        route: '/profile',
+        label: 'Profile',
+        icon: <UserCircleIcon className="w-5 h-5 rounded-full mr-1" />
+      },
+      {
+        route: '/order-history',
+        label: 'Order History',
+        icon: <CalendarDaysIcon className="w-5 h-5 rounded-full mr-1" />
+      },
+      {
+        route: 'logout',
+        label: 'Logout',
+        icon: (
+          <ArrowRightOnRectangleIcon className="w-5 h-5 rounded-full mr-1" />
+        )
+      }
     ]
   }
 ]
@@ -93,7 +112,7 @@ export default function Header() {
         <div>
           <ul
             id="navbar"
-            className={`flex items-center justify-center ${
+            className={`flex items-center justify-center z-10 ${
               isOpen ? 'opened' : ''
             }`}
           >

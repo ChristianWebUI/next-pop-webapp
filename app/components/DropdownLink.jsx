@@ -1,13 +1,16 @@
 import Link from 'next/link'
+import { forwardRef } from 'react'
 
-export default function DropdownLink({ href, children, onClick, ...rest }) {
+function DropdownLink({ href, children, onClick, className }, ref) {
   return !onClick ? (
-    <Link className=" text-blue-700" href={href} {...rest}>
+    <Link className={className} href={href} ref={ref}>
       {children}
     </Link>
   ) : (
-    <a className="text-blue-700" href={href} onClick={onClick} {...rest}>
+    <a className={className} href={href} onClick={onClick} ref={ref}>
       {children}
     </a>
   )
 }
+
+export default forwardRef(DropdownLink)

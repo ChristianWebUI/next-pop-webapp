@@ -655,10 +655,6 @@
   @apply scale-125 border-solid border-2 border-white m-1;
 }
 
-.dropdown-link {
-  @apply flex p-2 hover:bg-gray-200;
-}
-
 .shipping-input-group {
   @apply rounded border p-2  outline-none ring-indigo-300  focus:ring;
 }
