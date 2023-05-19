@@ -1,8 +1,8 @@
 'use client'
+import CheckoutStep from '@/components/CheckoutStep'
 import { CHECKOUT_STEPS_NAMES } from '@/constants/checkout'
 import { useCheckoutContext } from '@/context/CheckoutContextProvider'
 import { useEffect, useRef } from 'react'
-import CheckoutStep from './CheckoutStep'
 
 export default function CheckoutWizard() {
   const { currentIndex } = useCheckoutContext()

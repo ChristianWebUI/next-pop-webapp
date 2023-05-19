@@ -1,10 +1,10 @@
 'use client'
+import ProductCard from '@/components/ProductCard'
 import {
   FEATURED_PRODUCTS_PARAGRAPH,
   FEATURED_PRODUCTS_TITLE
 } from '@/constants/home'
 import useFeaturedProducts from '@/hooks/useFeaturedProducts'
-import ProductCard from './ProductCard'
 
 export default function FeaturedProducts({ numberOfProducts = 8 }) {
   const { featuredProducts, loading, error, formatCurrency } =
