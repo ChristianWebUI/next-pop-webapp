@@ -10,6 +10,10 @@
   --hue-offset: 320;
   --duration: 5000ms;
 
+  /* steps */
+  --circle-size: clamp(1.5rem, 5vw, 3rem);
+  --spacing: clamp(0.25rem, 2vw, 0.5rem);
+
   /* generate some colors */
   --color-01: hsl(
     calc(360 / var(--steps) * 1 + var(--hue-offset)),
@@ -405,6 +409,15 @@
   input:-webkit-autofill:focus,
   input:-webkit-autofill:active {
     transition: background-color 9999s ease-in-out 0s;
+  }
+  .slide-in {
+    opacity: 0;
+    transform: translateY(100%);
+    transition: opacity 0.3s, transform 0.3s;
+  }
+  .slide-in-active {
+    opacity: 1;
+    transform: translateY(0);
   }
   .input-transition {
     transition: 0.3s ease-out;
