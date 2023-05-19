@@ -10,7 +10,7 @@ import usePaymentForm from '@/hooks/usePaymentForm'
 import Image from 'next/image'
 import Link from 'next/link'
 
-export default function PaymentForm() {
+export default function PaymentFormLegacy() {
   const { onSubmit, register, errors } = usePaymentForm()
   const displayIcons = (id) => {
     const allowedMethods = ['paypal', 'mercadopago']

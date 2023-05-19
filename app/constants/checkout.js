@@ -94,6 +94,23 @@ export const QUOTE_SHIPPING_VARIABLES = {
   declaredValue: calculateDeclaredValue
 }
 
+export const dummyDepartments = Array.from({ length: 5 }, (_, index) => ({
+  value: index,
+  label: `Department ${index + 1}`
+}))
+
+export const dummyCities = Array.from({ length: 5 }, (_, index) => ({
+  value: index,
+  label: `City ${index + 1}`
+}))
+
+export const dummyNitTypeOptions = [
+  { value: 'NIT', label: 'NIT (Número de Identificación Tributaria)' },
+  { value: 'CC', label: 'CC (Cédula de Ciudadanía)' },
+  { value: 'CE', label: 'CE (Cédula de Extranjería)' },
+  { value: 'TI', label: 'TI (Tarjeta de Identidad)' }
+]
+
 export const COUNTRIES = [
   { name: 'Argentina', code: '032', prefix: '+54', flag: '🇦🇷' },
   { name: 'Bolivia', code: '068', prefix: '+591', flag: '🇧🇴' },

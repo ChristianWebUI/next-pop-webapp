@@ -400,6 +400,18 @@
 }
 
 @layer utilities {
+  input:-webkit-autofill,
+  input:-webkit-autofill:hover,
+  input:-webkit-autofill:focus,
+  input:-webkit-autofill:active {
+    transition: background-color 9999s ease-in-out 0s;
+  }
+  .input-transition {
+    transition: 0.3s ease-out;
+  }
+  .label-transition {
+    transition: 0.3s ease-in-out;
+  }
   .status-bar {
     transition: all 0.3s;
   }
@@ -698,7 +710,7 @@
   outline: none;
 }
 .toggle-switch-inner {
-  @apply block w-[200%] ml-[-100%] transition-[margin] duration-[0.3s] ease-[ease-in] delay-[0s] before:content-[attr(data-yes)] before:uppercase before:bg-[#2f855a] before:text-white before:pl-2.5 after:content-[attr(data-no)] after:uppercase after:bg-[#bbb] after:text-white after:text-right after:pr-2.5;
+  @apply block w-[200%] ml-[-100%] transition-[margin] duration-[0.3s] ease-[ease-in] delay-[0s] before:content-[attr(data-yes)] before:uppercase before:bg-primary-accent-color before:text-white before:pl-2.5 after:content-[attr(data-no)] after:uppercase after:bg-input-border-color after:text-white after:text-right after:pr-2.5;
 }
 .toggle-switch-inner:before,
 .toggle-switch-inner:after {

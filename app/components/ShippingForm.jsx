@@ -1,221 +1,240 @@
 /* eslint-disable multiline-ternary */
 'use client'
+import DeliveryCompanySelector from '@/components/DeliveryCompanySelector'
 import {
   ADDRESS_LABEL,
+  BACK_BUTTON_TITLE,
   CASH_ON_DELIVERY_LABEL,
-  CITY_LABEL,
-  COUNTRY_LABEL,
-  DEPARTMENT_LABEL,
   FULLNAME_LABEL,
+  NEXT_BUTTON_TITLE,
   NIT_LABEL,
-  NIT_TYPE_LABEL,
   PHONE_NUMBER_LABEL,
-  QUOTE_SHIPPING_LABEL
+  SHIPPING_ADDRESS_TITLE,
+  dummyCities,
+  dummyDepartments,
+  dummyNitTypeOptions
 } from '@/constants/checkout'
-import useShippingForm from '@/hooks/useShippingForm'
-import { getErrorMessage } from '@/utils/error'
-import { StarIcon } from '@heroicons/react/24/solid'
-import Image from 'next/image'
-import Select from 'react-select'
+import data from '@/utils/data'
+import {
+  ArrowLongLeftIcon,
+  ArrowLongRightIcon
+} from '@heroicons/react/24/solid'
+import React from 'react'
+import Select, { components } from 'react-select'
 
-export default function ShippingForm({ optionLabels = ['Yes', 'No'] }) {
-  const {
-    title,
-    onSubmit,
-    loadingFormData,
-    errorOnFormData,
-    register,
-    errors,
-    departmentsOptions,
-    departmentValue,
-    handleDepartmentChange,
-    restDepartmentField,
-    citiesOptions,
-    cityValue,
-    handleCityChange,
-    restCityField,
-    countriesOptions,
-    countryValue,
-    handleCountryChange,
-    restCountryField,
-    handlePhoneNumberChange,
-    isCashOnDelivery,
-    nitTypeOptions,
-    nitTypeValue,
-    handleNitTypeChange,
-    restNitTypeField,
-    handleQuoteShipping,
-    loadingQuote,
-    errorOnQuote,
-    quoteData,
-    formatCurrency
-  } = useShippingForm()
-  if (loadingFormData) return <div>Loading form...</div>
-  const COLOMBIA_CODE = '170'
-  const internationalShipping = countryValue?.code !== COLOMBIA_CODE
+const { ValueContainer, Placeholder } = components
+
+const CustomValueContainer = ({ children, ...props }) => {
   return (
-    <div className="mx-auto max-w-screen-md">
-      <h1 className="mb-4 text-xl flex justify-center items-center">{title}</h1>
-      <form
-        onSubmit={onSubmit}
-        className="grid grid-cols-2 gap-4 justify-between"
-      >
-        <div className="col-span-1">
-          <div className="mb-4">
-            <label htmlFor="fullName">{FULLNAME_LABEL}</label>
-            <input
-              className="shipping-input-group w-full"
-              id="fullName"
-              autoFocus
-              {...register('fullName')}
-            />
-            {errors.fullName && (
-              <div className="text-red-500">{errors.fullName.message}</div>
-            )}
-          </div>
-          <div className="mb-4">
-            <label htmlFor="cellPhone">{PHONE_NUMBER_LABEL}</label>
-            <div className="flex gap-1">
-              <span className="shipping-input-group inline-flex items-center px-3 bg-gray-50 text-gray-500">{`${countryValue?.flag}${countryValue?.prefix}`}</span>
+    <ValueContainer {...props}>
+      <Placeholder {...props} isFocused={props.isFocused}>
+        {props.selectProps.placeholder}
+      </Placeholder>
+      {React.Children.map(children, (child) =>
+        child && child.type !== Placeholder ? child : null
+      )}
+    </ValueContainer>
+  )
+}
+
+export default function ShippingForm() {
+  return (
+    <section
+      id="shipping-form"
+      className="flex flex-col m-3 p-[30px_10px] md:m-8 lg:px-20 lg:py-10 md:p-10 border border-solid border-input-border-color"
+    >
+      <h2 className="w-full flex items-center justify-center mb-4">
+        {SHIPPING_ADDRESS_TITLE}
+      </h2>
+      <form className="relative flex lg:flex-nowrap flex-wrap justify-between items-start">
+        {/* Left Panel */}
+        <div className="flex justify-between md:p-8 p-4 lg:w-6/12 w-full flex-wrap lg:mb-16">
+          {/* Full Name & Cell Phone */}
+          <div className="flex justify-between w-full gap-8 my-8 flex-col md:flex-row">
+            {/* Full Name */}
+            <div className="relative md:w-6/12 w-full">
               <input
-                className="shipping-input-group flex-1 block w-full"
+                className="peer py-3 px-4 outline-none border-0 border-b border-solid border-input-border-color text-sm w-full"
+                type="text"
+                id="fullName"
+                required
+              />
+              <label
+                className="absolute bottom-3 left-4 text-sm w-full cursor-text label-transition peer-focus:text-[10px] peer-focus:bottom-12 peer-focus:pointer-events-none peer-valid:text-[10px] peer-valid:bottom-12 peer-valid:pointer-events-none"
+                htmlFor="fullName"
+              >
+                {FULLNAME_LABEL}
+              </label>
+            </div>
+            {/* Cell Phone */}
+            <div className="relative md:w-6/12 w-full">
+              <input
+                className="peer py-3 pr-4 pl-4 outline-none border-0 border-b border-solid border-input-border-color text-sm w-full valid:pl-16 focus:pl-16 input-transition"
+                type="text"
                 id="cellPhone"
-                name="cellPhone"
-                {...register('cellPhone')}
-                onChange={handlePhoneNumberChange}
-                placeholder="(XXX) XXX XXXX"
-                autoFocus
+                required
+              />
+              <label
+                className="absolute bottom-3 left-4 text-sm w-full cursor-text label-transition peer-focus:text-[10px] peer-focus:bottom-12 peer-focus:pointer-events-none peer-valid:text-[10px] peer-valid:bottom-12 peer-valid:pointer-events-none"
+                htmlFor="cellPhone"
+              >
+                {PHONE_NUMBER_LABEL}
+              </label>
+              <span className="absolute bottom-3 left-4 text-sm cursor-none hidden peer-focus:block peer-valid:block">
+                {'🇨🇴+57'}
+              </span>
+            </div>
+          </div>
+          {/* Address */}
+          <div className="relative w-full my-8">
+            <input
+              className="peer py-3 px-4 outline-none border-0 border-b border-solid border-input-border-color text-sm w-full"
+              type="text"
+              id="address"
+              required
+            />
+            <label
+              className="absolute bottom-3 left-4 text-sm w-full cursor-text label-transition peer-focus:text-[10px] peer-focus:bottom-12 peer-focus:pointer-events-none peer-valid:text-[10px] peer-valid:bottom-12 peer-valid:pointer-events-none"
+              htmlFor="address"
+            >
+              {ADDRESS_LABEL}
+            </label>
+          </div>
+          {/* Department & City */}
+          <div className="flex justify-between w-full gap-8 my-8 flex-col md:flex-row">
+            {/* Department */}
+            <div className="relative md:w-6/12 w-full">
+              <Select
+                classNamePrefix="select"
+                id="department"
+                name="department"
+                isClearable
+                placeholder="Department"
+                components={{ ValueContainer: CustomValueContainer }}
+                options={dummyDepartments}
+                styles={{
+                  control: (base) => ({
+                    ...base,
+                    color: '#222',
+                    outline: '0',
+                    boxShadow: 'none',
+                    fontSize: '0.875rem',
+                    lineHeight: '1.25rem',
+                    width: '100%',
+                    borderRadius: '0',
+                    borderWidth: '0',
+                    borderBottomWidth: '1px',
+                    borderStyle: 'solid',
+                    borderColor: '#e1e1e1',
+                    '&:hover': { borderColor: '#e1e1e1' }
+                  }),
+                  valueContainer: (provided, state) => ({
+                    ...provided,
+                    overflow: 'visible',
+                    padding: '0.75rem 1rem'
+                  }),
+                  input: (provided, state) => ({
+                    ...provided,
+                    margin: '0',
+                    padding: '0'
+                  }),
+                  dropdownIndicator: (provided, state) => ({
+                    ...provided,
+                    color: '#e1e1e1',
+                    '&:hover': { color: '#088178' }
+                  }),
+                  clearIndicator: (provided, state) => ({
+                    ...provided,
+                    color: '#e1e1e1',
+                    '&:hover': { color: '#088178' }
+                  }),
+                  indicatorSeparator: (provided, state) => ({}),
+                  placeholder: (provided, state) => ({
+                    ...provided,
+                    color: '#222',
+                    position: 'absolute',
+                    bottom:
+                      state.hasValue || state.selectProps.inputValue
+                        ? '1.5rem'
+                        : '0',
+                    transition: 'bottom 0.1s, font-size 0.1s',
+                    fontSize:
+                      (state.hasValue || state.selectProps.inputValue) && 10
+                  })
+                }}
               />
             </div>
-            {errors.cellPhone && (
-              <div className="text-red-500">{errors.cellPhone.message}</div>
-            )}
-          </div>
-          <div className="mb-4">
-            <label htmlFor="address">{ADDRESS_LABEL}</label>
-            <input
-              className="shipping-input-group w-full"
-              id="address"
-              autoFocus
-              {...register('address')}
-            />
-            {errors.address && (
-              <div className="text-red-500">{errors.address.message}</div>
-            )}
-          </div>
-          <div className="mb-4">
-            <label htmlFor="department">{DEPARTMENT_LABEL}</label>
-            {!errorOnFormData && (
+            {/* City */}
+            <div className="relative md:w-6/12 w-full">
               <Select
-                id="department"
-                className="w-full"
-                placeholder="Select a department"
+                classNamePrefix="select"
+                id="city"
+                name="city"
                 isClearable
-                isDisabled={Boolean(internationalShipping)}
-                options={departmentsOptions}
-                value={
-                  departmentValue
-                    ? departmentsOptions.find(
-                        (d) => d.value === departmentValue
-                      )
-                    : departmentValue
-                }
-                onChange={(option) => {
-                  handleCityChange('')
-                  handleDepartmentChange(option ? option.value : option)
+                placeholder="City"
+                components={{ ValueContainer: CustomValueContainer }}
+                options={dummyCities}
+                styles={{
+                  control: (base) => ({
+                    ...base,
+                    color: '#222',
+                    outline: '0',
+                    boxShadow: 'none',
+                    fontSize: '0.875rem',
+                    lineHeight: '1.25rem',
+                    width: '100%',
+                    borderRadius: '0',
+                    borderWidth: '0',
+                    borderBottomWidth: '1px',
+                    borderStyle: 'solid',
+                    borderColor: '#e1e1e1',
+                    '&:hover': { borderColor: '#e1e1e1' }
+                  }),
+                  valueContainer: (provided, state) => ({
+                    ...provided,
+                    overflow: 'visible',
+                    padding: '0.75rem 1rem'
+                  }),
+                  input: (provided, state) => ({
+                    ...provided,
+                    margin: '0',
+                    padding: '0'
+                  }),
+                  dropdownIndicator: (provided, state) => ({
+                    ...provided,
+                    color: '#e1e1e1',
+                    '&:hover': { color: '#088178' }
+                  }),
+                  clearIndicator: (provided, state) => ({
+                    ...provided,
+                    color: '#e1e1e1',
+                    '&:hover': { color: '#088178' }
+                  }),
+                  indicatorSeparator: (provided, state) => ({}),
+                  placeholder: (provided, state) => ({
+                    ...provided,
+                    color: '#222',
+                    position: 'absolute',
+                    bottom:
+                      state.hasValue || state.selectProps.inputValue
+                        ? '1.5rem'
+                        : '0',
+                    transition: 'bottom 0.1s, font-size 0.1s',
+                    fontSize:
+                      (state.hasValue || state.selectProps.inputValue) && 10
+                  })
                 }}
-                {...restDepartmentField}
               />
-            )}
-            {errorOnFormData && (
-              <input
-                className="shipping-input-group w-full"
-                id="department"
-                autoFocus
-                {...register('department')}
-              ></input>
-            )}
-            {errors.department && (
-              <div className="text-red-500">{errors.department.message}</div>
-            )}
+            </div>
           </div>
-          <div className="mb-4">
-            <label htmlFor="city">{CITY_LABEL}</label>
-            {!errorOnFormData && (
-              <Select
-                id="city"
-                className="w-full"
-                placeholder="Select a city"
-                isClearable
-                isDisabled={
-                  Boolean(!departmentValue) || Boolean(internationalShipping)
-                }
-                options={citiesOptions}
-                value={
-                  citiesOptions?.find((c) => c.value === cityValue) || {
-                    value: '',
-                    label: ''
-                  }
-                }
-                onChange={(option) =>
-                  handleCityChange(option ? option.value : option)
-                }
-                {...restCityField}
-              />
-            )}
-            {errorOnFormData && (
-              <input
-                className="shipping-input-group w-full"
-                id="city"
-                autoFocus
-                {...register('city')}
-              ></input>
-            )}
-            {errors.city && (
-              <div className="text-red-500">{errors.city.message}</div>
-            )}
-          </div>
-          <div className="mb-4">
-            <label htmlFor="country">{COUNTRY_LABEL}</label>
-            <Select
-              id="country"
-              className="w-full"
-              placeholder="Select your country"
-              options={countriesOptions}
-              defaultValue={{
-                code: '170',
-                prefix: '+57',
-                flag: '🇨🇴',
-                name: 'Colombia'
-              }}
-              value={
-                countryValue
-                  ? countriesOptions.find(
-                      (c) => c.value.code === countryValue?.code
-                    )
-                  : countryValue
-              }
-              onChange={(option) => {
-                if (option?.value?.code !== COLOMBIA_CODE) {
-                  handleCityChange('international')
-                  handleDepartmentChange('international')
-                }
-                handleCountryChange(option ? option.value : option)
-              }}
-              {...restCountryField}
-            />
-            {errors.country && (
-              <div className="text-red-500">{errors.country.message}</div>
-            )}
-          </div>
-          <div className="mb-4">
+          {/* Is Cash On Delivery */}
+          <div className="relative w-full mt-8">
             <div className="toggle-switch">
               <input
                 type="checkbox"
                 name="isCashOnDelivery"
                 className="toggle-switch-checkbox"
                 id="isCashOnDelivery"
-                {...register('isCashOnDelivery')}
               />
               <label
                 className="toggle-switch-label"
@@ -224,146 +243,149 @@ export default function ShippingForm({ optionLabels = ['Yes', 'No'] }) {
               >
                 <span
                   className="toggle-switch-inner"
-                  data-yes={optionLabels[0]}
-                  data-no={optionLabels[1]}
+                  data-yes={'Sí'}
+                  data-no={'No'}
                   tabIndex={-1}
                 />
                 <span className="toggle-switch-switch" tabIndex={-1} />
               </label>
             </div>
-            <label htmlFor="isCashOnDelivery">{CASH_ON_DELIVERY_LABEL}</label>
+            <label
+              htmlFor="isCashOnDelivery"
+              className="md:text-sm text-[11px]"
+            >
+              {CASH_ON_DELIVERY_LABEL}
+            </label>
           </div>
         </div>
-        <div className="col-span-1">
-          {isCashOnDelivery && (
-            <>
-              <div className="mb-4">
-                <label htmlFor="nitType">{NIT_TYPE_LABEL}</label>
-                <Select
-                  id="nitType"
-                  className="w-full"
-                  placeholder="Select your type of ID"
-                  isClearable
-                  isSearchable={false}
-                  options={nitTypeOptions}
-                  defaultValue={{
-                    value: 'CC',
-                    label: 'CC (Cédula de Ciudadanía)'
-                  }}
-                  value={
-                    nitTypeValue
-                      ? nitTypeOptions.find((nt) => nt.value === nitTypeValue)
-                      : nitTypeValue
-                  }
-                  onChange={(option) =>
-                    handleNitTypeChange(option ? option.value : option)
-                  }
-                  {...restNitTypeField}
+        {/* Right Panel */}
+        <div className="flex justify-between md:p-8 p-4 lg:w-6/12 w-full flex-wrap mb-16">
+          {/* NIT & NIT Type */}
+          <div className="flex justify-between w-full gap-8 my-8 flex-col md:flex-row">
+            {/* NIT */}
+            <div className="relative md:w-6/12 w-full">
+              <input
+                type="text"
+                name="nit"
+                id="nit"
+                className="peer py-3 px-4 outline-none border-0 border-b border-solid border-input-border-color text-sm w-full disabled:bg-transparent disabled:cursor-not-allowed"
+                required
+                disabled
+              />
+              <label
+                htmlFor="nit"
+                className="absolute bottom-3 left-4 text-sm w-full cursor-text label-transition peer-disabled:text-input-border-color peer-disabled:cursor-not-allowed peer-valid:text-[10px] peer-valid:bottom-12 peer-valid:pointer-events-none peer-focus:text-[10px] peer-focus:bottom-12 peer-focus:pointer-events-none"
+              >
+                {NIT_LABEL}
+              </label>
+            </div>
+            {/* NIT Type */}
+            <div className="relative md:w-6/12 w-full">
+              <Select
+                classNamePrefix="select"
+                id="nitType"
+                name="nitType"
+                isClearable
+                isDisabled
+                placeholder="ID Type"
+                components={{ ValueContainer: CustomValueContainer }}
+                options={dummyNitTypeOptions}
+                styles={{
+                  control: (base, { isDisabled }) => ({
+                    ...base,
+                    color: '#222',
+                    outline: '0',
+                    boxShadow: 'none',
+                    fontSize: '0.875rem',
+                    lineHeight: '1.25rem',
+                    width: '100%',
+                    borderRadius: '0',
+                    borderWidth: '0',
+                    borderBottomWidth: '1px',
+                    borderStyle: 'solid',
+                    borderColor: '#e1e1e1',
+                    backgroundColor: isDisabled && 'transparent',
+                    '&:hover': { borderColor: '#e1e1e1' }
+                  }),
+                  valueContainer: (provided, state) => ({
+                    ...provided,
+                    overflow: 'visible',
+                    padding: '0.75rem 1rem'
+                  }),
+                  input: (provided, state) => ({
+                    ...provided,
+                    margin: '0',
+                    padding: '0'
+                  }),
+                  dropdownIndicator: (provided, state) => ({
+                    ...provided,
+                    color: '#e1e1e1',
+                    '&:hover': { color: '#088178' }
+                  }),
+                  clearIndicator: (provided, state) => ({
+                    ...provided,
+                    color: '#e1e1e1',
+                    '&:hover': { color: '#088178' }
+                  }),
+                  indicatorSeparator: (provided, state) => ({}),
+                  placeholder: (
+                    provided,
+                    { isDisabled, hasValue, selectProps }
+                  ) => ({
+                    ...provided,
+                    color: !isDisabled ? '#222' : '#e1e1e1',
+                    position: 'absolute',
+                    bottom: hasValue || selectProps.inputValue ? '1.5rem' : '0',
+                    transition: 'bottom 0.1s, font-size 0.1s',
+                    fontSize: (hasValue || selectProps.inputValue) && 10
+                  })
+                }}
+              />
+            </div>
+          </div>
+          {/* State message of delivery companies */}
+          <p className="text-xs mx-auto animate-bounce text-center md:text-start">
+            Selecciona la empresa transportadora de tu preferencia
+          </p>
+          {/* Delivery Companies */}
+          <div className="w-full my-3 flex flex-wrap justify-between lg:gap-3 gap-2">
+            {data.deliveryCompanies.map(
+              ({
+                deliveryCompanyName,
+                deliveryCompanyId,
+                deliveryCompanyImgUrl,
+                score,
+                shippingCost
+              }) => (
+                <DeliveryCompanySelector
+                  key={deliveryCompanyId}
+                  deliveryCompanyName={deliveryCompanyName}
+                  deliveryCompanyId={deliveryCompanyId}
+                  deliveryCompanyImgUrl={deliveryCompanyImgUrl}
+                  score={score}
+                  shippingCost={shippingCost}
                 />
-                {errors.nitType && (
-                  <div className="text-red-500">{errors.nitType.message}</div>
-                )}
-              </div>
-              <div>
-                <label htmlFor="nit">{NIT_LABEL}</label>
-                <input
-                  className="shipping-input-group w-full"
-                  id="nit"
-                  autoFocus
-                  {...register('nit')}
-                />
-                {errors.nit && (
-                  <div className="text-red-500">{errors.nit.message}</div>
-                )}
-              </div>
-            </>
-          )}
-          {!errorOnFormData && (
-            <>
-              <div className="pt-6 flex justify-center">
-                <button
-                  type="button"
-                  className="primary-button"
-                  onClick={handleQuoteShipping}
-                >
-                  {QUOTE_SHIPPING_LABEL}
-                </button>
-              </div>
-              <div className="mb-4">
-                {loadingQuote && <div>Loading quotes options...</div>}
-                {errorOnQuote && <div>{getErrorMessage(errorOnQuote)}</div>}
-                {quoteData && (
-                  <div className="flex flex-col gap-2 w-full my-4">
-                    {quoteData?.quoteShipping.map(
-                      ({
-                        deliveryCompanyId,
-                        deliveryCompanyName,
-                        deliveryCompanyImgUrl,
-                        shippingCost,
-                        score
-                      }) => (
-                        <div key={deliveryCompanyId} className="relative">
-                          <input
-                            type="radio"
-                            name={deliveryCompanyName}
-                            id={deliveryCompanyName}
-                            className="hidden peer"
-                            {...register('deliveryCompany')}
-                            value={deliveryCompanyId}
-                          />
-                          <label
-                            htmlFor={deliveryCompanyName}
-                            className="flex items-center gap-4 p-4 rounded-xl bg-white bg-opacity-90 backdrop-blur-2xl shadow-md hover:bg-opacity-75 peer-checked:bg-indigo-700 peer-checked:text-white cursor-pointer transition"
-                          >
-                            <Image
-                              src={deliveryCompanyImgUrl}
-                              alt="company image"
-                              width={50}
-                              height={50}
-                              quality={100}
-                              priority
-                              className="object-cover rounded-full"
-                            />
-                            <div>
-                              <h6 className="text-base">
-                                {deliveryCompanyName}
-                              </h6>
-                              {score && (
-                                <span className="flex text-sm opacity-60 gap-1">
-                                  <StarIcon className="h5 w-5 text-yellow-500" />
-                                  {score}
-                                </span>
-                              )}
-                            </div>
-                            <h6 className="ml-auto mr-10">
-                              {formatCurrency(shippingCost)}
-                            </h6>
-                          </label>
-                          <div className="flex absolute top-0 right-4 bottom-0 w-7 h-7 my-auto rounded-full bg-indigo-500 scale-0 peer-checked:scale-100 transition delay-100">
-                            <svg
-                              xmlns="http://www.w3.org/2000/svg"
-                              fill="currentColor"
-                              className="w-5 text-white my-auto mx-auto"
-                              viewBox="0 0 16 16"
-                            >
-                              <path d="M12.736 3.97a.733.733 0 0 1 1.047 0c.286.289.29.756.01 1.05L7.88 12.01a.733.733 0 0 1-1.065.02L3.217 8.384a.757.757 0 0 1 0-1.06.733.733 0 0 1 1.047 0l3.052 3.093 5.4-6.425a.247.247 0 0 1 .02-.022Z" />
-                            </svg>
-                          </div>
-                        </div>
-                      )
-                    )}
-                  </div>
-                )}
-              </div>
-            </>
-          )}
+              )
+            )}
+          </div>
         </div>
-        <div className="mb-4 flex justify-between">
-          <button type="submit" className="primary-button">
-            Next
-          </button>
-        </div>
+        {/* Button Back */}
+        <button
+          className="flex items-center justify-center gap-2 absolute bottom-0 md:left-8 left-4 text-sm font-semibold px-[20px] py-[12px] text-white bg-primary-accent-color rounded border-none outline-none transition-[0.2s]"
+          type="button"
+        >
+          <ArrowLongLeftIcon className="w-4 h-4 text-white animate-pulse" />
+          {BACK_BUTTON_TITLE}
+        </button>
+        {/* Button Next */}
+        <button
+          className="flex items-center justify-center gap-2 absolute bottom-0 md:right-8 right-4 text-sm font-semibold px-[20px] py-[12px] text-white bg-primary-accent-color rounded border-none outline-none transition-[0.2s]"
+          type="submit"
+        >
+          {NEXT_BUTTON_TITLE}
+          <ArrowLongRightIcon className="w-4 h-4 text-white animate-pulse" />
+        </button>
       </form>
-    </div>
+    </section>
   )
 }

@@ -18,9 +18,9 @@ export default function CheckoutWizard() {
   return (
     <section
       id="checkout-wizard"
-      className="section-p1 flex flex-col justify-around items-center w-[70vw] h-[15vh] mx-auto"
+      className="section-p1 flex flex-col justify-around items-center md:w-[70vw] w-[90vw] h-[15vh] mx-auto"
     >
-      <div className="w-full flex justify-between items-center relative before:content-[''] before:w-full before:h-[5px] before:bg-[#f0ebcc] before:absolute before:top-2/4 before:left-0 before:-translate-y-2/4 before:-z-[1]">
+      <div className="w-full flex justify-between items-center relative before:content-[''] before:w-full before:h-[5px] before:bg-primary-nav-color before:absolute before:top-2/4 before:left-0 before:-translate-y-2/4 before:-z-[1]">
         <div
           ref={statusBarRef}
           style={{ width: '0%' }}
