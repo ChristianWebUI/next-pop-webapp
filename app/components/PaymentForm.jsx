@@ -207,6 +207,22 @@ export default function PaymentForm() {
             </li>
           </ol>
         </div>
+        {/* Gatito */}
+        <div
+          className={classnames(
+            'absolute right-8 bottom-9 md:right-12 slide-in-active'
+          )}
+        >
+          <Image
+            src="/images/cat.gif"
+            alt="ok-cute"
+            width={433}
+            height={469}
+            quality={100}
+            sizes="100vw"
+            className="w-20 h-20"
+          />
+        </div>
         {/* Button Back */}
         <button
           className="flex items-center justify-center gap-2 absolute bottom-0 md:left-8 left-4 text-sm font-semibold px-[20px] py-[12px] text-white bg-primary-accent-color rounded border-none outline-none transition-[0.2s]"

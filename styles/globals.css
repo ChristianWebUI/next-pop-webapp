@@ -412,12 +412,12 @@
   }
   .slide-in {
     opacity: 0;
-    transform: translateY(100%);
+    transform: translateX(-100%);
     transition: opacity 0.3s, transform 0.3s;
   }
   .slide-in-active {
     opacity: 1;
-    transform: translateY(0);
+    transform: translateX(0);
   }
   .input-transition {
     transition: 0.3s ease-out;
