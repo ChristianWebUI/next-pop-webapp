@@ -14,12 +14,12 @@ export default function RegisterForm() {
         <HomeIcon className="w-6 h-6 text-[#8f2c24]" />
       </Link>
       <Image
-        src="/logo_p_de_papel.png"
+        src="/logos/no-text-transparent-bg.webp"
         alt="Logo Papeleria P de Papel"
-        width={200}
-        height={200}
+        width={4000}
+        height={2000}
         quality={100}
-        className="w-20 h-auto object-contain m-auto"
+        className="w-36 h-auto m-auto"
       />
       <h2>{SIGNUP_TEXT}</h2>
       <div className="inputbox">

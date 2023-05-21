@@ -96,17 +96,21 @@ export default function Header() {
     <header id="header" className="sticky top-0 left-0 z-[999]">
       <nav
         id="navigation"
-        className="flex items-center justify-between px-20 py-5 bg-primary-nav-color shadow-nav"
+        className="flex items-center justify-between px-20 bg-primary-nav-color shadow-nav"
       >
-        <Link href={HOME_PAGE} id="header-logo" className="w-16 h-16">
+        <Link
+          href={HOME_PAGE}
+          id="header-logo"
+          className="md:w-[15.625rem] w-[11rem]"
+        >
           <Image
-            src="/logo_p_de_papel.png"
+            src="/logos/text-beside-transparent-bg.webp"
             alt="Logo Papeleria P de Papel"
-            width={200}
-            height={200}
+            width={4000}
+            height={2000}
             quality={100}
             priority
-            className="w-full h-auto object-contain"
+            className="w-full h-auto"
           />
         </Link>
         <div>

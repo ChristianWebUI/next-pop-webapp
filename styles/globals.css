@@ -10,6 +10,11 @@
   --hue-offset: 320;
   --duration: 5000ms;
 
+  /* color bases for cards */
+  --color-card--white: linear-gradient(45deg, #fff, #cdcdcd);
+  --color-card--blue: linear-gradient(45deg, #748dfb, #3859e8);
+  --color-card--dark: linear-gradient(45deg, #616161, #484848);
+
   /* steps */
   --circle-size: clamp(1.5rem, 5vw, 3rem);
   --spacing: clamp(0.25rem, 2vw, 0.5rem);
@@ -171,11 +176,6 @@
   @media (max-width: 799px) {
     .section-p1 {
       padding: 40px 40px;
-    }
-
-    #header-logo {
-      height: 4.5rem;
-      width: 4.5rem;
     }
 
     #mobile {
@@ -410,6 +410,34 @@
   input:-webkit-autofill:active {
     transition: background-color 9999s ease-in-out 0s;
   }
+  .payment-card-dark {
+    background-image: var(--color-card--dark);
+  }
+  .payment-card-blue {
+    background-image: var(--color-card--blue);
+  }
+  .payment-card-white {
+    background-image: var(--color-card--white);
+  }
+  .payment-card::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    width: 40px;
+    transform: translateX(-70px);
+    background-image: linear-gradient(
+      to right,
+      rgba(255, 255, 255, 0),
+      rgba(255, 255, 255, 0.2),
+      rgba(255, 255, 255, 0)
+    );
+  }
+  .payment-card:hover::after {
+    will-change: transform;
+    animation: shine 500ms ease-in forwards;
+    animation-delay: 100ms;
+  }
   .slide-in {
     opacity: 0;
     transform: translateX(-100%);
@@ -603,6 +631,15 @@
     100% {
       opacity: 1;
       transform: translate(0px, 3px);
+    }
+  }
+
+  @keyframes shine {
+    from {
+      transform: translateX(-70px) rotate(10deg);
+    }
+    to {
+      transform: translateX(300px) rotate(10deg);
     }
   }
 }

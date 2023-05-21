@@ -32,15 +32,15 @@ export default function Footer() {
     <footer className="section-p1 flex flex-wrap flex-col justify-between">
       <div className="flex justify-between items-center">
         <div className="flex flex-col items-start mb-5">
-          <div className="w-16 h-16 mb-8">
+          <div className="w-24 mb-8">
             <Image
-              src="/logo_p_de_papel.png"
+              src="/logos/text-below-transparent-bg.webp"
               alt="Logo Papeleria P de Papel"
-              width={200}
-              height={200}
+              width={4000}
+              height={2000}
               quality={100}
               priority
-              className="w-full h-auto object-contain"
+              className="w-full"
             />
           </div>
           <h5 className="text-sm pb-5">{FOOTER_CONTACT_TITLE}</h5>

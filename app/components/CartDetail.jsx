@@ -9,11 +9,14 @@ import Link from 'next/link'
 
 const dummyCartItems = data.products.slice(0, 3)
 
-export default function CartDetail() {
+export default function CartDetail({ hasSectionP1 = true, otherClasses }) {
   return (
     <section
       id="cart"
-      className="section-p1 overflow-x-auto lg:overflow-visible"
+      className={classnames('overflow-x-auto lg:overflow-visible', {
+        'section-p1': hasSectionP1,
+        [otherClasses]: otherClasses
+      })}
     >
       <table className="w-full border-collapse table-fixed whitespace-nowrap">
         <thead className="border border-solid border-table-header-color border-x-0">

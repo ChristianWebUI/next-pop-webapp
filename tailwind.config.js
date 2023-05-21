@@ -7,6 +7,32 @@ module.exports = {
   ],
   theme: {
     extend: {
+      keyframes: {
+        shine: {
+          from: { transform: 'translateX(-70px) rotate(10deg)' },
+          to: { transform: 'translateX(300px) rotate(10deg)' }
+        },
+        'lift-moving': {
+          '0%': { left: '-65px' },
+          '50%': { left: '20px' },
+          '60%': { left: '15px' },
+          '100%': { left: '365px' }
+        },
+        'place-box': {
+          '0%': { top: '56px' },
+          '20%': { top: '0', left: '50px' },
+          '50%': { top: '0', left: '50px' },
+          '60%': { top: '0', left: '45px' },
+          '100%': { top: '0', left: '395px' }
+        }
+      },
+      animation: {
+        'lift-moving': '4s lift-moving infinite',
+        'place-box': '4s place-box infinite'
+      },
+      content: {
+        checkmark: "url('/images/checkmark.svg')"
+      },
       fontFamily: {
         roboto: ['var(--font-roboto)'],
         'nova-round': ['var(--font-nova-round)'],
@@ -43,7 +69,8 @@ module.exports = {
         'fe-box': '20px 20px 34px rgba(0,0,0,0.03)',
         'fe-box-hover': '10px 10px 54px rgba(70,62,221,0.1)',
         'product-card': '20px 20px 30px rgba(0,0,0,0.02)',
-        'product-card-hover': '20px 20px 30px rgba(0,0,0,0.06)'
+        'product-card-hover': '20px 20px 30px rgba(0,0,0,0.06)',
+        chip: 'inset 1px 1px 0px rgba(#B39256, 0.5)'
       },
       height: {
         '90vh': '90vh'
