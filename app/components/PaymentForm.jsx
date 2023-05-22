@@ -93,13 +93,13 @@ export default function PaymentForm() {
           className="w-full max-w-screen-md mx-auto md:p-8 p-4 mb-2"
         >
           {/* Methods Section */}
-          <div className="flex flex-col md:grid md:grid-cols-5 gap-6">
+          <div className="grid grid-cols-2 md:grid-cols-5 md:grid-rows-1 lg:gap-6 gap-3">
             {PAYMENT_METHODS.map(({ id, icon, value, disabled }) => (
               <label
                 key={id}
                 htmlFor={id}
                 className={classnames(
-                  'radio-group relative flex flex-col md:w-auto md:h-auto items-center justify-center bg-white p-3 rounded-lg shadow-md cursor-pointer w-full h-[150px] mx-auto',
+                  'radio-group relative flex flex-col lg:h-[7.8rem] md:h-[6rem] items-center justify-center bg-white p-3 rounded-lg shadow-md cursor-pointer w-full h-[9.375rem] mx-auto',
                   { 'pointer-events-none': disabled }
                 )}
               >
@@ -135,7 +135,7 @@ export default function PaymentForm() {
                   aria-hidden="true"
                   className="hidden absolute inset-0 border-2 border-green-500 bg-green-200 bg-opacity-10 rounded-lg"
                 >
-                  <span className="absolute lg:top-4 top-1 lg:right-4 right-1 lg:h-6 lg:w-6 w-5 h-5 inline-flex items-center justify-center rounded-full bg-green-200">
+                  <span className="absolute top-1 right-1 lg:h-6 lg:w-6 w-5 h-5 inline-flex items-center justify-center rounded-full bg-green-200">
                     <svg
                       xmlns="http://www.w3.org/2000/svg"
                       viewBox="0 0 20 20"
