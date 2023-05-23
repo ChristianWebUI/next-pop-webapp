@@ -41,3 +41,10 @@ export const ORDER_KEYS = {
   price,
   last: subTotal
 }
+
+export const PAYMENT_STATUS = {
+  PAID: 'PAID',
+  NOT_PAID: 'NOT_PAID',
+  INFO: 'INFO',
+  WARNING: 'WARNING'
+}

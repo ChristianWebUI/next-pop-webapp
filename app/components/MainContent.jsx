@@ -16,7 +16,9 @@ const WITHOUT_FOOTER = [
 export default function MainContent({ children }) {
   const pathname = usePathname()
   const excludeHeader = WITHOUT_HEADER.includes(pathname.replace(/\//g, ''))
-  const excludeFooter = WITHOUT_FOOTER.includes(pathname.replace(/\//g, ''))
+  const excludeFooter =
+    WITHOUT_FOOTER.includes(pathname.replace(/\//g, '')) ||
+    pathname.startsWith('/order/')
   return (
     <>
       {!excludeHeader && <Header />}

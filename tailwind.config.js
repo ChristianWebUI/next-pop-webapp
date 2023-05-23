@@ -62,7 +62,15 @@ module.exports = {
         'other-highlight-text-color': '#ffbd27',
         'blog-date-color': '#c9cbce',
         'input-border-color': '#e1e1e1',
-        'table-header-color': '#e2e9e1'
+        'table-header-color': '#e2e9e1',
+        'error-message-bg-color': '#ffcfcc',
+        'error-message-text-color': '#f44336',
+        'success-message-bg-color': '#a3ffdd',
+        'success-message-text-color': '#04aa6d',
+        'info-message-bg-color': '#c3d9eb',
+        'info-message-text-color': '#2196f3',
+        'warning-message-bg-color': '#ffe1b5',
+        'warning-message-text-color': '#ff9800'
       },
       boxShadow: {
         nav: '0 5px 15px rgba(0,0,0,0.06)',

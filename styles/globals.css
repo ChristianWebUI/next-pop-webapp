@@ -665,7 +665,7 @@
 }
 
 .bancolombia-link {
-  @apply flex justify-center items-center max-w-max mx-auto touch-manipulation text-black no-underline bg-transparent;
+  @apply flex justify-center items-center max-w-max w-full touch-manipulation text-black no-underline bg-transparent;
 }
 
 .bancolombia-link:hover .custom-btn-bancolombia {
@@ -673,7 +673,7 @@
 }
 
 .bancolombia-link:hover .custom-btn-bancolombia::before {
-  @apply translate-x-[184px];
+  @apply lg:translate-x-[184px] translate-x-[136px];
 }
 
 .bancolombia-link:hover .custom-btn-bancolombia::after {
@@ -689,15 +689,15 @@
 }
 
 .custom-btn-bancolombia {
-  @apply bg-[#f9c300] text-transparent normal-case text-xl font-roboto font-semibold min-h-[60px] min-w-[240px] flex justify-center items-center rounded-[30px] relative transition-all duration-500 ease-out;
+  @apply bg-[#f9c300] text-transparent normal-case text-xl font-roboto font-semibold lg:min-h-[60px] lg:min-w-[240px] min-h-[40px] min-w-[172.67px] flex justify-center items-center rounded-[30px] relative transition-all duration-500 ease-out;
 }
 
 .custom-btn-bancolombia::before {
-  @apply content-[""] bg-[url('/images/bancolombia-logo.png')] w-[60px] h-[60px] -left-[2px] absolute bg-[length:34px] bg-no-repeat bg-center bg-white rounded-[100%] transition-all duration-500 ease-out translate-x-0 z-10 shadow-[0_0_10px_0_rgba(197,197,197,1)];
+  @apply content-[""] bg-[url('/images/bancolombia-logo.png')] lg:w-[60px] lg:h-[60px] w-[40px] h-[40px] -left-[2px] absolute lg:bg-[length:34px] bg-[length:24px] bg-no-repeat bg-center bg-white rounded-[100%] transition-all duration-500 ease-out translate-x-0 z-10 shadow-[0_0_10px_0_rgba(197,197,197,1)];
 }
 
 .custom-btn-bancolombia::after {
-  @apply content-["Bancolombia"] absolute text-black text-xl font-roboto font-semibold transition-all duration-500 ease-out translate-x-5;
+  @apply content-["Bancolombia"] absolute text-black lg:text-xl text-lg font-roboto font-semibold transition-all duration-500 ease-out translate-x-5;
 }
 
 .radio-group input[type='radio']:checked + span {
