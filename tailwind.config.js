@@ -89,6 +89,12 @@ module.exports = {
       },
       minWidth: {
         250: '250px'
+      },
+      backgroundImage: {
+        night:
+          'linear-gradient(to bottom, #292256 0%, #8446cf 70%, #a871d6 100%)',
+        'night-after':
+          'radial-gradient(ellipse at center, rgba(255, 255, 255, 0) 0%, rgba(255, 255, 255, 0) 40%, rgba(15, 10, 38, 0.2) 100%)'
       }
     }
   },
