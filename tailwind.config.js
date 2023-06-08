@@ -35,18 +35,18 @@ module.exports = {
       },
       fontFamily: {
         roboto: ['var(--font-roboto)'],
-        'nova-round': ['var(--font-nova-round)'],
-        sacramento: ['var(--font-sacramento)'],
-        inder: ['var(--font-inder)', 'sans-serif']
+        title: ['var(--font-title)'],
+        subtitle: ['var(--font-subtitle)'],
+        text: ['var(--font-text)', 'sans-serif']
       },
       colors: {
         'primary-text-color': '#222',
         'secondary-text-color': '#465b52',
-        'primary-nav-color': '#E3E6F3',
+        'primary-nav-color': '#e9d483',
         'primary-link-color': '#1a1a1a',
-        'primary-accent-color': '#088178',
-        'primary-accent-hover-color': 'rgba(8, 129, 120, 0.4)',
-        'primary-accent-active-color': 'rgba(8, 129, 120, 0.8)',
+        'primary-accent-color': '#fa7484',
+        'primary-accent-hover-color': 'rgba(250, 116, 132, 0.4)',
+        'primary-accent-active-color': 'rgba(250, 116, 132, 0.8)',
         'primary-border-color': '#cce7d0',
         'random-fe1-color': '#fddde4',
         'random-fe2-color': '#cdebbc',

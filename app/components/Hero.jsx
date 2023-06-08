@@ -10,7 +10,7 @@ export default function Hero() {
   return (
     <section
       id="hero"
-      className="bg-[url('/hero-pdp-default-test.png')] h-90vh w-full bg-cover bg-[top_25%_right_0] px-20 flex items-start justify-center flex-col"
+      className="bg-[url('/hero-default-pdp.webp')] h-90vh w-full bg-cover bg-[top_25%_right_0] px-20 flex items-start justify-center flex-col"
     >
       <h4 className="pb-4">{DEFAULT_HERO_SUB_SUBTITLE}</h4>
       <h2>{DEFAULT_HERO_SUBTITLE}</h2>
@@ -18,7 +18,7 @@ export default function Hero() {
       <p>{DEFAULT_HERO_PARAGRAPH}</p>
       <button
         type="button"
-        className="bg-[url('/button-bg-splash.png')] bg-transparent bg-no-repeat text-primary-accent-color border-0 py-3.5 pl-[65px] pr-20 font-bold text-[15px]"
+        className="bg-[url('/button-bg-splash.png')] bg-transparent bg-no-repeat text-primary-accent-color border-0 py-3.5 pl-[65px] pr-20 font-bold text-lg"
       >
         {BUTTON_TEXT}
       </button>

@@ -10,7 +10,7 @@ export default function Banner() {
   return (
     <section
       id="banner"
-      className="section-m1 flex flex-col items-center justify-center text-center bg-[url('/banner-pdp-mock.jpeg')] w-full h-[40vh] bg-cover bg-center"
+      className="section-m1 flex flex-col items-center justify-center text-center bg-[url('/banner-default-pdp.webp')] w-full h-[40vh] bg-cover bg-center"
     >
       <h4 className="text-white text-base">{BANNER_TITLE}</h4>
       <h2 className="text-white text-3xl py-2.5">

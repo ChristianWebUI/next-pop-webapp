@@ -12,7 +12,7 @@ export default function Newsletter() {
       className="section-p1 section-m1 flex justify-between items-center flex-wrap bg-[url('/banners-cta/pdp-signup.png')] bg-no-repeat bg-[20%_30%] bg-signup-bg-color"
     >
       <div>
-        <h4 className="text-3xl font-bold text-white font-nova-round">
+        <h4 className="text-3xl font-bold text-white font-title">
           {NEWSTEXT_TITLE}
         </h4>
         <p className="text-sm font-semibold text-other-text-color">

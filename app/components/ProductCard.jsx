@@ -26,7 +26,7 @@ export default function ProductCard({
           <h5 className="text-primary-link-color text-sm">{name}</h5>
         </Link>
         <StarRating isDisabled />
-        <h4 className="font-inder text-lg font-bold text-primary-accent-color">
+        <h4 className="font-text text-lg font-bold text-primary-accent-color">
           {formatCurrency(price)}
         </h4>
       </div>

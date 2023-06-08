@@ -4,10 +4,10 @@ import NextIntlProvider from '@/context/NextIntlProvider'
 import SessionProvider from '@/context/SessionContextProvider'
 import StoreProvider from '@/context/StoreContextProvider'
 import {
-  Inder,
-  Nova_Round as NovaRound,
-  Roboto,
-  Sacramento
+  Cairo,
+  Goudy_Bookletter_1911 as GoudyBookletter1911,
+  Pavanam,
+  Roboto
 } from 'next/font/google'
 import 'styles/globals.css'
 
@@ -28,25 +28,28 @@ export const metadata = {
   }
 }
 
-const novaRound = NovaRound({
+// Titulos
+const fontTitle = Cairo({
+  subsets: ['latin', 'latin-ext'],
+  weight: ['200', '300', '400', '500', '600', '700', '800', '900', '1000'],
+  display: 'swap',
+  variable: '--font-title'
+})
+// Subtitulos
+const fontSubtitle = GoudyBookletter1911({
   subsets: ['latin'],
   weight: '400',
   display: 'swap',
-  variable: '--font-nova-round'
+  variable: '--font-subtitle'
 })
-const sacramento = Sacramento({
-  subsets: ['latin'],
+// Textos
+const fontText = Pavanam({
+  subsets: ['latin', 'latin-ext'],
   weight: '400',
   display: 'swap',
-  variable: '--font-sacramento'
+  variable: '--font-text'
 })
-const inder = Inder({
-  subsets: ['latin'],
-  weight: '400',
-  display: 'swap',
-  variable: '--font-inder'
-})
-
+// Bancolombia
 const roboto = Roboto({
   style: ['normal'],
   weight: '400',
@@ -59,7 +62,7 @@ export default function RootLayout({ children, session }) {
   return (
     <html
       lang="en"
-      className={`${roboto.variable} ${novaRound.variable} ${sacramento.variable} ${inder.variable} font-sans`}
+      className={`${roboto.variable} ${fontTitle.variable} ${fontSubtitle.variable} ${fontText.variable} font-sans`}
     >
       <head />
       <body>

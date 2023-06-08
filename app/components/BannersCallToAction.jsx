@@ -21,7 +21,7 @@ export default function BannersCallToAction() {
       <section id="dual-banners" className="flex justify-between flex-wrap">
         <div
           id="banner-box-1"
-          className="flex flex-col items-start justify-center bg-[url('/banners-cta/banner-box1-pdp.jpeg')] min-w-[580px] h-[50vh] bg-cover bg-center p-8 group"
+          className="flex flex-col items-start justify-center bg-[url('/banners-cta/banner-box1-pdp.webp')] min-w-[580px] h-[50vh] bg-cover bg-center p-8 group"
         >
           <h4 className="text-white text-[3.5rem] leading-[3.25rem] font-light">
             {BANNER_BOX1_TITLE}
@@ -41,7 +41,7 @@ export default function BannersCallToAction() {
         </div>
         <div
           id="banner-box-2"
-          className="flex flex-col items-start justify-center bg-[url('/banners-cta/banner-box2-pdp.jpeg')] min-w-[580px] h-[50vh] bg-cover bg-center p-8 group"
+          className="flex flex-col items-start justify-center bg-[url('/banners-cta/banner-box2-pdp.webp')] min-w-[580px] h-[50vh] bg-cover bg-center p-8 group"
         >
           <h4 className="text-white text-[3.5rem] leading-[3.25rem] font-light">
             {BANNER_BOX2_TITLE}
@@ -64,7 +64,7 @@ export default function BannersCallToAction() {
         id="triple-banners"
         className="flex justify-between flex-wrap py-20 px-0"
       >
-        <div className="flex flex-col justify-center items-start min-w-[30%] h-[30vh] bg-[url('/banners-cta/mini-banner1-pdp.jpeg')] bg-cover bg-center mb-5 p-5">
+        <div className="flex flex-col justify-center items-start min-w-[30%] h-[30vh] bg-[url('/banners-cta/mini-banner1-pdp.webp')] bg-cover bg-center mb-5 p-5">
           <h1 className="text-white font-black text-2xl uppercase">
             {MINI_BANNER1_TITLE}
           </h1>
@@ -72,7 +72,7 @@ export default function BannersCallToAction() {
             {MINI_BANNER1_DESC}
           </p>
         </div>
-        <div className="flex flex-col justify-center items-start min-w-[30%] h-[30vh] bg-[url('/banners-cta/mini-banner2-pdp.jpeg')] bg-cover bg-center mb-5 p-5">
+        <div className="flex flex-col justify-center items-start min-w-[30%] h-[30vh] bg-[url('/banners-cta/mini-banner2-pdp.webp')] bg-cover bg-center mb-5 p-5">
           <h1 className="text-white font-black text-2xl uppercase">
             {MINI_BANNER2_TITLE}
           </h1>
@@ -80,7 +80,7 @@ export default function BannersCallToAction() {
             {MINI_BANNER2_DESC}
           </p>
         </div>
-        <div className="flex flex-col justify-center items-start min-w-[30%] max-w-[30%] h-[30vh] bg-[url('/banners-cta/mini-banner3-pdp.jpeg')] bg-cover bg-center mb-5 p-5">
+        <div className="flex flex-col justify-center items-start min-w-[30%] max-w-[30%] h-[30vh] bg-[url('/banners-cta/mini-banner3-pdp.webp')] bg-cover bg-center mb-5 p-5">
           <h1 className="text-white font-black text-2xl uppercase">
             {MINI_BANNER3_TITLE}
           </h1>

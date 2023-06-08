@@ -18,7 +18,7 @@ export default function ProductDetail({ product }) {
       <ImagesCarousel images={images} />
       <div id="product-detail-section" className="w-6/12 pt-8">
         <h6>{`Inicio / ${category}`}</h6>
-        <h4 className="py-5 px-0 text-[26px] font-inder">{name}</h4>
+        <h4 className="py-5 px-0 text-[26px] font-text">{name}</h4>
         <StarRating classNames="w-8 h-8" />
         <Price price={price} tagName="span" classNames="text-3xl" />
         <ProductSelector options={dummyOptions} />
@@ -26,7 +26,7 @@ export default function ProductDetail({ product }) {
           <QuantitySelector itemsInStock={countInStock} product={product} />
           <AddToCartButton component={'product-detail'} />
         </div>
-        <h4 className="pb-5 pt-12 px-0 text-[26px] font-inder">
+        <h4 className="pb-5 pt-12 px-0 text-[26px] font-text">
           {PRODUCT_DETAILS_TITLE}
         </h4>
         <span className="leading-[25px]">{description}</span>
