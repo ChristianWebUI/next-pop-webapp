@@ -388,7 +388,7 @@
     }
 
     #footer-follow-us > div {
-      justify-content: space-between;
+      justify-content: space-around;
     }
 
     /* Shop */

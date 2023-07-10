@@ -57,7 +57,7 @@ export default function Footer() {
             {FOOTER_HOURS}
           </p>
           <div id="footer-follow-us">
-            <h5 className="text-sm pb-5">{FOLLOW_US_TITLE}</h5>
+            <h5 className="text-sm">{FOLLOW_US_TITLE}</h5>
             <div className="flex mt-5">
               <Link
                 href="#"
@@ -204,23 +204,23 @@ export default function Footer() {
         <div className="flex flex-col items-start mb-5">
           <h5 className="text-sm pb-5">{FOOTER_INSTALL_TITLE}</h5>
           <p className="text-xs mt-0 mb-2 mx-0">{FOOTER_INSTALL_PARAGRAPH}</p>
-          <div className="flex gap-1">
+          <div className="flex gap-1 mb-2 lg:flex-row flex-col">
             <Image
               src="/footer/app.jpg"
               alt="App Play"
               width={170}
               height={48}
-              className="border border-solid border-primary-accent-color rounded-[6px]"
+              className="border border-solid border-primary-accent-color rounded-[6px] md:w-[90%] lg:w-[170px]"
             />
             <Image
               src="/footer/play.jpg"
               alt="Google Play"
               width={170}
               height={48}
-              className="border border-solid border-primary-accent-color rounded-[6px]"
+              className="border border-solid border-primary-accent-color rounded-[6px] md:w-[90%] lg:w-[170px]"
             />
           </div>
-          <p className="text-xs mt-0 mb-2 mx-0">
+          <p className="text-xs mt-0 mb-1 mx-0">
             {FOOTER_INSTALL_PAYMENTS_TEXT}
           </p>
           <Image
@@ -228,7 +228,7 @@ export default function Footer() {
             alt="Payments"
             width={224}
             height={32}
-            className="mt-2.5 mb-[15px] mx-0"
+            className="mt-2.5 mb-[15px] mx-0 lg:w-[224px] md:w-3/4"
           />
         </div>
       </div>

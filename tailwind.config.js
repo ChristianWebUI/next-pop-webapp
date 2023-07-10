@@ -34,9 +34,9 @@ module.exports = {
         checkmark: "url('/images/checkmark.svg')"
       },
       fontFamily: {
-        roboto: ['var(--font-roboto)'],
-        title: ['var(--font-title)'],
-        subtitle: ['var(--font-subtitle)'],
+        roboto: ['var(--font-roboto)', 'sans-serif'],
+        title: ['var(--font-title)', 'sans-serif'],
+        subtitle: ['var(--font-subtitle)', 'sans-serif'],
         text: ['var(--font-text)', 'sans-serif']
       },
       colors: {

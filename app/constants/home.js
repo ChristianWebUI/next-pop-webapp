@@ -59,11 +59,11 @@ export const FEATURED_PRODUCTS_PARAGRAPH =
 
 // BANNER
 
-export const BANNER_TITLE = 'Repair Services'
-export const BANNER_PARAGRAPH1 = 'Up to'
-export const BANNER_SPAN = '70% off'
-export const BANNER_PARAGRAPH2 = ' - All T-Shirts & Accessories'
-export const CALL_TO_ACTION_TITLE = 'Explore More'
+export const BANNER_TITLE = 'Un mundo de posibilidades'
+export const BANNER_PARAGRAPH1 = 'Tenemos los mejores '
+export const BANNER_SPAN = 'descuentos'
+export const BANNER_PARAGRAPH2 = ' en ...'
+export const CALL_TO_ACTION_TITLE = 'Explora'
 
 // NEW ARRIVALS
 
